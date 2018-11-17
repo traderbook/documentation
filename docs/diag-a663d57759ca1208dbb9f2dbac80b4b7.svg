@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="166px" preserveAspectRatio="none" style="width:434px;height:166px;" version="1.1" viewBox="0 0 434 166" width="434px" zoomAndPan="magnify"><defs><filter height="300%" id="f1vmcojq3drk7u" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><ellipse cx="16" cy="81.5" fill="#000000" filter="url(#f1vmcojq3drk7u)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#f1vmcojq3drk7u)" height="147" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="167" x="45.5" y="8"/><svg x="55.5" y="18"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="63" x="9" y="31.1074">username</text><line style="stroke: #000000; stroke-width: 1.0;" x1="7" x2="74" y1="33.9375" y2="33.9375"/><line style="stroke: #000000; stroke-width: 1.0;" x1="7" x2="7" y1="30.9375" y2="32.9375"/><line style="stroke: #000000; stroke-width: 1.0;" x1="74" x2="74" y1="30.9375" y2="32.9375"/><line style="stroke: #AAAAAA; stroke-width: 1.0;" x1="6" x2="141" y1="40.4375" y2="40.4375"/><line style="stroke: #AAAAAA; stroke-width: 1.0;" x1="6" x2="141" y1="42.4375" y2="42.4375"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="60" x="9" y="57.0762">password</text><line style="stroke: #000000; stroke-width: 1.0;" x1="7" x2="74" y1="59.9063" y2="59.9063"/><line style="stroke: #000000; stroke-width: 1.0;" x1="7" x2="7" y1="56.9063" y2="58.9063"/><line style="stroke: #000000; stroke-width: 1.0;" x1="74" x2="74" y1="56.9063" y2="58.9063"/><line style="stroke: #AAAAAA; stroke-width: 1.0;" x1="6" x2="141" y1="66.4063" y2="66.4063"/><line style="stroke: #AAAAAA; stroke-width: 1.0;" x1="6" x2="141" y1="68.4063" y2="68.4063"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="110" x="9" y="83.0449">confirm password</text><line style="stroke: #000000; stroke-width: 1.0;" x1="7" x2="138" y1="85.875" y2="85.875"/><line style="stroke: #000000; stroke-width: 1.0;" x1="7" x2="7" y1="82.875" y2="84.875"/><line style="stroke: #000000; stroke-width: 1.0;" x1="138" x2="138" y1="82.875" y2="84.875"/><line style="stroke: #AAAAAA; stroke-width: 1.0;" x1="6" x2="141" y1="92.375" y2="92.375"/><line style="stroke: #AAAAAA; stroke-width: 1.0;" x1="6" x2="141" y1="94.375" y2="94.375"/><rect fill="#EEEEEE" height="17.9688" rx="5" ry="5" style="stroke: #000000; stroke-width: 2.5;" width="108" x="8.5" y="100.375"/><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="76" x="24.5" y="113.5137">create profil</text><line style="stroke: #000000; stroke-width: 1.0;" x1="5" x2="141" y1="11.9844" y2="11.9844"/><line style="stroke: #000000; stroke-width: 1.0;" x1="5" x2="141" y1="121.8438" y2="121.8438"/><line style="stroke: #000000; stroke-width: 1.0;" x1="5" x2="5" y1="11.9844" y2="36.9375"/><line style="stroke: #000000; stroke-width: 1.0;" x1="141" x2="141" y1="11.9844" y2="36.9375"/><line style="stroke: #000000; stroke-width: 1.0;" x1="5" x2="5" y1="88.875" y2="96.875"/><line style="stroke: #000000; stroke-width: 1.0;" x1="141" x2="141" y1="88.875" y2="96.875"/><line style="stroke: #000000; stroke-width: 1.0;" x1="5" x2="5" y1="62.9063" y2="70.9063"/><line style="stroke: #000000; stroke-width: 1.0;" x1="141" x2="141" y1="62.9063" y2="70.9063"/><line style="stroke: #000000; stroke-width: 1.0;" x1="5" x2="5" y1="36.9375" y2="44.9375"/><line style="stroke: #000000; stroke-width: 1.0;" x1="141" x2="141" y1="36.9375" y2="44.9375"/><line style="stroke: #000000; stroke-width: 1.0;" x1="5" x2="5" y1="96.875" y2="121.8438"/><line style="stroke: #000000; stroke-width: 1.0;" x1="141" x2="141" y1="96.875" y2="121.8438"/><line style="stroke: #000000; stroke-width: 1.0;" x1="5" x2="5" y1="70.9063" y2="88.875"/><line style="stroke: #000000; stroke-width: 1.0;" x1="141" x2="141" y1="70.9063" y2="88.875"/><line style="stroke: #000000; stroke-width: 1.0;" x1="5" x2="5" y1="44.9375" y2="62.9063"/><line style="stroke: #000000; stroke-width: 1.0;" x1="141" x2="141" y1="44.9375" y2="62.9063"/><rect fill="#FFFFFF" height="13.9688" style="stroke: #FFFFFF; stroke-width: 1.0;" width="98" x="11" y="5"/><text fill="#000000" font-family="sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="98" x="11" y="16.1387">Create profile</text></g></svg><rect fill="#FEFECE" filter="url(#f1vmcojq3drk7u)" height="44" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="190" x="233" y="59.5"/><svg x="243" y="69.5"><defs/><g><text fill="#000000" font-family="sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="158" x="6" y="17.1387">Trading platform inteface</text></g></svg><!--link start to profilform--><path d="M26.1523,81.5 C30.8729,81.5 35.5934,81.5 40.314,81.5 " fill="none" id="start-profilform" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="45.4363,81.5,36.4363,77.5,40.4363,81.5,36.4363,85.5,45.4363,81.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--link profilform to {{\nsalt\n{\nTrading platform inteface\n}\n}}--><path d="M212.564,81.5 C217.637,81.5 222.71,81.5 227.783,81.5 " fill="none" id="profilform-{{\nsalt\n{\nTrading platform inteface\n}\n}}" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="232.856,81.5,223.856,77.5,227.856,81.5,223.856,85.5,232.856,81.5" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+(*) -right-> "
+{{
+salt
+{^<b>Create profile
+"username"
+==
+"password"
+==
+"confirm password"
+==
+[create profil]
+}
+}}
+" as profilform
+
+profilform -right-> "
+{{
+salt
+{
+Trading platform inteface
+}
+}}
+"
+@enduml
+
+PlantUML version 1.2018.10(Sat Aug 25 19:02:59 CEST 2018)
+(APACHE source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 11.0.1+13-LTS
+Operating System: Linux
+OS Version: 4.9.0-8-amd64
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>

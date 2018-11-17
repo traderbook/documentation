@@ -1,0 +1,59 @@
+== Dictionnaire de données
+
+=== F1 - Créer un profil utilisateur
+
+Nom de la table : *users*
+
+[%header,cols=4*]
+|===
+|Nom de la colonne |Type |Nom |Description
+
+|username
+|VARCHAR
+|Nom d'utilisateur ou login
+|Permettra d'authentifier un utilisateur
+
+|password
+|VARCHAR
+|Mot de passe
+|Permettra d'authentifier un utilisateur
+|===
+
+=== F2 - Compte de trading
+
+Nom de la table : *accounts*
+
+[%header,cols=4*]
+|===
+|Nom de la colonne |Type |Nom |Description
+
+|account_type
+|VARCHAR
+|Type de compte
+|Un compte peut avoir deux types : DEMO et REAL
+
+|broker
+|VARCHAR
+|Identifiant du broker
+|Correspond a l'identifiant du broker fourni par l'API (Connecteur de l'application)
+
+|username
+|VARCHAR
+|Nom d'utilisateur ou login
+|Correspont à l'identifiant fourni par le borker
+
+|password
+|VARCHAR
+|Mot de passe
+|Correspont à mot de passe fourni par le borker
+
+|status
+|BOOLEAN
+|Statut d'authentification
+|Permet de savoir quel compte est connecté à broker
+
+|user_id
+|INTERGER
+|Id de le table utilisateur
+|Permet l'association de cette table à la table utilisateur
+|===

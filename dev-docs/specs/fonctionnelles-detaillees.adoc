@@ -1,0 +1,356 @@
+= Document fonctionnel détaillé
+
+== F1 - Créer un profil utilisateur
+
+=== Scénarios & Enchaînement des écrans
+
+==== Créer un profil
+
+Un utilisateur doit pouvoir créer un profil utilisateur afin de protéger les données de ses comptes de trading.
+
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{^<b>Create profile
+"username"
+==
+"password"
+==
+"confirm password"
+==
+[create profil]
+}
+}}
+" as profilform
+
+profilform -right-> "
+{{
+salt
+{
+Trading platform inteface
+}
+}}
+"
+....
+
+==== Authentification d'un profil
+
+Un utilisateur doit pouvoir s'authentifier avec les informations qu'il a saisi lors de la création de son profil.
+
+Par l'intermédiaire du formulaire d'authentification, l'utilisateur doit pouvoir accéder au formulaire de création de profil.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{^<b>Login
+"username"
+==
+"password"
+==
+[connection]
+create profil
+}
+}}
+" as profilform
+
+profilform -right-> "
+{{
+salt
+{
+Trading platform inteface
+}
+}}
+"
+....
+
+==== Authentification d'un profil (cas d'erreur)
+
+Si l'utilisateur ne saisi pas les bonnes informations d'authentification, celui-ci reste sur le formulaire et voir apparaître un message l'informant que les informations d'authentification ne sont pas correctes.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{^<b>Login
+"username"
+==
+"password"
+==
+[connection]
+create profil
+}
+}}
+" as profilform
+
+profilform -right-> "
+{{
+salt
+{^<b>Login
+<b>bad credential message
+..
+"username"
+==
+"password"
+==
+[connection]
+create profil
+}
+}}
+"
+....
+
+[WARNING]
+====
+Le message de ne doit spécifier quels informations sont incorrectes pour éviter les procédures de brute force.
+====
+
+.TODO list
+- Mettre en place l'option mot de passe oublié
+
+== F2 - Gérer des comptes
+
+=== Scénarios & Enchaînement des écrans
+
+==== Créer un compte
+
+Pour le création d'un compte de trading :
+
+* Si la liste des compte est vidé, un message est affiché à l'utilisateur l'informant qu'il n'y a pas de compte.
+* L'utilisateur clique sur un bouton d'ajout de compte.
+* L'utilisateur est dirigé vers un formulaire de connection.
+* Un fois tous les champs saisi, l'utilisateur doit cliquer sur un bouton de connection.
+* Pendant l'authentification le bouton de connection change d'état pour informer que l'authentification est en cours.
+* Une fois connecté, l'utilisateur est dirigé vers la liste des comptes de trading.
+* L'utilisateur voir le nom d'utilisateur saisi ainsi que le statut de connection du compte.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+<b>Account list
+..
+No account found
+[add account]
+}
+}}
+" as accountlist
+
+accountlist -right-> "
+{{
+salt
+{^<b>Account form
+..
+{ ^broker name ^ }
+==
+{ ^account type^ }
+==
+"username"
+==
+"password"
+==
+[connection]
+}
+}}
+" as accountform
+
+accountform -right-> "
+{{
+salt
+{^<b>Account form
+..
+{ ^broker name ^ }
+==
+{ ^account type^ }
+==
+"username"
+==
+"password"
+==
+[connecting...]
+}
+}}
+" as accountformwaiting
+
+accountformwaiting -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username <&lock-locked>
+[add account]
+}
+}}
+"
+....
+
+==== Modifier un compte
+
+Pour le création d'un compte de trading :
+
+* La liste possede déjà au moins un compte de trading.
+* L'utilisateur double clique sur le compte qu'il souhaite modifier.
+* L'utilisateur est dirigé vers un formulaire de connection, et les informations sont déjà renseignées.
+* Un fois tous les champs modifiés, l'utilisateur doit cliquer sur un bouton de connection.
+* Pendant l'authentification le bouton de connection change d'état pour informer que l'authentification est en cours.
+* Une fois connecté, l'utilisateur est dirigé vers la liste des comptes de trading.
+* L'utilisateur voir les changements effectés sur le compte de trading.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username
+[add account]
+}
+}}
+" as accountlist
+
+accountlist -right-> "
+{{
+salt
+{^<b>Account form
+..
+{ ^broker name ^ }
+==
+{ ^account type^ }
+==
+"other username"
+==
+"password"
+==
+[connection]
+}
+}}
+" as accountform
+
+accountform -right-> "
+{{
+salt
+{^<b>Account form"
+..
+{ ^broker name ^ }
+==
+{ ^account type^ }
+==
+"username"
+==
+"password"
+==
+[connecting...]
+}
+}}
+" as accountformwaiting
+
+accountformwaiting -right-> "
+{{
+salt
+{
+<b>Account list
+..
+other username <&lock-locked>
+[add account]
+}
+}}
+"
+....
+
+==== Supprimer un compte
+
+Pour la suppression d'un compte de trading :
+
+* Lorsque l'utilisateur utilise le menu contextuel, il doit pouvoir sélectionner une option de suppression.
+* Lorsque l'utilisateur a cliqué sur sur l'option de suppression, le compte se supprime de la liste.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username
+[add account]
+}
+}}
+" as accountlist
+
+accountlist -right-> "
+{{
+salt
+{
+<b>Account list
+..
+No account found
+[add account]
+}
+}}
+"
+....
+
+==== Connection à un compte
+
+Pour la connection à un compte de trading :
+
+* Lorsque l'utilisateur utilise menu contextuel, il doit pouvoir sélectionner une option de connection.
+* Lorsque l'utilisateur a cliqué sur l'option de connection, le compte affiche un statut connecté.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username
+[add account]
+}
+}}
+" as accountlist
+
+accountlist -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username <&lock-locked>
+[add account]
+}
+}}
+"
+....
+
+== F3 - Gérer des ordres
+
+L'utilisateur doit pouvoir gérer les ordres qu'il passe par l'intermediaire de la plateforme de trading.
+
+[plantuml, format="svg"]
+....
+salt
+{+
+{/ <b>Position | Orders | Historical }
+{#
+# | Column 2 | Column 3
+Row header 1 | value 1 | value 2
+}
+}
+....
+
+== F4 - Gérer des graphiques
+== F5 - Gérer des algorthmes
+== F6 - Analyser ses performances

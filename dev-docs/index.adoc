@@ -1,0 +1,27 @@
+= Dossier de spécifications
+
+== Introduction
+
+TraderBook est une application permettant de réaliser des opérations de trading sur différents marchés.
+
+Cette plateforme se veut être légère et adaptée à l'utilisation de chacun. TraderBook est une plateforme de trading open source. Vous trouverez toutes les informations (plans, conception, code, guide utilisateur...) et les avancées liées au projet via cette documentation.
+
+== Projet open source
+
+C'est un projet open source sur lequel vous pouvez contribuer de plusieurs manières :
+
+* En apprortant votre contribution en tant que développeur
+* En testant la plateforme et en faisant un retour issue de votre expérience
+* En proposant des améliorations
+* En contribuant à la documentation
+
+== Spécifications fonctionnelles
+
+L'accès aux :
+
+* link:fonctionnelles.html[Spécifications fonctionnelles générales]
+* link:fonctionnelles-detaillees.html[Spécifications fonctionnelles détaillées]
+
+== Spécifications techniques
+
+L'accès aux link:techniques.html[spécifications techniques]
