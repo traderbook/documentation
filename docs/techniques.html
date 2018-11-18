@@ -522,10 +522,146 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_f3_gérer_des_ordres">F3 - Gérer des ordres</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nom de la table : <strong>transactions</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nom de la colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Nom</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">transaction_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID de la transaction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cet information est fourni pas le broker dans une position est transmise ou un ordre est passé.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instrument</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de l&#8217;instrument</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au nom de l&#8217;instrument sur lequel est passé la transaction</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date d&#8217;ouverture du trade</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la date d&#8217;ouverture de la transaction.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">close_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Date de fermeture du trade</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la date de fermeture de la transaction.. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lot</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nombre lots</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au volume passé lors de la transaction.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open_price</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prix d&#8217;ouverture</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au prix où la transaction a été passée.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">close_price</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Prix de fermeture</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au prix où la transaction a été fermée. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stoploss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Stop loss (SL)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au prix permettant la protection de la transaction</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">takeprofit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Take profit (TP)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au prix qui fix un objectif à la transaction</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence de points entre le prix d&#8217;ouverture et de clôture de la transaction</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">profit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Profit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond aux profits réalisés</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">account_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID du compte de trading</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de mettre en relation le compte de trading les transaction</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_f5_gérer_des_algorthmes">F5 - Gérer des algorthmes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nom de la table : <strong>algorithms</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nom de la colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Nom</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de l&#8217;algorithme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au nom donnée à l&#8217;algrithme</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">directory_name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom du dossier de projet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au nom du dossier où se trouve l&#8217;algrithme</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-17 09:59:15 CET
+Last updated 2018-11-18 17:15:39 CET
 </div>
 </div>
 </body>

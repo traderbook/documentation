@@ -616,9 +616,40 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="paragraph">
 <p>L&#8217;utilisateur doit pouvoir gérer les ordres qu&#8217;il passe par l&#8217;intermediaire de la plateforme de trading.</p>
 </div>
+<div class="sect2">
+<h3 id="_gérer_les_positions">Gérer les positions</h3>
+<div class="paragraph">
+<p>Un utilisateur doit retrouver un tableau des positions actuellement placé sur les marchés. Chaque ligne possède un bouton permettant la clôture d&#8217;une position.</p>
+</div>
 <div class="imageblock">
 <div class="content">
-<img src="diag-9ef120b0fe3327af05e3983825c19389.svg" alt="diag 9ef120b0fe3327af05e3983825c19389" width="222" height="61">
+<img src="diag-706347c8b75982aa5b43e6be5658a49b.svg" alt="diag 706347c8b75982aa5b43e6be5658a49b" width="478" height="64">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gérer_les_ordres">Gérer les ordres</h3>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit pouvoir gérer les ordres positionnés en attente.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit pouvoir supprimer un ordre mais celui-ci doit pouvoir être éditable.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-3e7ba05e80aa53895b24074705181521.svg" alt="diag 3e7ba05e80aa53895b24074705181521" width="535" height="70">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gérer_l_historique">Gérer l&#8217;historique</h3>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit pouvoir accéder aux positions qui ont été fermés pour réaliser sont analyse.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-6a43efc1fc8d9ed73f24522f9c0a3ca5.svg" alt="diag 6a43efc1fc8d9ed73f24522f9c0a3ca5" width="643" height="61">
+</div>
 </div>
 </div>
 </div>
@@ -626,25 +657,365 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_f4_gérer_des_graphiques">F4 - Gérer des graphiques</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>Un utilisateur doit pouvoir gérer ses graphiques dans l&#8217;optique de réaliser des analyses techniques. Il doit donc être possible :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>D&#8217;ouvrir un graphique</p>
+</li>
+<li>
+<p>De fermer un graphique</p>
+</li>
+<li>
+<p>De détacher un graphique</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Un graphique ne peut être ouvert que sur une liste de d&#8217;instruments financiers.</p>
+</div>
+<div class="sect2">
+<h3 id="_instruments_financiers_liste_des_instrument">Instruments financiers - Liste des instrument</h3>
+<div class="paragraph">
+<p>La liste des instruments financiers peut être représenté sur une interface graphique par un tableau.</p>
+</div>
+<div class="paragraph">
+<p>3 données sont traditionnellement affichées en trading :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le nom du produit financier</p>
+</li>
+<li>
+<p>L&#8217;Ask</p>
+</li>
+<li>
+<p>Le bid</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-2bd45405702a93e234e16458dc41ea43.svg" alt="diag 2bd45405702a93e234e16458dc41ea43" width="218" height="96">
+</div>
+</div>
+<div class="paragraph">
+<p>Par l&#8217;intermédiaire de ce tableau d&#8217;instruments financiers, l&#8217;utilisateur doit être en mesure de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Ouvrir un graphique</p>
+</li>
+<li>
+<p>Ouvrir un panneau placement de transaction</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ces différentes actions doivent être accéssibles par :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>un menu contextuel</p>
+</li>
+<li>
+<p>un bouton (pour l&#8217;ouverture d&#8217;un graphique)</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_instruments_financiers_recherche">Instruments financiers - Recherche</h4>
+<div class="paragraph">
+<p>Un utilisateur doit être en mesure de réaliser des recherches. Associé à la liste des instruments financiers un formulaire de recherche doit être mis en place.</p>
+</div>
+<div class="paragraph">
+<p>Le système de recherche doit être insensible à la casse.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-a539e61c1cdc19d840f40840b8b48d95.svg" alt="diag a539e61c1cdc19d840f40840b8b48d95" width="706" height="134">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interface_de_la_zone_de_graphique">Interface de la zone de graphique</h3>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit être en mesure d&#8217;ouvrir un graphique d&#8217;ouvrir un graphique par l&#8217;intermedaire de la liste d&#8217;instrument.</p>
+</div>
+<div class="paragraph">
+<p>La zone de graphique doit permettre l&#8217;accès aux différents instruments financiers par l&#8217;intermedaire d&#8217;onglets.</p>
+</div>
+<div class="paragraph">
+<p>Un onglet correspond à un graphique qui contient l&#8217;évolution des marchés sur un instrument financier.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-ea3e8b302fc9d71490171b07dacda68c.svg" alt="diag ea3e8b302fc9d71490171b07dacda68c" width="329" height="73">
+</div>
+</div>
+<div class="paragraph">
+<p>Sur chacun des graphique, il doit être possible de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Zoomer et dészoomer</p>
+</li>
+<li>
+<p>Placer des transactions d&#8217;achat et de vente</p>
+</li>
+<li>
+<p>Changer le type de graphique (bâton/chandelier)</p>
+</li>
+<li>
+<p>Changer l&#8217;unité de temps (UT)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_barre_d_outil_pour_les_graphiques">Barre d&#8217;outil pour les graphiques</h3>
+<div class="paragraph">
+<p>De façon générique à tous les graphiques, il doit être possible pour un utilisateur de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Placer des graphiques</p>
+</li>
+<li>
+<p>Placer des objets</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-270c5663b9ae22fa5d2a1df5c2f86c74.svg" alt="diag 270c5663b9ae22fa5d2a1df5c2f86c74" width="106" height="80">
+</div>
+</div>
+<div class="paragraph">
+<p>La zone de graphique devra donc intégrer cette barre d&#8217;outil.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_f5_gérer_des_algorthmes">F5 - Gérer des algorthmes</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>Un utilisateur doit pouvoir gérer des algorithmes de trading. Il doit donc pouvoir effectuer les opérations générales d&#8217;un CRUD :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lister des algorithmes</p>
+</li>
+<li>
+<p>Créer un algorithme (Comprend le développement)</p>
+</li>
+<li>
+<p>Modifier un algorithme</p>
+</li>
+<li>
+<p>Supprimer un algorithme</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En plus de ses différentes opérations, l&#8217;utilisateur doit pouvoir :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Réaliser des backtests en local</p>
+</li>
+<li>
+<p>Réaliser des backtests dans le cloud</p>
+</li>
+<li>
+<p>Executer ses algorithmes sur un compte de trading en local</p>
+</li>
+<li>
+<p>Executer ses algorithmes sur un compte de trading dans le cloud</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_développement_d_un_algorithme_de_trading">Développement d&#8217;un algorithme de trading</h3>
+<div class="sect3">
+<h4 id="_ide_environement_de_développement">IDE (Environement de développement)</h4>
+<div class="paragraph">
+<p>Pour developper un algorithme de trading, l&#8217;utilisateur devra utiliser un IDE. La plateforme devra donc proposer cette option.</p>
+</div>
+<div class="paragraph">
+<p>Il sera nécessaire de développer une application en parallèle avec ses propres outils.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_framework_documentation">Framework &amp; documentation</h4>
+<div class="paragraph">
+<p>Pour qu&#8217;un utilisateur puisse développer un algorithme de trading, il sera nécessaire de mettre en palce un Framework et sa documentation associé.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;interface devra donc prendre en compte :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>L&#8217;autocomplétion</p>
+</li>
+<li>
+<p>La documentation associé aux fonctions</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_des_paramètres">Configuration des paramètres</h4>
+<div class="paragraph">
+<p>L&#8217;utilisateur aura besoin de tester son algorithme de trading. Il faut donc prévoir lors du lancement du backtest une phase de paramétrage.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-d8d35770b578bb9f3ce9eac1e5d7b05c.svg" alt="diag d8d35770b578bb9f3ce9eac1e5d7b05c" width="244" height="157">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_listing_des_backtests">Listing des backtests</h4>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit être en mesure d&#8217;accéder au listing des backtests effectés. L&#8217;objectif étant de pouvoir réaliser un comparatif.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-07b07c9f8dea7b610c5d9520b7fa54c0.svg" alt="diag 07b07c9f8dea7b610c5d9520b7fa54c0" width="584" height="65">
+</div>
+</div>
+<div class="paragraph">
+<p>A partir de cette liste de backtest, l&#8217;utilisateur doit être en mesure de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Supprimer un backtest</p>
+</li>
+<li>
+<p>Voir les performances d&#8217;un backtest</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_analyse_des_performances">Analyse des performances</h4>
+<div class="paragraph">
+<p>Un certain nombre d&#8217;informations doivent être présent dans l&#8217;analyse des performances d&#8217;un algorithme de trading :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de la donnée</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance en capital</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence entre le dépot initial et le capital en cours.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance en pourcentage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence entre le dépot initial et le capital en cours mais rapporté en pourcentage.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Drawdown</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la prise de risque qu&#8217;un trader prend sur les marchés</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ratio gain/perte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de connaître le nombre de trades gagnants par rapport aux pertes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ratio de gain/perte par heure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Il est utile pour l&#8217;optimisation d&#8217;un algorithme de connaîtres les heures de gain/perte par heure.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ratio de gain/perte par jour</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Il est utile pour l&#8217;optimisation d&#8217;un algorithme de connaîtres les heures de gain/perte par jour.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_historique_cotations">Historique &amp; cotations</h4>
+<div class="paragraph">
+<p>Pour la mise en place des backtests, il sera nécessaire que la plateforme de trading puisse télécharger un historique de cotations.</p>
+</div>
+<div class="paragraph">
+<p>Ces données seront utiliser pour jouer de façon "fictive" les algorithmes de trading.</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_f6_analyser_ses_performances">F6 - Analyser ses performances</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>Un utilisateur doit pouvoir analyses ses performances de trading. Les performances sont associées à un compte de trading.</p>
+</div>
+<div class="paragraph">
+<p>On peut donc mettre en place un onglet analytics dans la zone d&#8217;analyses des ordres.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-9fe41e7a574b9868e5bc359ee5275d85.svg" alt="diag 9fe41e7a574b9868e5bc359ee5275d85" width="384" height="93">
+</div>
+</div>
+<div class="paragraph">
+<p>Différentes information doivent être disponibles pour l&#8217;utilisateur :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de la donnée</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance en capital</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence entre le dépot initial et le capital en cours.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance en pourcentage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence entre le dépot initial et le capital en cours mais rapporté en pourcentage.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Drawdown</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la prise de risque qu&#8217;un trader prend sur les marchés</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ratio gain/perte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de connaître le nombre de trades gagnants par rapport aux pertes.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-17 17:46:54 CET
+Last updated 2018-11-18 17:49:04 CET
 </div>
 </div>
 </body>

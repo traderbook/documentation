@@ -57,3 +57,91 @@ Nom de la table : *accounts*
 |Id de le table utilisateur
 |Permet l'association de cette table à la table utilisateur
 |===
+
+== F3 - Gérer des ordres
+
+Nom de la table : *transactions*
+
+[%header,cols=4*]
+|===
+|Nom de la colonne |Type |Nom |Description
+
+|transaction_id
+|STRING
+|ID de la transaction
+|Cet information est fourni pas le broker dans une position est transmise ou un ordre est passé.
+
+|instrument
+|STRING
+|Nom de l'instrument
+|Correspond au nom de l'instrument sur lequel est passé la transaction
+
+|open_date
+|TIMESTAMP
+|Date d'ouverture du trade
+|Correspond à la date d'ouverture de la transaction.
+
+|close_date
+|TIMESTAMP
+|Date de fermeture du trade
+|Correspond à la date de fermeture de la transaction.. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.
+
+|lot
+|DOUBLE
+|Nombre lots
+|Correspond au volume passé lors de la transaction.
+
+|open_price
+|DOUBLE
+|Prix d'ouverture
+|Correspond au prix où la transaction a été passée.
+
+|close_price
+|DOUBLE
+|Prix de fermeture
+|Correspond au prix où la transaction a été fermée. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.
+
+|stoploss
+|DOUBLE
+|Stop loss (SL)
+|Correspond au prix permettant la protection de la transaction
+
+|takeprofit
+|DOUBLE
+|Take profit (TP)
+|Correspond au prix qui fix un objectif à la transaction
+
+|pip
+|DOUBLE
+|Pip
+|Correspond à la différence de points entre le prix d'ouverture et de clôture de la transaction
+
+|profit
+|DOUBLE
+|Profit
+|Correspond aux profits réalisés
+
+|account_id
+|INTEGER
+|ID du compte de trading
+|Permet de mettre en relation le compte de trading les transaction
+|===
+
+== F5 - Gérer des algorthmes
+
+Nom de la table : *algorithms*
+
+[%header,cols=4*]
+|===
+|Nom de la colonne |Type |Nom |Description
+
+|name
+|STRING
+|Nom de l'algorithme
+|Correspond au nom donnée à l'algrithme
+
+|directory_name
+|STRING
+|Nom du dossier de projet
+|Correspond au nom du dossier où se trouve l'algrithme
+|===

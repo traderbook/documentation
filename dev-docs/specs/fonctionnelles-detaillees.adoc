@@ -339,18 +339,355 @@ username <&lock-locked>
 
 L'utilisateur doit pouvoir gérer les ordres qu'il passe par l'intermediaire de la plateforme de trading.
 
+=== Gérer les positions
+
+Un utilisateur doit retrouver un tableau des positions actuellement placé sur les marchés. Chaque ligne possède un bouton permettant la clôture d'une position.
+
 [plantuml, format="svg"]
 ....
 salt
 {+
-{/ <b>Position | Orders | Historical }
+{/ <b>Position | Orders | Historical | Analytics }
 {#
-# | Column 2 | Column 3
-Row header 1 | value 1 | value 2
+# | instrument | open date | lots | price | sl | tp | profit ($) | actions
+1 | EURUSD | 07.07.1990 12:23 | 1.2 | 1.123452 | 1.23358 | 0.0 | 23.74 | [<&delete>]
+}
+}
+....
+
+=== Gérer les ordres
+
+L'utilisateur doit pouvoir gérer les ordres positionnés en attente.
+
+L'utilisateur doit pouvoir supprimer un ordre mais celui-ci doit pouvoir être éditable.
+
+[plantuml, format="svg"]
+....
+salt
+{+
+{/ Position | <b>Orders | Historical | Analytics }
+{#
+# | instrument | open date | lots | price | sl | tp | profit ($) | pip | actions
+1 | EURUSD | 07.07.1990 12:23 | 1.2 | 1.123452 | 1.23358 | 0.0 | 3.4 | 23.74 | [<&delete> - <&pencil>]
+}
+}
+....
+
+=== Gérer l'historique
+
+L'utilisateur doit pouvoir accéder aux positions qui ont été fermés pour réaliser sont analyse.
+
+[plantuml, format="svg"]
+....
+salt
+{+
+{/ Position | Orders | <b>Historical | Analytics }
+{#
+# | instrument | open date | close date | lots | open price | close price | sl | tp | pip | profit ($)
+1 | EURUSD | 07.07.1990 12:23 | 08.07.1990 14:26 | 1.2 | 1.123452 | 1.123652 | 1.23358 | 0.0 | 3.4 | 23.74
 }
 }
 ....
 
 == F4 - Gérer des graphiques
+
+Un utilisateur doit pouvoir gérer ses graphiques dans l'optique de réaliser des analyses techniques. Il doit donc être possible :
+
+* D'ouvrir un graphique
+* De fermer un graphique
+* De détacher un graphique
+
+Un graphique ne peut être ouvert que sur une liste de d'instruments financiers.
+
+=== Instruments financiers - Liste des instrument
+
+La liste des instruments financiers peut être représenté sur une interface graphique par un tableau.
+
+3 données sont traditionnellement affichées en trading :
+
+* Le nom du produit financier
+* L'Ask
+* Le bid
+
+[plantuml, format="svg"]
+....
+salt
+{
+{
+"Search                " | <&delete>
+}
+{#
+Name | Ask | Bid | <&graph>
+EURUSD | 1.12345 | 1.12345 | <&plus>
+GBPUSD | 1.12345 | 1.12345 | <&plus>
+JPYUSD | 123.12345 | 123.12345 | <&plus>
+}
+}
+....
+
+Par l'intermédiaire de ce tableau d'instruments financiers, l'utilisateur doit être en mesure de :
+
+* Ouvrir un graphique
+* Ouvrir un panneau placement de transaction
+
+Ces différentes actions doivent être accéssibles par :
+
+* un menu contextuel
+* un bouton (pour l'ouverture d'un graphique)
+
+==== Instruments financiers - Recherche
+
+Un utilisateur doit être en mesure de réaliser des recherches. Associé à la liste des instruments financiers un formulaire de recherche doit être mis en place.
+
+Le système de recherche doit être insensible à la casse.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+{
+"Search                " | <&delete>
+}
+{#
+Name | Ask | Bid | <&graph>
+EURUSD | 1.12345 | 1.12345 | <&plus>
+GBPUSD | 1.12345 | 1.12345 | <&plus>
+JPYUSD | 123.12345 | 123.12345 | <&plus>
+}
+}
+}}
+" as emptysearch
+
+emptysearch -right-> "
+{{
+salt
+{
+{
+"EUR                " | <&delete>
+}
+{#
+Name | Ask | Bid | <&graph>
+EURUSD | 1.12345 | 1.12345 | <&plus>
+}
+}
+}}
+" as eursearch
+
+eursearch -right-> "
+{{
+salt
+{
+{
+"ERROR        " | <&delete>
+}
+{#
+Name | Ask | Bid | <&graph>
+Instrument not found | * | * | *
+}
+}
+}}
+"
+....
+
+=== Interface de la zone de graphique
+
+L'utilisateur doit être en mesure d'ouvrir un graphique d'ouvrir un graphique par l'intermedaire de la liste d'instrument.
+
+La zone de graphique doit permettre l'accès aux différents instruments financiers par l'intermedaire d'onglets.
+
+Un onglet correspond à un graphique qui contient l'évolution des marchés sur un instrument financier.
+
+[plantuml, format="svg"]
+....
+salt
+{
+{/ <b>EURUSD | GBPUSD }
+{+
+{ [chart] | [zoom] | [1.12345] | [1.12344] | [unzoom] | [UT] }
+{ Graphical zone }
+}
+}
+....
+
+Sur chacun des graphique, il doit être possible de :
+
+* Zoomer et dészoomer
+* Placer des transactions d'achat et de vente
+* Changer le type de graphique (bâton/chandelier)
+* Changer l'unité de temps (UT)
+
+=== Barre d'outil pour les graphiques
+
+De façon générique à tous les graphiques, il doit être possible pour un utilisateur de :
+
+* Placer des graphiques
+* Placer des objets
+
+[plantuml, format="svg"]
+....
+salt
+{
+{+
+{
+Tools
+[indicators]
+[objects]
+}
+}
+}
+....
+
+La zone de graphique devra donc intégrer cette barre d'outil.
+
 == F5 - Gérer des algorthmes
+
+Un utilisateur doit pouvoir gérer des algorithmes de trading. Il doit donc pouvoir effectuer les opérations générales d'un CRUD :
+
+* Lister des algorithmes
+* Créer un algorithme (Comprend le développement)
+* Modifier un algorithme
+* Supprimer un algorithme
+
+En plus de ses différentes opérations, l'utilisateur doit pouvoir :
+
+* Réaliser des backtests en local
+* Réaliser des backtests dans le cloud
+* Executer ses algorithmes sur un compte de trading en local
+* Executer ses algorithmes sur un compte de trading dans le cloud
+
+=== Développement d'un algorithme de trading
+
+==== IDE (Environement de développement)
+
+Pour developper un algorithme de trading, l'utilisateur devra utiliser un IDE. La plateforme devra donc proposer cette option.
+
+Il sera nécessaire de développer une application en parallèle avec ses propres outils.
+
+==== Framework & documentation
+
+Pour qu'un utilisateur puisse développer un algorithme de trading, il sera nécessaire de mettre en palce un Framework et sa documentation associé.
+
+L'interface devra donc prendre en compte :
+
+* L'autocomplétion
+* La documentation associé aux fonctions
+
+==== Configuration des paramètres
+
+L'utilisateur aura besoin de tester son algorithme de trading. Il faut donc prévoir lors du lancement du backtest une phase de paramétrage.
+
+[plantuml, format="svg"]
+....
+salt
+{
+{+
+{
+Backtest parameters
+==
+Capital | "10000     "
+Symbol | ^EURUSD   ^
+Unit time | ^M1       ^
+Start | "10.10.2001"
+End | "10.10.2019"
+[Start]
+}
+}
+}
+....
+
+==== Listing des backtests
+
+L'utilisateur doit être en mesure d'accéder au listing des backtests effectés. L'objectif étant de pouvoir réaliser un comparatif.
+
+[plantuml, format="svg"]
+....
+salt
+{#
+# | Date | Capital | Performances ($) | Performances (%) | Pips | Lots | Drawdown | <&delete> | <&delete>
+1 | 01.01.2019 10:23 | 10000 | 400 | 0.4% | 245 | 9 | 10.3% | [<&delete>] | [<&eye>]
+2 | 01.01.2019 11:23 | 10000 | 500 | 0.5% | 234 | 11 | 9.3% | [<&delete>] | [<&eye>]
+}
+....
+
+A partir de cette liste de backtest, l'utilisateur doit être en mesure de :
+
+* Supprimer un backtest
+* Voir les performances d'un backtest
+
+==== Analyse des performances
+
+Un certain nombre d'informations doivent être présent dans l'analyse des performances d'un algorithme de trading :
+
+[cols=2*]
+|===
+|Nom de la donnée
+|Description
+
+|Performance en capital
+|Correspond à la différence entre le dépot initial et le capital en cours.
+
+|Performance en pourcentage
+|Correspond à la différence entre le dépot initial et le capital en cours mais rapporté en pourcentage.
+
+|Drawdown
+|Correspond à la prise de risque qu'un trader prend sur les marchés
+
+|Ratio gain/perte
+|Permet de connaître le nombre de trades gagnants par rapport aux pertes.
+
+|Ratio de gain/perte par heure
+|Il est utile pour l'optimisation d'un algorithme de connaîtres les heures de gain/perte par heure.
+
+
+|Ratio de gain/perte par jour
+|Il est utile pour l'optimisation d'un algorithme de connaîtres les heures de gain/perte par jour.
+|===
+
+==== Historique & cotations
+
+Pour la mise en place des backtests, il sera nécessaire que la plateforme de trading puisse télécharger un historique de cotations.
+
+Ces données seront utiliser pour jouer de façon "fictive" les algorithmes de trading.
+
 == F6 - Analyser ses performances
+
+Un utilisateur doit pouvoir analyses ses performances de trading. Les performances sont associées à un compte de trading.
+
+On peut donc mettre en place un onglet analytics dans la zone d'analyses des ordres.
+
+[plantuml, format="svg"]
+....
+salt
+{+
+{/ Position | Orders | Historical | <b>Analytics }
+
+{#
+Performance ($) | $10.000
+Performance (%) | 98.00%
+Drawdown | 10.34%
+Ratio win/lose | 20%/80%
+} | { Graphical zone }
+}
+....
+
+Différentes information doivent être disponibles pour l'utilisateur :
+
+[cols=2*]
+|===
+|Nom de la donnée
+|Description
+
+|Performance en capital
+|Correspond à la différence entre le dépot initial et le capital en cours.
+
+|Performance en pourcentage
+|Correspond à la différence entre le dépot initial et le capital en cours mais rapporté en pourcentage.
+
+|Drawdown
+|Correspond à la prise de risque qu'un trader prend sur les marchés
+
+|Ratio gain/perte
+|Permet de connaître le nombre de trades gagnants par rapport aux pertes.
+|===
