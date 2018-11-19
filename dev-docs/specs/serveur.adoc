@@ -1,57 +1,160 @@
 = Spécifications techniques du serveur
+Doc Writer <doc.writer@asciidoctor.org>
+v1.0, 2013-08-01
+:toc:
 
-== Architecture générale
+== Attribution d'un service à un client
+
+C'est par l'intermédiaire d'un reverse proxy que le client pourra communiquer avec :
+
+* Un dispatcher
+* Un service
 
 [plantuml, format="svg"]
 ....
 node Client
-node Server
-database Database
-node Api
 
-Client -right- Server
-Server -up- Database
-Server -down- Api
+node Server {
+    component "Reverse Proxy" as ReverseProxy
+    component Dispatcher
+    component Service1
+    component ServiceX
+
+    ReverseProxy -left- Dispatcher
+    Dispatcher -down- Service1
+    Dispatcher -down- ServiceX
+    ReverseProxy -down- Service1
+    ReverseProxy -down- ServiceX
+}
+
+Client -right- ReverseProxy
 ....
 
-=== Le Client
+=== Dispatcher
 
-Le Client communique avec le Server pour :
+Le dispatcher à pour rôle de gérer les services qui auront été créé suite à une demande de connexion d'un client.
 
-* Récupérer des informations
-* Soumettre des informations
+Un client peut faire une demande de :
 
-=== Le Server
+[%header,cols=2*]
+|===
+|Action  |Description
 
-Le Server réception les demandes du Client pour :
+|Connection
+|La connection à pour rôle de créer un nouveau service qui sera associé au client.
 
-* Transmettre ou stocker les données à partir de la base de données
-* Transmettre ou stocker les données à partir de l'API
+|Déconnection
+|La déconnection à pour rôle de stopper un service associé à un client.
+|===
 
-=== La Database
+==== Routes Dispatcher
 
-La base de donnée est permet la percistances des données soit en provenance des demandes Client -> Server, soit en provenance des données Api -> Server.
+Les communication avec le dispatcher doivent se faire sur l'url suivante : `dispatcher.domain.tld`.
 
-=== L'Api
+[%header,cols=4*]
+|===
+|Verbe HTTP |Route |Données  |Réponse
 
-Doit être permettre la communication entre le Server et un broker. Elle doit permettre de :
+|POST
+|/client/login
+a|
+[source,json]
+{
+    "username": String,
+    "password": String
+    "broker": String
+    "accountType": String
+}
+a|
+[source]
+Status Code : 200
 
-* Récupérer les cotations des instruments financiers.
-* Récupérer les informations d'un compte de trading.
-* Transmettre des transaction.
+[source,json]
+{
+    "urlws": String
+}
 
-L'Api est fournie par le Broker.
+|POST
+|/client/logout
+a|
+[source,json]
+{
+    "urlws": String
+}
+a|
+[source]
+Status Code : 202
 
-=== Communication entre le Server et les différents connecteurs (Api, brokers)
+[source,json]
+{
+    "status": Boolean
+}
+|===
+
+=== Service
+
+Le service est la partie de l'architecture qui permet :
+
+* La connexion d'un compte de trading
+* La récupération des cotations
+* La transmission des transactions
+
+== Architecture d'un Service
+
+Un Service est un module autonome permettant de :
+
+* Communiquer avec une base de données
+* Charger un Connecteur
+* Charger des Indicateurs techniques
 
 [plantuml, format="svg"]
 ....
-node Server
-node Api1
-node Api2
-node Api3
+node Service
+database Database
+node Connecteur
+node Indicateur
 
-Server -down- Api1
-Server -down- Api2
-Server -down- Api3
+Service -down- Database
+Service -down- Connecteur
+Service -down- Indicateur
+....
+
+=== Le Service
+
+Le Service réception les demandes du Client pour :
+
+* Transmettre les données à une base de données
+* Transmettre des données à une l'API
+
+=== La Database
+
+La base de données permet la persistances des données en provenance :
+
+* des demandes Client -> Service.
+* des données Connecteur -> Service.
+
+=== Le Connecteur
+
+Doit être permettre la communication entre le Service et un broker. Elle doit permettre de :
+
+* Récupérer les cotations des instruments financiers.
+* Récupérer les informations d'un compte de trading.
+* Transmettre des transactions.
+
+Le Connecteur utiliser l'Api qui est fourni par le Broker.
+
+== Communication entre le Service et les Connecteurs
+
+Un connecteur est un module permettant la communication entre un Service et un broker. Le connecteur utilise l'Api que propose un broker.
+
+[plantuml, format="svg"]
+....
+node Service
+node Broker1
+node Broker2
+node BrokerX
+
+Service -down- Broker1
+Service -down- Broker2
+Service -down- BrokerX
 ....

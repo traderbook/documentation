@@ -6,6 +6,9 @@
 |===
 |Nom  |Description
 
+|Client
+|Correspond soit à une plateforme de trading, soit un algorithme de trading.
+
 |Connecteur
 |Un connecteur est un module proposant une API permettant à un autre module de communiquer avec broker.
 |===
