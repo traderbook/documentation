@@ -26,16 +26,25 @@ L'utilisateur (User) est en relation avec la partir Client.
 
 Permet d'utiliser els différentes fonctionnalitées de la plateforme de trading (Client)
 
+Le Client devra être en mesure de :
+
+* Communiquer les informations au Server et d'en recevoir.
+* Persister les informations en local dans la Database.
+* Persister les informations de configuration de la plateforme en local dans un fichier de Configuration.
+
+Le Client doit être en mesure synchroniser les informations sur le Server
+
 === Server
 
-Le Client permet de :
-
-* Communiquer les informations (et en recevoir) au Server.
-* Communiquer de percister les informations en local dans la Database.
-* Communiquer de percister les informations de configuration de la plateforme en local dans lun fichier de Configuration.
+Accéder à la link:serveur.html[spécification du serveur]
 
 === Database
+
+La base de données permetttra la persistance des informations liées au comptes de trading, données associés aux ordres...
+
 === Configuration
+
+Le fichier de Configuration permettra la persistance des informations liées à la configuration de la plateforme de trading.
 
 == Modèles de données
 

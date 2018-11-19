@@ -32,6 +32,41 @@ Client -right- Server
 Server -right- Data
 ....
 
+== Architecture structurelle (modules)
+
+Certaines informations entre la partie Client et Server vont être communes. Afin de faciliter la communication entre les différents module, un module API sera créé et importé dans chacun des autres module.
+
+[plantuml, format="svg"]
+....
+node API
+node Client
+node Server
+
+API -- Client
+API -- Server
+....
+
+Il sera donc nécessaire de créer des sous modules Git afin d'importer facilement les projets. C'est-à-dire que le module API est un sous module Git du repository qui hebergera le module Client ou encore Server.
+
+== Structure d'un projet
+
+Un projet doit être strucuté de la façon suivante :
+
+[plantuml, format="svg"]
+....
+salt
+{
+{T
+ + Project name
+ ++ api
+ ++ app
+ ++ gradle files
+}
+}
+....
+
+Chaque dossier positionné à la racine est un module. Est automatiquement importé, le module API.
+
 == Plateforme de trading
 
 Accéder aux : link:trading-plateforme.html[Spécification de la plateforme de trading]
