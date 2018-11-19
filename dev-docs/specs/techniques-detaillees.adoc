@@ -67,14 +67,10 @@ salt
 
 Chaque dossier positionné à la racine est un module. Est automatiquement importé, le module API.
 
-== Plateforme de trading
+== Détails des spécifications
 
-Accéder aux : link:trading-plateforme.html[Spécification de la plateforme de trading]
+Accéder aux :
 
-== Serveur
-
-Accéder aux : link:serveur.html[Spécification du serveur]
-
-== Déploiement
-
-Accéder aux : link:deployment.html[Spécification liée au déploiement]
+* link:trading-plateforme.html[Spécification de la plateforme de trading]
+* link:serveur.html[Spécification du serveur]
+* link:deployment.html[Spécification liée au déploiement]
