@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Spécifications techniques détaillées</title>
+<title>Description d&#8217;un algorithm</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,13 +419,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
-<h1>Spécifications techniques détaillées</h1>
+<h1>Description d&#8217;un algorithm</h1>
 </div>
 <div id="content">
-<div id="preamble">
-<div class="sectionbody">
 <div class="paragraph">
-<p>L&#8217;architecture globale de communication entre les différents éléments est le suivant :</p>
+<p>Un algorithme peut avoir au minimum 3 méthodes afin de pouvoir :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configurer les paramètres de l&#8217;algorithm</p>
+</li>
+<li>
+<p>Récupérer des cotations</p>
+</li>
+<li>
+<p>Transmettre des transaction</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Pour se faire l&#8217;agorithme doit prendre 3 méthodes qui seront :</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -434,96 +448,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Rôle</th>
+<th class="tableblock halign-left valign-top">Nom</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interagie directement avec la partie Client de l&#8217;application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OnInit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet le paramétrage de l&#8217;algorithme.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Client</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communique directement avec la partie Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OnTick</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet la récupération des cotations.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Server</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reçoit les communications en provenance des Clients et interagie avec les Data</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet soit le stockage des données en provenance du server, soit correspond à une API externe (ex: broker)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OnTransaction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet la récupération qu&#8217;un ordre à bien été transmit.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="imageblock">
 <div class="content">
-<img src="diag-6e45d278fe16981cd96c9ff680d8ba1c.svg" alt="diag 6e45d278fe16981cd96c9ff680d8ba1c" width="371" height="101">
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_architecture_structurelle_modules">Architecture structurelle (modules)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Certaines informations entre la partie Client et Server vont être communes. Afin de faciliter la communication entre les différents module, un module API sera créé et importé dans chacun des autres module.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="diag-7c568f7dd5f45bcfb40e6c6dc4ffc671.svg" alt="diag 7c568f7dd5f45bcfb40e6c6dc4ffc671" width="226" height="172">
-</div>
-</div>
-<div class="paragraph">
-<p>Il sera donc nécessaire de créer des sous modules Git afin d&#8217;importé facilement les projets. C&#8217;est-à-dire que le module API est un sous module Git du repository qui hebergera le module Client ou encore Server.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_structure_d_un_projet">Structure d&#8217;un projet</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Un projet doit être strucuté de la façon suivante :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="diag-5dba32e981a76372ff7d9d56479f8abd.svg" alt="diag 5dba32e981a76372ff7d9d56479f8abd" width="106" height="67">
-</div>
-</div>
-<div class="paragraph">
-<p>Chaque dossier positionné à la racine est un module. Est automatiquement importé, le module API.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_détails_des_spécifications">Détails des spécifications</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Accéder aux :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="trading-plateforme.html">Spécification de la plateforme de trading</a></p>
-</li>
-<li>
-<p><a href="algorithm.html">Spécification d&#8217;un algortihme</a></p>
-</li>
-<li>
-<p><a href="serveur.html">Spécification du serveur</a></p>
-</li>
-<li>
-<p><a href="deployment.html">Spécification liée au déploiement</a></p>
-</li>
-</ul>
-</div>
+<img src="diag-a1b3cc15156ce890e28a08ede69fa4ee.svg" alt="diag a1b3cc15156ce890e28a08ede69fa4ee" width="404" height="264">
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-19 15:46:03 CET
+Last updated 2018-11-19 15:45:38 CET
 </div>
 </div>
 </body>
