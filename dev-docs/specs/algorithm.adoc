@@ -25,12 +25,13 @@ Pour se faire l'agorithme doit prendre 3 méthodes qui seront :
 
 [plantuml, format="svg"]
 ....
-class Transaction {
-    ask: Double
-    bid: Double
-    time: Timestamp
-    instrument: InstrumentEnum
+enum InstrumentEnum {
+  EURUSD
+  GBPUSD
+  ...
 }
+
+class Transaction
 
 class Tick {
     ask: Double
