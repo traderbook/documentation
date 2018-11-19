@@ -1,5 +1,15 @@
 = Spécifications techniques générales
 
+== Lexique technique
+
+[%header,cols=2*]
+|===
+|Nom  |Description
+
+|Connecteur
+|Un connecteur est un module proposant une API permettant à un autre module de communiquer avec broker.
+|===
+
 == Positionnement du projet
 
 [plantuml, format="svg"]
