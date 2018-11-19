@@ -41,3 +41,10 @@ L'accès aux :
 
 * link:techniques.html[Spécifications techniques générales]
 * link:techniques-detaillees.html[Spécifications techniques détaillées]
+
+== Rédaction de la documentation
+
+Cette documentation utilise 2 outils :
+
+* link:https://asciidoctor.org[Asciidoctor]
+* link:http://plantuml.com/[Plantuml]

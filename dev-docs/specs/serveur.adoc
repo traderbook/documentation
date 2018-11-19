@@ -40,4 +40,4 @@ Doit être permettre la communication entre le Server et un broker. Elle doit pe
 * Récupérer les informations d'un compte de trading.
 * Transmettre des transaction.
 
-L'Api est fournie par le Broker
+L'Api est fournie par le Broker.
