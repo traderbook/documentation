@@ -1,5 +1,29 @@
 = Spécifications techniques générales
 
+== Positionnement du projet
+
+[plantuml, format="svg"]
+....
+cloud "Marchés financiers" as Market
+node Banques
+node Brokers
+node "Service TraderBook (Server)" as Service
+node "Plateforme TraderBook (Client)" as Platform
+actor User
+
+Banques -up-> Market
+Brokers -up-> Banques
+Service -up-> Brokers
+Platform -up-> Service
+User -up-> Platform
+....
+
+Les projet TraderBook se positionnent entre un utilisateur et un Broker.
+
+Les Brokers sont concidérer comme des intermédiaires entre les banques et les utilisateurs.
+
+Les différentes plateformes et service de TraderBook permettront de faciliter la communication entre le Client et les Broker.
+
 == Langage de programmation
 
 Cette section présent les langages de programmation utilisés pour le projet.
