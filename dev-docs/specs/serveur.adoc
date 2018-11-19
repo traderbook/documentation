@@ -55,3 +55,20 @@ Server -down- Api1
 Server -down- Api2
 Server -down- Api3
 ....
+
+=== Dépendances d'un service
+
+[plantuml, format="svg"]
+....
+node Service
+node Connecteur
+node Indicateur
+node Config
+
+Service -down- Connecteur
+Service -down- Indicateur
+Service -down-  Config
+....
+
+=== Création de services via treafik et un service de dispatching
+
