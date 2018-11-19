@@ -46,7 +46,7 @@ API -- Client
 API -- Server
 ....
 
-Il sera donc nécessaire de créer des sous modules Git afin d'importer facilement les projets. C'est-à-dire que le module API est un sous module Git du repository qui hebergera le module Client ou encore Server.
+Il sera donc nécessaire de créer des sous modules Git afin d'importé facilement les projets. C'est-à-dire que le module API est un sous module Git du repository qui hebergera le module Client ou encore Server.
 
 == Structure d'un projet
 

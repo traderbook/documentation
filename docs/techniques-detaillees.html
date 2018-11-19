@@ -465,6 +465,38 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
+<h2 id="_architecture_structurelle_modules">Architecture structurelle (modules)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Certaines informations entre la partie Client et Server vont être communes. Afin de faciliter la communication entre les différents module, un module API sera créé et importé dans chacun des autres module.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-7c568f7dd5f45bcfb40e6c6dc4ffc671.svg" alt="diag 7c568f7dd5f45bcfb40e6c6dc4ffc671" width="226" height="172">
+</div>
+</div>
+<div class="paragraph">
+<p>Il sera donc nécessaire de créer des sous modules Git afin d&#8217;importé facilement les projets. C&#8217;est-à-dire que le module API est un sous module Git du repository qui hebergera le module Client ou encore Server.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_structure_d_un_projet">Structure d&#8217;un projet</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un projet doit être strucuté de la façon suivante :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-5dba32e981a76372ff7d9d56479f8abd.svg" alt="diag 5dba32e981a76372ff7d9d56479f8abd" width="106" height="67">
+</div>
+</div>
+<div class="paragraph">
+<p>Chaque dossier positionné à la racine est un module. Est automatiquement importé, le module API.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_plateforme_de_trading">Plateforme de trading</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -491,7 +523,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-19 09:57:36 CET
+Last updated 2018-11-19 11:22:12 CET
 </div>
 </div>
 </body>
