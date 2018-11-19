@@ -1,5 +1,42 @@
 = Spécifications techniques de la plateforme de trading
 
+== Architecture de la plateforme
+
+Présentation de l'architecture globale de la plataforme de trading sur le poste utilisateur.
+
+[plantuml, format="svg"]
+....
+actor User
+node Client
+node Server
+database Database
+file Configuration
+
+User -right-> Client
+Client -right-> Server
+Client -up-> Database
+Client -down-> Configuration
+....
+
+=== User
+
+L'utilisateur (User) est en relation avec la partir Client.
+
+=== Client
+
+Permet d'utiliser els différentes fonctionnalitées de la plateforme de trading (Client)
+
+=== Server
+
+Le Client permet de :
+
+* Communiquer les informations (et en recevoir) au Server.
+* Communiquer de percister les informations en local dans la Database.
+* Communiquer de percister les informations de configuration de la plateforme en local dans lun fichier de Configuration.
+
+=== Database
+=== Configuration
+
 == Modèles de données
 
 [plantuml, diagram-classes, format="svg"]
