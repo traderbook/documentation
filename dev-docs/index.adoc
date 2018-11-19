@@ -46,5 +46,5 @@ L'accès aux :
 
 Cette documentation utilise 2 outils :
 
-* link:https://asciidoctor.org[Asciidoctor]
-* link:http://plantuml.com/[Plantuml]
+* link:https://asciidoctor.org[Asciidoctor] : pour la rédaction et mise en forme des informations.
+* link:http://plantuml.com/[Plantuml] : pour les schémas et diagrammes.
