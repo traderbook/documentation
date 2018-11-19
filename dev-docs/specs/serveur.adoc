@@ -41,3 +41,17 @@ Doit être permettre la communication entre le Server et un broker. Elle doit pe
 * Transmettre des transaction.
 
 L'Api est fournie par le Broker.
+
+=== Communication entre le Server et les différents connecteurs (Api, brokers)
+
+[plantuml, format="svg"]
+....
+node Server
+node Api1
+node Api2
+node Api3
+
+Server -down- Api1
+Server -down- Api2
+Server -down- Api3
+....
