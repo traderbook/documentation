@@ -72,3 +72,22 @@ Service -down-  Config
 
 === Création de services via treafik et un service de dispatching
 
+[plantuml, format="svg"]
+....
+node Client
+Client -left--> Server
+rectangle Server {
+    node S1
+    node Dispatch
+    database Database
+    node Sx
+    node Treafik
+    Dispatch -up--> Database
+    Dispatch -down--> Treafik
+    Treafik -up--> Dispatch
+    Dispatch -left- S1
+    Treafik -left- Sx
+    S1 - Treafik
+    Sx - Dispatch
+}
+....
