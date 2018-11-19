@@ -48,3 +48,10 @@ Cette documentation utilise 2 outils :
 
 * link:https://asciidoctor.org[Asciidoctor] : pour la rédaction et mise en forme des informations.
 * link:http://plantuml.com/[Plantuml] : pour les schémas et diagrammes.
+
+Pour la suite Intellig, il est préférable d'installer les plugins suivants :
+
+* link:https://plugins.jetbrains.com/plugin/7017-plantuml-integration[PlantUML integration]
+* link:https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc]
+
+Pour installer un plugin sur Intellij, suivre cette : link:https://www.jetbrains.com/help/idea/managing-plugins.html[procédures]
