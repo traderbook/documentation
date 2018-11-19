@@ -1,0 +1,6 @@
+= Spécification liée au déploiement
+
+== Gestion du versioning
+== Intégration continue
+== Procédure de déploiement
+== Procédure de backup

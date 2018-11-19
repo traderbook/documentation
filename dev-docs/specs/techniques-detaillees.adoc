@@ -39,3 +39,7 @@ Accéder aux : link:trading-plateforme.html[Spécification de la plateforme de t
 == Serveur
 
 Accéder aux : link:serveur.html[Spécification du serveur]
+
+== Déploiement
+
+Accéder aux : link:deployment.html[Spécification liée au déploiement]
