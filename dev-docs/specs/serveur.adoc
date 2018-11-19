@@ -1,2 +1,43 @@
 = Spécifications techniques du serveur
 
+== Architecture générale
+
+[plantuml, format="svg"]
+....
+node Client
+node Server
+database Database
+node Api
+
+Client -right- Server
+Server -up- Database
+Server -down- Api
+....
+
+=== Le Client
+
+Le Client communique avec le Server pour :
+
+* Récupérer des informations
+* Soumettre des informations
+
+=== Le Server
+
+Le Server réception les demandes du Client pour :
+
+* Transmettre ou stocker les données à partir de la base de données
+* Transmettre ou stocker les données à partir de l'API
+
+=== La Database
+
+La base de donnée est permet la percistances des données soit en provenance des demandes Client -> Server, soit en provenance des données Api -> Server.
+
+=== L'Api
+
+Doit être permettre la communication entre le Server et un broker. Elle doit permettre de :
+
+* Récupérer les cotations des instruments financiers.
+* Récupérer les informations d'un compte de trading.
+* Transmettre des transaction.
+
+L'Api est fournie par le Broker

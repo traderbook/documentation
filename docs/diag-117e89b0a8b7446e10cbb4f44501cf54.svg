@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="277px" preserveAspectRatio="none" style="width:226px;height:277px;" version="1.1" viewBox="0 0 226 277" width="226px" zoomAndPan="magnify"><defs><filter height="300%" id="f1j0n3jverwy4g" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--entity Client--><polygon fill="#FEFECE" filter="url(#f1j0n3jverwy4g)" points="6,123,16,113,85,113,85,149.2969,75,159.2969,6,159.2969,6,123" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="75" x2="84" y1="123" y2="114"/><line style="stroke: #000000; stroke-width: 1.5;" x1="6" x2="75" y1="123" y2="123"/><line style="stroke: #000000; stroke-width: 1.5;" x1="75" x2="75" y1="123" y2="159.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="21" y="145.9951">Client</text><!--entity Server--><polygon fill="#FEFECE" filter="url(#f1j0n3jverwy4g)" points="120.5,123,130.5,113,204.5,113,204.5,149.2969,194.5,159.2969,120.5,159.2969,120.5,123" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="194.5" x2="203.5" y1="123" y2="114"/><line style="stroke: #000000; stroke-width: 1.5;" x1="120.5" x2="194.5" y1="123" y2="123"/><line style="stroke: #000000; stroke-width: 1.5;" x1="194.5" x2="194.5" y1="123" y2="159.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="135.5" y="145.9951">Server</text><!--entity Database--><path d="M119.5,18 C119.5,8 162.5,8 162.5,8 C162.5,8 205.5,8 205.5,18 L205.5,43.2969 C205.5,53.2969 162.5,53.2969 162.5,53.2969 C162.5,53.2969 119.5,53.2969 119.5,43.2969 L119.5,18 " fill="#FEFECE" filter="url(#f1j0n3jverwy4g)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M119.5,18 C119.5,28 162.5,28 162.5,28 C162.5,28 205.5,28 205.5,18 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="129.5" y="44.9951">Database</text><!--entity Api--><polygon fill="#FEFECE" filter="url(#f1j0n3jverwy4g)" points="132,229,142,219,193,219,193,255.2969,183,265.2969,132,265.2969,132,229" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="183" x2="192" y1="229" y2="220"/><line style="stroke: #000000; stroke-width: 1.5;" x1="132" x2="183" y1="229" y2="229"/><line style="stroke: #000000; stroke-width: 1.5;" x1="183" x2="183" y1="229" y2="265.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="21" x="147" y="251.9951">Api</text><!--link Client to Server--><path d="M85.2617,136 C96.9279,136 108.594,136 120.26,136 " fill="none" id="Client-Server" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Database to Server--><path d="M162.5,53.197 C162.5,70.743 162.5,95.342 162.5,112.975 " fill="none" id="Database-Server" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Server to Api--><path d="M162.5,159.056 C162.5,176.7049 162.5,201.3353 162.5,218.9761 " fill="none" id="Server-Api" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+node Client
+node Server
+database Database
+node Api
+
+Client -right- Server
+Server -up- Database
+Server -down- Api
+@enduml
+
+PlantUML version 1.2018.10(Sat Aug 25 19:02:59 CEST 2018)
+(APACHE source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 11.0.1+13-LTS
+Operating System: Linux
+OS Version: 4.9.0-8-amd64
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>

@@ -422,11 +422,77 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <h1>Spécifications techniques du serveur</h1>
 </div>
 <div id="content">
-
+<div class="sect1">
+<h2 id="_architecture">Architecture</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="diag-117e89b0a8b7446e10cbb4f44501cf54.svg" alt="diag 117e89b0a8b7446e10cbb4f44501cf54" width="226" height="277">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_le_client">Le Client</h3>
+<div class="paragraph">
+<p>Le Client communique avec le Server pour :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Récupérer des informations</p>
+</li>
+<li>
+<p>Soumettre des informations</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_le_server">Le Server</h3>
+<div class="paragraph">
+<p>Le Server réception les demandes du Client pour :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Transmettre ou stocker les données à partir de la base de données</p>
+</li>
+<li>
+<p>Transmettre ou stocker les données à partir de l&#8217;API</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_la_database">La Database</h3>
+<div class="paragraph">
+<p>La base de donnée est permet la percistances des données soit en provenance des demandes Client &#8594; Server, soit en provenance des données Api &#8594; Server.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_l_api">L&#8217;Api</h3>
+<div class="paragraph">
+<p>Doit être permettre la communication entre le Server et un broker. Elle doit permettre de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Récupérer les cotations des instruments financiers.</p>
+</li>
+<li>
+<p>Récupérer les informations d&#8217;un compte de trading.</p>
+</li>
+<li>
+<p>Transmettre des transaction.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-18 19:38:43 CET
+Last updated 2018-11-19 08:31:43 CET
 </div>
 </div>
 </body>
