@@ -28,6 +28,15 @@ Ce document décrit les fonctionnalités générales de l'application de tading 
 
 |Ask & Bid
 |Respectivement l'Ask et le Bid correspondent à l'offre et la demande.
+
+|Spread
+|Correspond à la différence entre l'Ask et le Bid. C'est aussi les frais du broker.
+
+|Stoploss (SL)
+|Permet de protéger une position. Le SL est généralement placé dans le sens inverse de la position. Ex: Si c'est un ordre d'achat est emit à 1€, il sera placé en dessous des 1€. Lorsqu'il est touché la position se ferme.
+
+|Takeprofit (TP)
+|Permet de fixer un objectif à une position. Le TP est généralement placé dans le même sens que la position. Ex: Si c'est un ordre d'achat est emit à 1€, il sera placé en dessus des 1€. Lorsqu'il est touché la position se ferme.
 |===
 
 == Fonctionnalités générales
