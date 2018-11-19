@@ -1,0 +1,50 @@
+= Description d'un algorithm
+
+Un algorithme peut avoir au minimum 3 méthodes afin de pouvoir :
+
+* Configurer les paramètres de l'algorithm
+* Récupérer des cotations
+* Transmettre des transaction
+
+Pour se faire l'agorithme doit prendre 3 méthodes qui seront :
+
+[%header,cols=2*]
+|===
+|Nom  |Description
+
+|OnInit
+|Permet le paramétrage de l'algorithme.
+
+|OnTick
+|Permet la récupération des cotations.
+
+|OnTransaction
+|Permet la récupération qu'un ordre à bien été transmit.
+|===
+
+
+[plantuml, format="svg"]
+....
+class Transaction {
+    ask: Double
+    bid: Double
+    time: Timestamp
+    instrument: InstrumentEnum
+}
+
+class Tick {
+    ask: Double
+    bid: Double
+    time: Timestamp
+    instrument: InstrumentEnum
+}
+
+class Algorithm {
+    OnInit(): Unit
+    OnTick(tick: Tick): Unit
+    OnTransaction(transaction: Transaction): Unit
+}
+
+Algorithm ..> Tick
+Algorithm ..> Transaction
+....

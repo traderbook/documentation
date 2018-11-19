@@ -72,5 +72,6 @@ Chaque dossier positionné à la racine est un module. Est automatiquement impor
 Accéder aux :
 
 * link:trading-plateforme.html[Spécification de la plateforme de trading]
+* link:algorithm.html[Spécification d'un algortihme]
 * link:serveur.html[Spécification du serveur]
 * link:deployment.html[Spécification liée au déploiement]
