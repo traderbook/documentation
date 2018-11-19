@@ -1,147 +1,118 @@
-== Dictionnaire de données
+= Spécifications techniques générales
 
-=== F1 - Créer un profil utilisateur
+== Langage de programmation
 
-Nom de la table : *users*
+Cette section présent les langages de programmation utilisés pour le projet.
 
-[%header,cols=4*]
+=== Kotlin
+
+Description :
+
+Le programme est développé en kotlin qui est un langage orienté objet et fonctionnel.
+
+Raisons :
+
+* La programmation fonctionnelles est un strandard en trading algorithmique.
+* Est basé sur les fondamentaux de JAVA
+* La plupart des API broker sont développés en JAVA
+* Permet le développement d'application :
+** Bureau
+** Mobile
+** Serveur
+
+link:https://kotlinlang.org[]
+
+== Frameworks
+
+Cette section présente les frameworks utilisés pour le projet.
+
+=== Tornadofx
+
+Description :
+
+Ce Framework est utilisé pour la partie graphique. Il permet de développer des interfaces utilisateurs simplement (par le biais de kotlin) et rapidement.
+
+Raisons :
+
+* Est basé sur JavaFx
+
+link:https://tornadofx.io[]
+
+=== JetBrains Exposed
+
+Description :
+
+Ce framework permet de gérer une base de données embarquée avec l'application.
+
+Raisons :
+
+* Proposé par Jetbrain
+* Utilise SQLite
+
+link:https://github.com/JetBrains/Exposed[]
+
+=== Jetbrains Xodus
+
+Description :
+
+Ce Framework permet le stockage des données dans des fichiers. Il sera utilisé pour stocker les données utilisateur non sensible dans le dossiers principal de l'utilisateur.
+
+Raisons :
+
+* Proposé par Jetbrain
+
+link:https://jetbrains.github.io/xodus/[]
+
+== OS
+
+L'application devra être cross plateforme :
+
+* Linux
+* Mac OS
+* Window
+
+== Outils liés au developpement
+
+=== Gestion de package
+
+La gestion des packages se fera via Gradle et le repository principal sera Maven.
+
+=== Build automation
+
+Gradle sera utilisé pour les gestion du build automation.
+
+=== Outil de versioning
+
+L'outil de versioning utilisé sera Git.
+
+=== Outils d'intégration continue
+
+Les outils d'intégration utilisés seront :
+
+* Circle CI pour créer des version téléchargeable de la plateforme
+* Jenkin pour la mise ne place de services
+
+=== IDE - Interface de développement
+
+L'outil récommandé est Intellij IDE configuré pour Kotlin.
+
+Voir : link:https://www.jetbrains.com/education/?fromMenu#lang=kotlin&role=learner[Kotlin Edu]
+
+== Compatibilité
+
+[%header,cols=2*]
 |===
-|Nom de la colonne |Type |Nom |Description
+|Nom | Version
 
-|username
-|VARCHAR
-|Nom d'utilisateur ou login
-|Permettra d'authentifier un utilisateur
+| JVM
+| 11.0.1
 
-|password
-|VARCHAR
-|Mot de passe
-|Permettra d'authentifier un utilisateur
-|===
+| Gradle
+| 4.10.2
 
-=== F2 - Compte de trading
+| Kotlin
+| 1.2.61
 
-Nom de la table : *accounts*
-
-[%header,cols=4*]
-|===
-|Nom de la colonne |Type |Nom |Description
-
-|account_type
-|VARCHAR
-|Type de compte
-|Un compte peut avoir deux types : DEMO et REAL
-
-|broker
-|VARCHAR
-|Identifiant du broker
-|Correspond a l'identifiant du broker fourni par l'API (Connecteur de l'application)
-
-|username
-|VARCHAR
-|Nom d'utilisateur ou login
-|Correspont à l'identifiant fourni par le borker
-
-|password
-|VARCHAR
-|Mot de passe
-|Correspont à mot de passe fourni par le borker
-
-|status
-|BOOLEAN
-|Statut d'authentification
-|Permet de savoir quel compte est connecté à broker
-
-|user_id
-|INTERGER
-|Id de le table utilisateur
-|Permet l'association de cette table à la table utilisateur
-|===
-
-== F3 - Gérer des ordres
-
-Nom de la table : *transactions*
-
-[%header,cols=4*]
-|===
-|Nom de la colonne |Type |Nom |Description
-
-|transaction_id
-|STRING
-|ID de la transaction
-|Cet information est fourni pas le broker dans une position est transmise ou un ordre est passé.
-
-|instrument
-|STRING
-|Nom de l'instrument
-|Correspond au nom de l'instrument sur lequel est passé la transaction
-
-|open_date
-|TIMESTAMP
-|Date d'ouverture du trade
-|Correspond à la date d'ouverture de la transaction.
-
-|close_date
-|TIMESTAMP
-|Date de fermeture du trade
-|Correspond à la date de fermeture de la transaction.. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.
-
-|lot
-|DOUBLE
-|Nombre lots
-|Correspond au volume passé lors de la transaction.
-
-|open_price
-|DOUBLE
-|Prix d'ouverture
-|Correspond au prix où la transaction a été passée.
-
-|close_price
-|DOUBLE
-|Prix de fermeture
-|Correspond au prix où la transaction a été fermée. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.
-
-|stoploss
-|DOUBLE
-|Stop loss (SL)
-|Correspond au prix permettant la protection de la transaction
-
-|takeprofit
-|DOUBLE
-|Take profit (TP)
-|Correspond au prix qui fix un objectif à la transaction
-
-|pip
-|DOUBLE
-|Pip
-|Correspond à la différence de points entre le prix d'ouverture et de clôture de la transaction
-
-|profit
-|DOUBLE
-|Profit
-|Correspond aux profits réalisés
-
-|account_id
-|INTEGER
-|ID du compte de trading
-|Permet de mettre en relation le compte de trading les transaction
-|===
-
-== F5 - Gérer des algorthmes
-
-Nom de la table : *algorithms*
-
-[%header,cols=4*]
-|===
-|Nom de la colonne |Type |Nom |Description
-
-|name
-|STRING
-|Nom de l'algorithme
-|Correspond au nom donnée à l'algrithme
-
-|directory_name
-|STRING
-|Nom du dossier de projet
-|Correspond au nom du dossier où se trouve l'algrithme
+| Groovy
+| 2.4.15
 |===

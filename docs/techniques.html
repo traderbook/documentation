@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Dictionnaire de données</title>
+<title>Spécifications techniques générales</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,240 +419,237 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article">
 <div id="header">
+<h1>Spécifications techniques générales</h1>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_dictionnaire_de_données">Dictionnaire de données</h2>
+<h2 id="_langage_de_programmation">Langage de programmation</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_f1_créer_un_profil_utilisateur">F1 - Créer un profil utilisateur</h3>
 <div class="paragraph">
-<p>Nom de la table : <strong>users</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Nom de la colonne</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Nom</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nom d&#8217;utilisateur ou login</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permettra d&#8217;authentifier un utilisateur</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mot de passe</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permettra d&#8217;authentifier un utilisateur</p></td>
-</tr>
-</tbody>
-</table>
+<p>Cette section présent les langages de programmation utilisés pour le projet.</p>
 </div>
 <div class="sect2">
-<h3 id="_f2_compte_de_trading">F2 - Compte de trading</h3>
+<h3 id="_kotlin">Kotlin</h3>
 <div class="paragraph">
-<p>Nom de la table : <strong>accounts</strong></p>
+<p>Description :</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Nom de la colonne</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Nom</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">account_type</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Type de compte</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Un compte peut avoir deux types : DEMO et REAL</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">broker</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Identifiant du broker</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond a l&#8217;identifiant du broker fourni par l&#8217;API (Connecteur de l&#8217;application)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nom d&#8217;utilisateur ou login</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspont à l&#8217;identifiant fourni par le borker</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mot de passe</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspont à mot de passe fourni par le borker</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">status</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BOOLEAN</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Statut d&#8217;authentification</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de savoir quel compte est connecté à broker</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">user_id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INTERGER</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Id de le table utilisateur</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet l&#8217;association de cette table à la table utilisateur</p></td>
-</tr>
-</tbody>
-</table>
+<div class="paragraph">
+<p>Le programme est développé en kotlin qui est un langage orienté objet et fonctionnel.</p>
+</div>
+<div class="paragraph">
+<p>Raisons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La programmation fonctionnelles est un strandard en trading algorithmique.</p>
+</li>
+<li>
+<p>Est basé sur les fondamentaux de JAVA</p>
+</li>
+<li>
+<p>La plupart des API broker sont développés en JAVA</p>
+</li>
+<li>
+<p>Permet le développement :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>D&#8217;application bureau</p>
+</li>
+<li>
+<p>D&#8217;application mobile</p>
+</li>
+<li>
+<p>D&#8217;application serveur</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://kotlinlang.org" class="bare">https://kotlinlang.org</a></p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_f3_gérer_des_ordres">F3 - Gérer des ordres</h2>
+<h2 id="_frameworks">Frameworks</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nom de la table : <strong>transactions</strong></p>
+<p>Cette section présente les frameworks utilisés pour le projet.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Nom de la colonne</th>
-<th class="tableblock halign-left valign-top">Type</th>
-<th class="tableblock halign-left valign-top">Nom</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">transaction_id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ID de la transaction</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cet information est fourni pas le broker dans une position est transmise ou un ordre est passé.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">instrument</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de l&#8217;instrument</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au nom de l&#8217;instrument sur lequel est passé la transaction</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">open_date</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Date d&#8217;ouverture du trade</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la date d&#8217;ouverture de la transaction.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">close_date</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TIMESTAMP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Date de fermeture du trade</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la date de fermeture de la transaction.. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">lot</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nombre lots</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au volume passé lors de la transaction.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">open_price</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prix d&#8217;ouverture</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au prix où la transaction a été passée.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">close_price</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Prix de fermeture</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au prix où la transaction a été fermée. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">stoploss</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stop loss (SL)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au prix permettant la protection de la transaction</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">takeprofit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Take profit (TP)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au prix qui fix un objectif à la transaction</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">pip</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pip</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence de points entre le prix d&#8217;ouverture et de clôture de la transaction</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">profit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Profit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond aux profits réalisés</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">account_id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ID du compte de trading</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de mettre en relation le compte de trading les transaction</p></td>
-</tr>
-</tbody>
-</table>
+<div class="sect2">
+<h3 id="_tornadofx">Tornadofx</h3>
+<div class="paragraph">
+<p>Description :</p>
+</div>
+<div class="paragraph">
+<p>Ce Framework est utilisé pour la partie graphique. Il permet de développer des interfaces utilisateurs simplement (par le biais de kotlin) et rapidement.</p>
+</div>
+<div class="paragraph">
+<p>Raisons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Est basé sur JavaFx</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://tornadofx.io" class="bare">https://tornadofx.io</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jetbrains_exposed">JetBrains Exposed</h3>
+<div class="paragraph">
+<p>Description :</p>
+</div>
+<div class="paragraph">
+<p>Ce framework permet de gérer une base de données embarquée avec l&#8217;application.</p>
+</div>
+<div class="paragraph">
+<p>Raisons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Proposé par Jetbrain</p>
+</li>
+<li>
+<p>Utilise SQLite</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/JetBrains/Exposed" class="bare">https://github.com/JetBrains/Exposed</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jetbrains_xodus">Jetbrains Xodus</h3>
+<div class="paragraph">
+<p>Description :</p>
+</div>
+<div class="paragraph">
+<p>Ce Framework permet le stockage des données dans des fichiers. Il sera utilisé pour stocker les données utilisateur non sensible dans le dossiers principal de l&#8217;utilisateur.</p>
+</div>
+<div class="paragraph">
+<p>Raisons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Proposé par Jetbrain</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://jetbrains.github.io/xodus/" class="bare">https://jetbrains.github.io/xodus/</a></p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_f5_gérer_des_algorthmes">F5 - Gérer des algorthmes</h2>
+<h2 id="_os">OS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Nom de la table : <strong>algorithms</strong></p>
+<p>L&#8217;application devra être cross plateforme :</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>Linux</p>
+</li>
+<li>
+<p>Mac OS</p>
+</li>
+<li>
+<p>Window</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_outils_liés_au_developpement">Outils liés au developpement</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_gestion_de_package">Gestion de package</h3>
+<div class="paragraph">
+<p>La gestion des packages se fera via Gradle et le repository principal sera Maven.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_automation">Build automation</h3>
+<div class="paragraph">
+<p>Gradle sera utilisé pour les gestion du build automation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_outil_de_versioning">Outil de versioning</h3>
+<div class="paragraph">
+<p>L&#8217;outil de versioning utilisé sera Git.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_outils_d_intégration_continue">Outils d&#8217;intégration continue</h3>
+<div class="paragraph">
+<p>Les outils d&#8217;intégration utilisés seront :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Circle CI pour créer des version téléchargeable de la plateforme</p>
+</li>
+<li>
+<p>Jenkin pour la mise ne place de services</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ide_interface_de_développement">IDE - Interface de développement</h3>
+<div class="paragraph">
+<p>L&#8217;outil récommandé est Intellij IDE configuré pour Kotlin.</p>
+</div>
+<div class="paragraph">
+<p>Voir : <a href="https://www.jetbrains.com/education/?fromMenu#lang=kotlin&amp;role=learner">Kotlin Edu</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_compatibilité">Compatibilité</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Nom de la colonne</th>
-<th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Nom</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Version</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de l&#8217;algorithme</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au nom donnée à l&#8217;algrithme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JVM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11.0.1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">directory_name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">STRING</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nom du dossier de projet</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au nom du dossier où se trouve l&#8217;algrithme</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.10.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kotlin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2.61</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Groovy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.4.15</p></td>
 </tr>
 </tbody>
 </table>
@@ -661,7 +658,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-18 17:15:39 CET
+Last updated 2018-11-18 20:00:52 CET
 </div>
 </div>
 </body>

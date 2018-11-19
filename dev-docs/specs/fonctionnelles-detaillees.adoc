@@ -389,6 +389,73 @@ salt
 }
 ....
 
+=== Ouvrir un ordre
+
+Un utilisateur doit pouvoir placer des ordres ou des positions de deux manières :
+
+* Soit par le biais du tableau des instruments financiers
+* Soit par le biais des boutons associés au graphique
+
+Les actions précédentes permettent d'ouvrir une interface pour le placement des transactions :
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{+
+EURUSD
+==
+"Take profit"
+[Ask price]
+Spread value
+"Lots"
+[Bid price]
+"Stop loss"
+[Advanced mode]
+}
+}}
+" as simplemode
+
+simplemode -right-> "
+{{
+salt
+{+
+EURUSD
+==
+Ask price - Spread value - Bid price
+"Take profit"
+"Open price"
+"Lots"
+"Stop loss"
+[Place order]
+[Simple mode]
+}
+}}
+"
+....
+
+==== Mode simple
+
+L'interface de placement des transactions en mode simple doit proposer de :
+
+* Placer un Take profit
+* Placer un ordre sur l'Ask
+* Afficher le spread
+* Choisir un nombre de lot
+* Placer un ordre sur le Bid
+* Placer un Stop loss
+
+Le fait de cliquer sur le prix Ask ou Bid permet de directement placer la position sur les marchés.
+
+==== Mode avancé
+
+Pour permettre le placement d'ordre par anticipation, faut proposer une interface différente, accéssible via un bouton "Advanced mode".
+
+A la différence d'un mode simple, il doit être possible de saisir le prix d'achat ou de vente directement via un champs "Open price".
+
+Et pour placer l'ordre, un bouton "Place order" est proposé sur l'interface, ce qui n'est pas le cas dans le mode simple.
+
 == F4 - Gérer des graphiques
 
 Un utilisateur doit pouvoir gérer ses graphiques dans l'optique de réaliser des analyses techniques. Il doit donc être possible :
@@ -401,7 +468,7 @@ Un graphique ne peut être ouvert que sur une liste de d'instruments financiers.
 
 === Instruments financiers - Liste des instrument
 
-La liste des instruments financiers peut être représenté sur une interface graphique par un tableau.
+La liste des instruments financiers peut être représenté dans l'interface par un tableau.
 
 3 données sont traditionnellement affichées en trading :
 
@@ -417,18 +484,29 @@ salt
 "Search                " | <&delete>
 }
 {#
-Name | Ask | Bid | <&graph>
-EURUSD | 1.12345 | 1.12345 | <&plus>
-GBPUSD | 1.12345 | 1.12345 | <&plus>
-JPYUSD | 123.12345 | 123.12345 | <&plus>
+Name | Ask | Bid | <&graph> | <&star>
+EURUSD | 1.12345 | 1.12345 | <&plus> | <&star>
+GBPUSD | 1.12345 | 1.12345 | <&plus> | <&star>
+JPYUSD | 123.12345 | 123.12345 | <&plus> | <&star>
 }
 }
 ....
 
 Par l'intermédiaire de ce tableau d'instruments financiers, l'utilisateur doit être en mesure de :
 
-* Ouvrir un graphique
-* Ouvrir un panneau placement de transaction
+[%header,cols=2*]
+|===
+|Action | Description
+
+|Ouvrir un graphique
+|En clique sur un bouton l'utilisateur peut ouvrir un graphique permettant l'analyse technique
+
+|Ouvrir un panneau placement de transaction
+|Ce panneau permet de placer des ordres ou des positions sur les marchés
+
+|Mettre en favoris
+|Permet de mettre en tête de liste les instruments les plus utilisé par l'utilisateur
+|===
 
 Ces différentes actions doivent être accéssibles par :
 
@@ -517,6 +595,15 @@ Sur chacun des graphique, il doit être possible de :
 * Placer des transactions d'achat et de vente
 * Changer le type de graphique (bâton/chandelier)
 * Changer l'unité de temps (UT)
+
+La zone de graphique doit intégrer des informations telsque :
+
+* Nom de l'instrument financier
+* Ask
+* Bid
+* Spread
+
+Ces différentes informations devraient pouvoir être présente en haut à droite de la zone de graphique afin de ne pas géner l'analyse du trader.
 
 === Barre d'outil pour les graphiques
 

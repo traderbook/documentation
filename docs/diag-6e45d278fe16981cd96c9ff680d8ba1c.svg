@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="101px" preserveAspectRatio="none" style="width:371px;height:101px;" version="1.1" viewBox="0 0 371 101" width="371px" zoomAndPan="magnify"><defs><filter height="300%" id="f1jncredb3zvb5" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--entity User--><ellipse cx="22" cy="18" fill="#FEFECE" filter="url(#f1jncredb3zvb5)" rx="8" ry="8" style="stroke: #A80036; stroke-width: 2.0;"/><path d="M22,26 L22,53 M9,34 L35,34 M22,53 L9,68 M22,53 L35,68 " fill="none" filter="url(#f1jncredb3zvb5)" style="stroke: #A80036; stroke-width: 2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="6" y="87.9951">User</text><!--entity Client--><polygon fill="#FEFECE" filter="url(#f1jncredb3zvb5)" points="73.5,36.5,83.5,26.5,152.5,26.5,152.5,62.7969,142.5,72.7969,73.5,72.7969,73.5,36.5" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="142.5" x2="151.5" y1="36.5" y2="27.5"/><line style="stroke: #000000; stroke-width: 1.5;" x1="73.5" x2="142.5" y1="36.5" y2="36.5"/><line style="stroke: #000000; stroke-width: 1.5;" x1="142.5" x2="142.5" y1="36.5" y2="72.7969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="88.5" y="59.4951">Client</text><!--entity Server--><polygon fill="#FEFECE" filter="url(#f1jncredb3zvb5)" points="188,36.5,198,26.5,272,26.5,272,62.7969,262,72.7969,188,72.7969,188,36.5" style="stroke: #000000; stroke-width: 1.5;"/><line style="stroke: #000000; stroke-width: 1.5;" x1="262" x2="271" y1="36.5" y2="27.5"/><line style="stroke: #000000; stroke-width: 1.5;" x1="188" x2="262" y1="36.5" y2="36.5"/><line style="stroke: #000000; stroke-width: 1.5;" x1="262" x2="262" y1="36.5" y2="72.7969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="44" x="203" y="59.4951">Server</text><!--entity Data--><path d="M307,37 C307,27 333,27 333,27 C333,27 359,27 359,37 L359,62.2969 C359,72.2969 333,72.2969 333,72.2969 C333,72.2969 307,72.2969 307,62.2969 L307,37 " fill="#FEFECE" filter="url(#f1jncredb3zvb5)" style="stroke: #000000; stroke-width: 1.5;"/><path d="M307,37 C307,47 333,47 333,47 C333,47 359,47 359,37 " fill="none" style="stroke: #000000; stroke-width: 1.5;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="32" x="317" y="63.9951">Data</text><!--link User to Client--><path d="M38.3516,49.5 C50.0154,49.5 61.6792,49.5 73.343,49.5 " fill="none" id="User-Client" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Client to Server--><path d="M152.762,49.5 C164.428,49.5 176.094,49.5 187.76,49.5 " fill="none" id="Client-Server" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Server to Data--><path d="M272.246,49.5 C283.796,49.5 295.345,49.5 306.895,49.5 " fill="none" id="Server-Data" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+actor User
+
+node Client
+node Server
+database Data
+
+User -right- Client
+Client -right- Server
+Server -right- Data
+@enduml
+
+PlantUML version 1.2018.10(Sat Aug 25 19:02:59 CEST 2018)
+(APACHE source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 11.0.1+13-LTS
+Operating System: Linux
+OS Version: 4.9.0-8-amd64
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>

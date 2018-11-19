@@ -6,6 +6,19 @@ TraderBook est une application permettant de réaliser des opérations de tradin
 
 Cette plateforme se veut être légère et adaptée à l'utilisation de chacun. TraderBook est une plateforme de trading open source. Vous trouverez toutes les informations (plans, conception, code, guide utilisateur...) et les avancées liées au projet via cette documentation.
 
+== Cartouche qualité
+
+[%header,cols=5*]
+|===
+| Version | Date | Rédacteur | Validateur | Description
+
+|1.0.0
+|18-11-2018
+|MORICET Nicolas
+|...
+|Rédaction initiale
+|===
+
 == Projet open source
 
 C'est un projet open source sur lequel vous pouvez contribuer de plusieurs manières :
@@ -24,4 +37,7 @@ L'accès aux :
 
 == Spécifications techniques
 
-L'accès aux link:techniques.html[spécifications techniques]
+L'accès aux :
+
+* link:techniques.html[Spécifications techniques générales]
+* link:techniques-detaillees.html[Spécifications techniques détaillées]

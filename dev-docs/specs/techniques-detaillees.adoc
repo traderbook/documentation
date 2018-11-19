@@ -1,0 +1,41 @@
+= Spécifications techniques détaillées
+
+L'architecture globale de communication entre les différents éléments est le suivant :
+
+[%header,cols=2*]
+|===
+| Rôle | Description
+
+|User
+|Interagie directement avec la partie Client de l'application
+
+|Client
+|Communique directement avec la partie Server
+
+|Server
+|Reçoit les communications en provenance des Clients et interagie avec les Data
+
+|Data
+|Permet soit le stockage des données en provenance du server, soit correspond à une API externe (ex: broker)
+|===
+
+[plantuml, format="svg"]
+....
+actor User
+
+node Client
+node Server
+database Data
+
+User -right- Client
+Client -right- Server
+Server -right- Data
+....
+
+== Plateforme de trading
+
+Accéder aux : link:trading-plateforme.html[Spécification de la plateforme de trading]
+
+== Serveur
+
+Accéder aux : link:serveur.html[Spécification du serveur]
