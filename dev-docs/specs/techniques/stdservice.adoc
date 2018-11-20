@@ -103,13 +103,7 @@ Le service est la partie de l'architecture qui permet :
 
 == Architecture d'un Service
 
-Un Service est un module autonome permettant de :
-
-* Communiquer avec une base de données
-* Charger un Connecteur
-* Charger des Indicateurs techniques
-
-[plantuml, format="svg"]
+[plantuml, format="svg", role="right"]
 ....
 node Service
 database Database
@@ -120,6 +114,12 @@ Service -down- Database
 Service -down- Connecteur
 Service -down- Indicateur
 ....
+
+Un Service est un module autonome permettant de :
+
+* Communiquer avec une base de données
+* Charger un Connecteur
+* Charger des Indicateurs techniques
 
 === Le Service
 
