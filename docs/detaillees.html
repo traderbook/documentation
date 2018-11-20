@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Dossier de spécifications</title>
+<title>Spécifications techniques détaillées</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -417,157 +417,104 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .show-for-print{display:inherit!important}}
 </style>
 </head>
-<body class="article toc2 toc-left">
+<body class="article">
 <div id="header">
-<h1>Dossier de spécifications</h1>
-<div id="toc" class="toc2">
-<div id="toctitle">Table of Contents</div>
-<ul class="sectlevel1">
-<li><a href="#_introduction">Introduction</a></li>
-<li><a href="#_cartouche_qualité">Cartouche qualité</a></li>
-<li><a href="#_présentation_du_projet">Présentation du projet</a></li>
-<li><a href="#_contribution_à_la_documentation">Contribution à la documentation</a></li>
-<li><a href="#_spécifications_fonctionnelles">Spécifications fonctionnelles</a></li>
-<li><a href="#_spécifications_techniques">Spécifications techniques</a></li>
-</ul>
-</div>
+<h1>Spécifications techniques détaillées</h1>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_introduction">Introduction</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>TraderBook est une application permettant de réaliser des opérations de trading sur différents marchés.</p>
+<p>L&#8217;architecture globale de communication entre les différents éléments est le suivant :</p>
 </div>
-<div class="paragraph">
-<p>Cette plateforme se veut être légère et adaptée à l&#8217;utilisation de chacun. TraderBook est une plateforme de trading open source. Vous trouverez toutes les informations (plans, conception, code, guide utilisateur&#8230;&#8203;) et les avancées liées au projet via cette documentation.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_cartouche_qualité">Cartouche qualité</h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Version</th>
-<th class="tableblock halign-left valign-top">Date</th>
-<th class="tableblock halign-left valign-top">Rédacteur</th>
-<th class="tableblock halign-left valign-top">Validateur</th>
+<th class="tableblock halign-left valign-top">Rôle</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">18-11-2018</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MORICET Nicolas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Rédaction initiale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Interagie directement avec la partie Client de l&#8217;application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Communique directement avec la partie Server</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reçoit les communications en provenance des Clients et interagie avec les Data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet soit le stockage des données en provenance du server, soit correspond à une API externe (ex: broker)</p></td>
 </tr>
 </tbody>
 </table>
+<div class="imageblock">
+<div class="content">
+<img src="diag-6e45d278fe16981cd96c9ff680d8ba1c.svg" alt="diag 6e45d278fe16981cd96c9ff680d8ba1c" width="371" height="101">
 </div>
-</div>
-<div class="sect1">
-<h2 id="_présentation_du_projet">Présentation du projet</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>TraderBook un projet open source de gestion d&#8217;ordre de trading et de développement d&#8217;algorithme de trading automatique.</p>
-</div>
-<div class="paragraph">
-<p>TraderBook un projet open source sur lequel vous pouvez contribuer de plusieurs manières :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>En apprortant votre contribution en tant que développeur</p>
-</li>
-<li>
-<p>En testant la plateforme et en faisant un retour issue de votre expérience</p>
-</li>
-<li>
-<p>En proposant des améliorations</p>
-</li>
-<li>
-<p>En contribuant à la documentation</p>
-</li>
-</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contribution_à_la_documentation">Contribution à la documentation</h2>
+<h2 id="_architecture_structurelle_modules">Architecture structurelle (modules)</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cette documentation utilise 2 outils :</p>
+<p>Certaines informations entre la partie Client et Server vont être communes. Afin de faciliter la communication entre les différents module, un module API sera créé et importé dans chacun des autres module.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://asciidoctor.org">Asciidoctor</a> : pour la rédaction et mise en forme des informations.</p>
-</li>
-<li>
-<p><a href="http://plantuml.com/">Plantuml</a> : pour les schémas et diagrammes.</p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="diag-7c568f7dd5f45bcfb40e6c6dc4ffc671.svg" alt="diag 7c568f7dd5f45bcfb40e6c6dc4ffc671" width="226" height="172">
+</div>
 </div>
 <div class="paragraph">
-<p>Pour la suite Intellig, il est préférable d&#8217;installer les plugins suivants :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://plugins.jetbrains.com/plugin/7017-plantuml-integration">PlantUML integration</a></p>
-</li>
-<li>
-<p><a href="https://plugins.jetbrains.com/plugin/7391-asciidoc">AsciiDoc</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Pour installer un plugin sur Intellij, suivre cette : <a href="https://www.jetbrains.com/help/idea/managing-plugins.html">procédures</a></p>
+<p>Il sera donc nécessaire de créer des sous modules Git afin d&#8217;importé facilement les projets. C&#8217;est-à-dire que le module API est un sous module Git du repository qui hebergera le module Client ou encore Server.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_spécifications_fonctionnelles">Spécifications fonctionnelles</h2>
+<h2 id="_structure_d_un_projet">Structure d&#8217;un projet</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>L&#8217;accès aux :</p>
+<p>Un projet doit être strucuté de la façon suivante :</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="sfgenerales.html">Spécifications fonctionnelles générales</a></p>
-</li>
-<li>
-<p><a href="sfdetaillees.html">Spécifications fonctionnelles détaillées</a></p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="diag-5dba32e981a76372ff7d9d56479f8abd.svg" alt="diag 5dba32e981a76372ff7d9d56479f8abd" width="106" height="67">
+</div>
+</div>
+<div class="paragraph">
+<p>Chaque dossier positionné à la racine est un module. Est automatiquement importé, le module API.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_spécifications_techniques">Spécifications techniques</h2>
+<h2 id="_détails_des_spécifications">Détails des spécifications</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>L&#8217;accès aux :</p>
+<p>Accéder aux :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="stgenerales.html">Spécifications techniques générales</a></p>
+<p><a href="trading-plateforme.html">Spécification de la plateforme de trading</a></p>
 </li>
 <li>
-<p><a href="stdetaillees.html">Spécifications techniques détaillées</a></p>
+<p><a href="algorithm.html">Spécification d&#8217;un algortihme</a></p>
+</li>
+<li>
+<p><a href="serveur.html">Spécification du serveur</a></p>
+</li>
+<li>
+<p><a href="deployment.html">Spécification liée au déploiement</a></p>
 </li>
 </ul>
 </div>
@@ -576,7 +523,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-19 19:01:37 CET
+Last updated 2018-11-19 15:46:03 CET
 </div>
 </div>
 </body>

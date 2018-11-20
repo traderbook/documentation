@@ -1,4 +1,5 @@
 = Description d'un algorithm
+:toc: left
 
 Un algorithme peut avoir au minimum 3 méthodes afin de pouvoir :
 

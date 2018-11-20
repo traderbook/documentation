@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Dossier de spécifications</title>
+<title>Spécifications techniques d&#8217;un service</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,164 +419,280 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Dossier de spécifications</h1>
+<h1>Spécifications techniques d&#8217;un service</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_introduction">Introduction</a></li>
-<li><a href="#_cartouche_qualité">Cartouche qualité</a></li>
-<li><a href="#_présentation_du_projet">Présentation du projet</a></li>
-<li><a href="#_contribution_à_la_documentation">Contribution à la documentation</a></li>
-<li><a href="#_spécifications_fonctionnelles">Spécifications fonctionnelles</a></li>
-<li><a href="#_spécifications_techniques">Spécifications techniques</a></li>
+<li><a href="#_chargement_des_connecteurs">Chargement des connecteurs</a></li>
+<li><a href="#_attribution_d_un_service_à_un_client">Attribution d&#8217;un service à un client</a>
+<ul class="sectlevel2">
+<li><a href="#_dispatcher">Dispatcher</a></li>
+<li><a href="#_service">Service</a></li>
+</ul>
+</li>
+<li><a href="#_architecture_d_un_service">Architecture d&#8217;un Service</a>
+<ul class="sectlevel2">
+<li><a href="#_le_service">Le Service</a></li>
+<li><a href="#_la_database">La Database</a></li>
+<li><a href="#_le_connecteur">Le Connecteur</a></li>
+</ul>
+</li>
+<li><a href="#_communication_entre_le_service_et_les_connecteurs">Communication entre le Service et les Connecteurs</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_introduction">Introduction</h2>
+<h2 id="_chargement_des_connecteurs">Chargement des connecteurs</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>TraderBook est une application permettant de réaliser des opérations de trading sur différents marchés.</p>
-</div>
-<div class="paragraph">
-<p>Cette plateforme se veut être légère et adaptée à l&#8217;utilisation de chacun. TraderBook est une plateforme de trading open source. Vous trouverez toutes les informations (plans, conception, code, guide utilisateur&#8230;&#8203;) et les avancées liées au projet via cette documentation.</p>
+<p>Un serveur doit pouvoir charger un connecteur de façon dynamique.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_cartouche_qualité">Cartouche qualité</h2>
+<h2 id="_attribution_d_un_service_à_un_client">Attribution d&#8217;un service à un client</h2>
 <div class="sectionbody">
+<div class="imageblock right">
+<div class="content">
+<img src="diag-0e1e7ea22f81c2d6deb3b9bc8b6d7e35.svg" alt="diag 0e1e7ea22f81c2d6deb3b9bc8b6d7e35" width="423" height="229">
+</div>
+</div>
+<div class="paragraph">
+<p>C&#8217;est par l&#8217;intermédiaire d&#8217;un reverse proxy que le client pourra communiquer avec :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Un dispatcher</p>
+</li>
+<li>
+<p>Un service</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_dispatcher">Dispatcher</h3>
+<div class="paragraph">
+<p>Le dispatcher à pour rôle de gérer les services qui auront été créé suite à une demande de connexion d&#8217;un client.</p>
+</div>
+<div class="paragraph">
+<p>Un client peut faire une demande de :</p>
+</div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Version</th>
-<th class="tableblock halign-left valign-top">Date</th>
-<th class="tableblock halign-left valign-top">Rédacteur</th>
-<th class="tableblock halign-left valign-top">Validateur</th>
+<th class="tableblock halign-left valign-top">Action</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">18-11-2018</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MORICET Nicolas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Rédaction initiale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La connection à pour rôle de créer un nouveau service qui sera associé au client.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Déconnection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La déconnection à pour rôle de stopper un service associé à un client.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_routes_dispatcher">Routes Dispatcher</h4>
+<div class="paragraph">
+<p>Les communication avec le dispatcher doivent se faire sur l&#8217;url suivante : <code>dispatcher.domain.tld</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Verbe HTTP</th>
+<th class="tableblock halign-left valign-top">Route</th>
+<th class="tableblock halign-left valign-top">Données</th>
+<th class="tableblock halign-left valign-top">Réponse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/client/login</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "username": String,
+    "password": String
+    "broker": String
+    "accountType": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 200</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "urlws": String
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/client/logout</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "urlws": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 202</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "status": Boolean
+}</code></pre>
+</div>
+</div></div></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_présentation_du_projet">Présentation du projet</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_service">Service</h3>
 <div class="paragraph">
-<p>TraderBook un projet open source de gestion d&#8217;ordre de trading et de développement d&#8217;algorithme de trading automatique.</p>
-</div>
-<div class="paragraph">
-<p>TraderBook un projet open source sur lequel vous pouvez contribuer de plusieurs manières :</p>
+<p>Le service est la partie de l&#8217;architecture qui permet :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>En apprortant votre contribution en tant que développeur</p>
+<p>La connexion d&#8217;un compte de trading</p>
 </li>
 <li>
-<p>En testant la plateforme et en faisant un retour issue de votre expérience</p>
+<p>La récupération des cotations</p>
 </li>
 <li>
-<p>En proposant des améliorations</p>
-</li>
-<li>
-<p>En contribuant à la documentation</p>
+<p>La transmission des transactions</p>
 </li>
 </ul>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contribution_à_la_documentation">Contribution à la documentation</h2>
+<h2 id="_architecture_d_un_service">Architecture d&#8217;un Service</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Cette documentation utilise 2 outils :</p>
+<p>Un Service est un module autonome permettant de :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://asciidoctor.org">Asciidoctor</a> : pour la rédaction et mise en forme des informations.</p>
+<p>Communiquer avec une base de données</p>
 </li>
 <li>
-<p><a href="http://plantuml.com/">Plantuml</a> : pour les schémas et diagrammes.</p>
+<p>Charger un Connecteur</p>
+</li>
+<li>
+<p>Charger des Indicateurs techniques</p>
 </li>
 </ul>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-7b0384db94fe3384c302a625e9397e6f.svg" alt="diag 7b0384db94fe3384c302a625e9397e6f" width="414" height="172">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_le_service">Le Service</h3>
 <div class="paragraph">
-<p>Pour la suite Intellig, il est préférable d&#8217;installer les plugins suivants :</p>
+<p>Le Service réception les demandes du Client pour :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://plugins.jetbrains.com/plugin/7017-plantuml-integration">PlantUML integration</a></p>
+<p>Transmettre les données à une base de données</p>
 </li>
 <li>
-<p><a href="https://plugins.jetbrains.com/plugin/7391-asciidoc">AsciiDoc</a></p>
+<p>Transmettre des données à une l&#8217;API</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_la_database">La Database</h3>
+<div class="paragraph">
+<p>La base de données permet la persistances des données en provenance :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>des demandes Client &#8594; Service.</p>
+</li>
+<li>
+<p>des données Connecteur &#8594; Service.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_le_connecteur">Le Connecteur</h3>
+<div class="paragraph">
+<p>Doit être permettre la communication entre le Service et un broker. Elle doit permettre de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Récupérer les cotations des instruments financiers.</p>
+</li>
+<li>
+<p>Récupérer les informations d&#8217;un compte de trading.</p>
+</li>
+<li>
+<p>Transmettre des transactions.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Pour installer un plugin sur Intellij, suivre cette : <a href="https://www.jetbrains.com/help/idea/managing-plugins.html">procédures</a></p>
+<p>Le Connecteur utiliser l&#8217;Api qui est fourni par le Broker.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_spécifications_fonctionnelles">Spécifications fonctionnelles</h2>
+<h2 id="_communication_entre_le_service_et_les_connecteurs">Communication entre le Service et les Connecteurs</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>L&#8217;accès aux :</p>
+<p>Un connecteur est un module permettant la communication entre un Service et un broker. Le connecteur utilise l&#8217;Api que propose un broker.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="sfgenerales.html">Spécifications fonctionnelles générales</a></p>
-</li>
-<li>
-<p><a href="sfdetaillees.html">Spécifications fonctionnelles détaillées</a></p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="diag-de96204d4424c88b6d7d4f0c05b79d3b.svg" alt="diag de96204d4424c88b6d7d4f0c05b79d3b" width="383" height="172">
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_spécifications_techniques">Spécifications techniques</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>L&#8217;accès aux :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="stgenerales.html">Spécifications techniques générales</a></p>
-</li>
-<li>
-<p><a href="stdetaillees.html">Spécifications techniques détaillées</a></p>
-</li>
-</ul>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-19 19:01:37 CET
+Last updated 2018-11-19 19:58:56 CET
 </div>
 </div>
 </body>

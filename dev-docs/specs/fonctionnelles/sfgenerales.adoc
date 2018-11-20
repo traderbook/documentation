@@ -1,4 +1,5 @@
 = Document fonctionnel général
+:toc: left
 
 Ce document décrit les fonctionnalités générales de l'application de tading TraderBook. Il est destiné à identifier les besoins en fonctionnalités et ainsi que les besoins métiers.
 

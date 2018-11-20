@@ -1,4 +1,5 @@
 = Dossier de spécifications
+:toc: left
 
 == Introduction
 
@@ -19,30 +20,18 @@ Cette plateforme se veut être légère et adaptée à l'utilisation de chacun. 
 |Rédaction initiale
 |===
 
-== Projet open source
+== Présentation du projet
 
-C'est un projet open source sur lequel vous pouvez contribuer de plusieurs manières :
+TraderBook un projet open source de gestion d'ordre de trading et de développement d'algorithme de trading automatique.
+
+TraderBook un projet open source sur lequel vous pouvez contribuer de plusieurs manières :
 
 * En apprortant votre contribution en tant que développeur
 * En testant la plateforme et en faisant un retour issue de votre expérience
 * En proposant des améliorations
 * En contribuant à la documentation
 
-== Spécifications fonctionnelles
-
-L'accès aux :
-
-* link:fonctionnelles.html[Spécifications fonctionnelles générales]
-* link:fonctionnelles-detaillees.html[Spécifications fonctionnelles détaillées]
-
-== Spécifications techniques
-
-L'accès aux :
-
-* link:techniques.html[Spécifications techniques générales]
-* link:techniques-detaillees.html[Spécifications techniques détaillées]
-
-== Rédaction de la documentation
+== Contribution à la documentation
 
 Cette documentation utilise 2 outils :
 
@@ -55,3 +44,17 @@ Pour la suite Intellig, il est préférable d'installer les plugins suivants :
 * link:https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc]
 
 Pour installer un plugin sur Intellij, suivre cette : link:https://www.jetbrains.com/help/idea/managing-plugins.html[procédures]
+
+== Spécifications fonctionnelles
+
+L'accès aux :
+
+* link:sfgenerales.html[Spécifications fonctionnelles générales]
+* link:sfdetaillees.html[Spécifications fonctionnelles détaillées]
+
+== Spécifications techniques
+
+L'accès aux :
+
+* link:stgenerales.html[Spécifications techniques générales]
+* link:stdetaillees.html[Spécifications techniques détaillées]

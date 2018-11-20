@@ -1,16 +1,13 @@
-= Spécifications techniques du serveur
-Doc Writer <doc.writer@asciidoctor.org>
-v1.0, 2013-08-01
-:toc:
+= Spécifications techniques d'un service
+:toc: left
+
+== Chargement des connecteurs
+
+Un serveur doit pouvoir charger un connecteur de façon dynamique.
 
 == Attribution d'un service à un client
 
-C'est par l'intermédiaire d'un reverse proxy que le client pourra communiquer avec :
-
-* Un dispatcher
-* Un service
-
-[plantuml, format="svg"]
+[plantuml, format="svg", role="right"]
 ....
 node Client
 
@@ -29,6 +26,11 @@ node Server {
 
 Client -right- ReverseProxy
 ....
+
+C'est par l'intermédiaire d'un reverse proxy que le client pourra communiquer avec :
+
+* Un dispatcher
+* Un service
 
 === Dispatcher
 

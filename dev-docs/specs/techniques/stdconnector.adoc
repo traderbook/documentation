@@ -1,0 +1,42 @@
+= Spécification d'un connecteur
+
+Un connecteur doit permettre de transmettre des informations aux services qui l'utilisent.
+
+Les noms des événements doivent être unifirmisés afin d'être compréhensible par l'ensemble des modules.
+
+== Structure d'un connecteur
+
+[plantuml, format="svg"]
+....
+enum ConnectorEventEnum {
+  ONCONNECTED
+  ONTICK
+  ONTRANSACTION
+}
+
+class TradingAccount {
+    - usernmane
+    - password
+    - broker
+    - accountType
+}
+
+interface IConnector {
+  connection(tradingAccount: TradingAccount): Unit
+  login(): Unit
+  logout(): Unit
+}
+
+interface IConnectorObserver {
+  update(message: ConnectorEventEnum, data: Object)
+}
+
+class Connector
+
+IConnector <|-- Connector
+IConnectorObserver <|-- Connector
+TradingAccount *-- Connector
+ConnectorEventEnum *-- Connector
+....
+
+== Architecture projet d'un connecteur

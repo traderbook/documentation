@@ -1,4 +1,5 @@
 = Spécifications techniques générales
+:toc: left
 
 == Lexique technique
 
@@ -8,6 +9,9 @@
 
 |Client
 |Correspond soit à une plateforme de trading, soit un algorithme de trading.
+
+|Service
+|Permet à une interface Cliente de se connecter pour interagir avec les données de l'application ou des API
 
 |Connecteur
 |Un connecteur est un module proposant une API permettant à un autre module de communiquer avec broker.

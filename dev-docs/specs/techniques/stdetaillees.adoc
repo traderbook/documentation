@@ -1,4 +1,5 @@
 = Spécifications techniques détaillées
+:toc: left
 
 L'architecture globale de communication entre les différents éléments est le suivant :
 
@@ -69,9 +70,22 @@ Chaque dossier positionné à la racine est un module. Est automatiquement impor
 
 == Détails des spécifications
 
-Accéder aux :
+[%header,cols=2*]
+|===
+| Document | Description
 
-* link:trading-plateforme.html[Spécification de la plateforme de trading]
-* link:algorithm.html[Spécification d'un algortihme]
-* link:serveur.html[Spécification du serveur]
-* link:deployment.html[Spécification liée au déploiement]
+|link:stdconnector.html[Connecteur]
+|Permet de détailler le fonctionnement d'un connecteur.
+
+|link:stdservice.html[Service]
+|Permet de décrire le fonctionnement du service.
+
+|link:stdalgorithm.html[Algortihme]
+|Permet d'expliquer les éléments techniques d'un algorithme de trading.
+
+|link:stddeployment.html[Déploiement]
+|Permet de présenter le procéssus de déploiement de l'application.
+
+|link:trading-plateforme.html[Plateforme de trading]
+|Permet de décrire les éléments techniques de la plateforme de trading.
+|===

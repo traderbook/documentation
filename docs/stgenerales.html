@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Dossier de spécifications</title>
+<title>Spécifications techniques générales</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,164 +419,326 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Dossier de spécifications</h1>
+<h1>Spécifications techniques générales</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_introduction">Introduction</a></li>
-<li><a href="#_cartouche_qualité">Cartouche qualité</a></li>
-<li><a href="#_présentation_du_projet">Présentation du projet</a></li>
-<li><a href="#_contribution_à_la_documentation">Contribution à la documentation</a></li>
-<li><a href="#_spécifications_fonctionnelles">Spécifications fonctionnelles</a></li>
-<li><a href="#_spécifications_techniques">Spécifications techniques</a></li>
+<li><a href="#_lexique_technique">Lexique technique</a></li>
+<li><a href="#_positionnement_du_projet">Positionnement du projet</a></li>
+<li><a href="#_langage_de_programmation">Langage de programmation</a>
+<ul class="sectlevel2">
+<li><a href="#_kotlin">Kotlin</a></li>
+</ul>
+</li>
+<li><a href="#_frameworks">Frameworks</a>
+<ul class="sectlevel2">
+<li><a href="#_tornadofx">Tornadofx</a></li>
+<li><a href="#_jetbrains_exposed">JetBrains Exposed</a></li>
+<li><a href="#_jetbrains_xodus">Jetbrains Xodus</a></li>
+</ul>
+</li>
+<li><a href="#_os">OS</a></li>
+<li><a href="#_outils_liés_au_developpement">Outils liés au developpement</a>
+<ul class="sectlevel2">
+<li><a href="#_gestion_de_package">Gestion de package</a></li>
+<li><a href="#_build_automation">Build automation</a></li>
+<li><a href="#_outil_de_versioning">Outil de versioning</a></li>
+<li><a href="#_outils_d_intégration_continue">Outils d&#8217;intégration continue</a></li>
+<li><a href="#_ide_interface_de_développement">IDE - Interface de développement</a></li>
+</ul>
+</li>
+<li><a href="#_compatibilité">Compatibilité</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_introduction">Introduction</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>TraderBook est une application permettant de réaliser des opérations de trading sur différents marchés.</p>
-</div>
-<div class="paragraph">
-<p>Cette plateforme se veut être légère et adaptée à l&#8217;utilisation de chacun. TraderBook est une plateforme de trading open source. Vous trouverez toutes les informations (plans, conception, code, guide utilisateur&#8230;&#8203;) et les avancées liées au projet via cette documentation.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_cartouche_qualité">Cartouche qualité</h2>
+<h2 id="_lexique_technique">Lexique technique</h2>
 <div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Version</th>
-<th class="tableblock halign-left valign-top">Date</th>
-<th class="tableblock halign-left valign-top">Rédacteur</th>
-<th class="tableblock halign-left valign-top">Validateur</th>
+<th class="tableblock halign-left valign-top">Nom</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.0</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">18-11-2018</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">MORICET Nicolas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&#8230;&#8203;</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Rédaction initiale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond soit à une plateforme de trading, soit un algorithme de trading.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet à une interface Cliente de se connecter pour interagir avec les données de l&#8217;application ou des API</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connecteur</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Un connecteur est un module proposant une API permettant à un autre module de communiquer avec broker.</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_présentation_du_projet">Présentation du projet</h2>
+<h2 id="_positionnement_du_projet">Positionnement du projet</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>TraderBook un projet open source de gestion d&#8217;ordre de trading et de développement d&#8217;algorithme de trading automatique.</p>
+<div class="imageblock">
+<div class="content">
+<img src="diag-01318490cdfdc100da3009954cb916d4.svg" alt="diag 01318490cdfdc100da3009954cb916d4" width="280" height="621">
+</div>
 </div>
 <div class="paragraph">
-<p>TraderBook un projet open source sur lequel vous pouvez contribuer de plusieurs manières :</p>
+<p>Les projet TraderBook se positionnent entre un utilisateur et un Broker.</p>
+</div>
+<div class="paragraph">
+<p>Les Brokers sont concidérer comme des intermédiaires entre les banques et les utilisateurs.</p>
+</div>
+<div class="paragraph">
+<p>Les différentes plateformes et service de TraderBook permettront de faciliter la communication entre le Client et les Broker.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_langage_de_programmation">Langage de programmation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cette section présent les langages de programmation utilisés pour le projet.</p>
+</div>
+<div class="sect2">
+<h3 id="_kotlin">Kotlin</h3>
+<div class="paragraph">
+<p>Description :</p>
+</div>
+<div class="paragraph">
+<p>Le programme est développé en kotlin qui est un langage orienté objet et fonctionnel.</p>
+</div>
+<div class="paragraph">
+<p>Raisons :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>En apprortant votre contribution en tant que développeur</p>
+<p>La programmation fonctionnelles est un strandard en trading algorithmique.</p>
 </li>
 <li>
-<p>En testant la plateforme et en faisant un retour issue de votre expérience</p>
+<p>Est basé sur les fondamentaux de JAVA</p>
 </li>
 <li>
-<p>En proposant des améliorations</p>
+<p>La plupart des API broker sont développés en JAVA</p>
 </li>
 <li>
-<p>En contribuant à la documentation</p>
+<p>Permet le développement d&#8217;application :</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Bureau</p>
+</li>
+<li>
+<p>Mobile</p>
+</li>
+<li>
+<p>Serveur</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://kotlinlang.org" class="bare">https://kotlinlang.org</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frameworks">Frameworks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cette section présente les frameworks utilisés pour le projet.</p>
+</div>
+<div class="sect2">
+<h3 id="_tornadofx">Tornadofx</h3>
+<div class="paragraph">
+<p>Description :</p>
+</div>
+<div class="paragraph">
+<p>Ce Framework est utilisé pour la partie graphique. Il permet de développer des interfaces utilisateurs simplement (par le biais de kotlin) et rapidement.</p>
+</div>
+<div class="paragraph">
+<p>Raisons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Est basé sur JavaFx</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://tornadofx.io" class="bare">https://tornadofx.io</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jetbrains_exposed">JetBrains Exposed</h3>
+<div class="paragraph">
+<p>Description :</p>
+</div>
+<div class="paragraph">
+<p>Ce framework permet de gérer une base de données embarquée avec l&#8217;application.</p>
+</div>
+<div class="paragraph">
+<p>Raisons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Proposé par Jetbrain</p>
+</li>
+<li>
+<p>Utilise SQLite</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/JetBrains/Exposed" class="bare">https://github.com/JetBrains/Exposed</a></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_jetbrains_xodus">Jetbrains Xodus</h3>
+<div class="paragraph">
+<p>Description :</p>
+</div>
+<div class="paragraph">
+<p>Ce Framework permet le stockage des données dans des fichiers. Il sera utilisé pour stocker les données utilisateur non sensible dans le dossiers principal de l&#8217;utilisateur.</p>
+</div>
+<div class="paragraph">
+<p>Raisons :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Proposé par Jetbrain</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><a href="https://jetbrains.github.io/xodus/" class="bare">https://jetbrains.github.io/xodus/</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_os">OS</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>L&#8217;application devra être cross plateforme :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Linux</p>
+</li>
+<li>
+<p>Mac OS</p>
+</li>
+<li>
+<p>Window</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_contribution_à_la_documentation">Contribution à la documentation</h2>
+<h2 id="_outils_liés_au_developpement">Outils liés au developpement</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_gestion_de_package">Gestion de package</h3>
 <div class="paragraph">
-<p>Cette documentation utilise 2 outils :</p>
+<p>La gestion des packages se fera via Gradle et le repository principal sera Maven.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_build_automation">Build automation</h3>
+<div class="paragraph">
+<p>Gradle sera utilisé pour les gestion du build automation.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_outil_de_versioning">Outil de versioning</h3>
+<div class="paragraph">
+<p>L&#8217;outil de versioning utilisé sera Git.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_outils_d_intégration_continue">Outils d&#8217;intégration continue</h3>
+<div class="paragraph">
+<p>Les outils d&#8217;intégration utilisés seront :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://asciidoctor.org">Asciidoctor</a> : pour la rédaction et mise en forme des informations.</p>
+<p>Circle CI pour créer des version téléchargeable de la plateforme</p>
 </li>
 <li>
-<p><a href="http://plantuml.com/">Plantuml</a> : pour les schémas et diagrammes.</p>
+<p>Jenkin pour la mise ne place de services</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>Pour la suite Intellig, il est préférable d&#8217;installer les plugins suivants :</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://plugins.jetbrains.com/plugin/7017-plantuml-integration">PlantUML integration</a></p>
-</li>
-<li>
-<p><a href="https://plugins.jetbrains.com/plugin/7391-asciidoc">AsciiDoc</a></p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="_ide_interface_de_développement">IDE - Interface de développement</h3>
+<div class="paragraph">
+<p>L&#8217;outil récommandé est Intellij IDE configuré pour Kotlin.</p>
 </div>
 <div class="paragraph">
-<p>Pour installer un plugin sur Intellij, suivre cette : <a href="https://www.jetbrains.com/help/idea/managing-plugins.html">procédures</a></p>
+<p>Voir : <a href="https://www.jetbrains.com/education/?fromMenu#lang=kotlin&amp;role=learner">Kotlin Edu</a></p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_spécifications_fonctionnelles">Spécifications fonctionnelles</h2>
+<h2 id="_compatibilité">Compatibilité</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>L&#8217;accès aux :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="sfgenerales.html">Spécifications fonctionnelles générales</a></p>
-</li>
-<li>
-<p><a href="sfdetaillees.html">Spécifications fonctionnelles détaillées</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_spécifications_techniques">Spécifications techniques</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>L&#8217;accès aux :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="stgenerales.html">Spécifications techniques générales</a></p>
-</li>
-<li>
-<p><a href="stdetaillees.html">Spécifications techniques détaillées</a></p>
-</li>
-</ul>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Nom</th>
+<th class="tableblock halign-left valign-top">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">JVM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11.0.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gradle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.10.2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kotlin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2.61</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Groovy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.4.15</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-19 19:01:37 CET
+Last updated 2018-11-19 19:01:00 CET
 </div>
 </div>
 </body>

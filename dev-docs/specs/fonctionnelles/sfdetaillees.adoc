@@ -1,4 +1,5 @@
 = Document fonctionnel détaillé
+:toc: left
 
 == F1 - Créer un profil utilisateur
 
