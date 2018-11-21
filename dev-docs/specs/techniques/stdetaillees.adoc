@@ -8,16 +8,28 @@ L'architecture globale de communication entre les différents éléments est le 
 | Rôle | Description
 
 |User
-|Interagie directement avec la partie Client de l'application
+|Le User est l'utilisateur finale. Il interagie directement avec la partie Client (plateforme de trading, gestionnaire d'algorithmes, backtests...).
 
 |Client
-|Communique directement avec la partie Server
+|Le Client correspond au différents outils proposés à l'User (plateforme de trading, gestionnaire d'algorithmes, backtests...). Il interagie, par l'intermédiaire d'un reverse proxy, directement soit avec un Dispacher, doit un Service.
 
-|Server
-|Reçoit les communications en provenance des Clients et interagie avec les Data
+|Reverse Proxy
+|Permet de distribuer les requêtes en fonction des requêtes du Client. Ce reverse proxy permettra la gestion d'alias de domaine que les Clients pourront utiliser.
 
-|Data
-|Permet soit le stockage des données en provenance du server, soit correspond à une API externe (ex: broker)
+|Dispatcher
+|Le Dispatcher permet la création et la supervision des différents Services et permet la persistance des données en Database.
+
+|Service
+|Permet d'interagir avec soit la Database, soit un Connector. C'est cette partie qui doit receptionner et transmettre les informations aux Clients.
+
+|Database
+|Permet la persistence des données en provenance des différents Services et du Dispatcher.
+
+|Connector
+|Permet la communication entre le broker et le Service.
+
+|Broker
+|Permet la gestion des comptes de trading coté broker.
 |===
 
 [plantuml, format="svg"]
@@ -25,13 +37,56 @@ L'architecture globale de communication entre les différents éléments est le 
 actor User
 
 node Client
-node Server
-database Data
+node "Reverse proxy" as reverseproxy
+node Dispatcher
+node Service
+node Connector
+database Database
+cloud Broker
 
-User -right- Client
-Client -right- Server
-Server -right- Data
+User <-right-> Client
+Client <-right-> reverseproxy
+reverseproxy <-right-> Dispatcher
+Dispatcher <-right-> Service
+Dispatcher <-right-> Database
+reverseproxy <-right-> Service
+Service <-down-> Database
+Service <-down-> Connector
+Connector <-down-> Broker
 ....
+
+== Détails des spécifications
+
+[%header,cols=2*]
+|===
+| Document | Description
+
+|link:stdreverseproxy.html[Reverse proxy]
+|Permet de détailler les solutions utilisé pour le reverse proxy
+
+|link:stddispatcher.html[Dispatcher]
+|Permet de détailler le fonctionnement d'un connecteur.
+
+|link:stdservice.html[Service]
+|Permet de décrire le fonctionnement du service.
+
+|link:stdconnector.html[Connecteur]
+|Permet de détailler le fonctionnement d'un connecteur.
+|===
+
+[%header,cols=2*]
+|===
+| Document | Description
+
+|link:stdalgorithm.html[Algortihme]
+|Permet d'expliquer les éléments techniques d'un algorithme de trading.
+
+|link:stddeployment.html[Déploiement]
+|Permet de présenter le procéssus de déploiement de l'application.
+
+|link:trading-plateforme.html[Plateforme de trading]
+|Permet de décrire les éléments techniques de la plateforme de trading.
+|===
 
 == Architecture structurelle (modules)
 
@@ -67,25 +122,3 @@ salt
 ....
 
 Chaque dossier positionné à la racine est un module. Est automatiquement importé, le module API.
-
-== Détails des spécifications
-
-[%header,cols=2*]
-|===
-| Document | Description
-
-|link:stdconnector.html[Connecteur]
-|Permet de détailler le fonctionnement d'un connecteur.
-
-|link:stdservice.html[Service]
-|Permet de décrire le fonctionnement du service.
-
-|link:stdalgorithm.html[Algortihme]
-|Permet d'expliquer les éléments techniques d'un algorithme de trading.
-
-|link:stddeployment.html[Déploiement]
-|Permet de présenter le procéssus de déploiement de l'application.
-
-|link:trading-plateforme.html[Plateforme de trading]
-|Permet de décrire les éléments techniques de la plateforme de trading.
-|===

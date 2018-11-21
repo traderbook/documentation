@@ -437,7 +437,107 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="diag-deddccfd85ff23260e0274417f869190.svg" alt="diag deddccfd85ff23260e0274417f869190" width="1027" height="226">
+<img src="diag-601d5d9e1a57bf9299d4897b7e673bf3.svg" alt="diag 601d5d9e1a57bf9299d4897b7e673bf3" width="1027" height="226">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_fonctionnalités_d_un_connecteur">Fonctionnalités d&#8217;un connecteur</h3>
+<div class="paragraph">
+<p>La classe <code>Connector</code> est la classe principale permettant de gérer :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La connexion avec un broker</p>
+</li>
+<li>
+<p>La gestion des informations (souscription d&#8217;instruments financiers, cotations&#8230;&#8203;)</p>
+</li>
+<li>
+<p>La gestion des transactions</p>
+</li>
+<li>
+<p>La gestion des données du compte de trading</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_implémentation_d_un_connector">Implémentation d&#8217;un connector</h3>
+<div class="paragraph">
+<p>Cette classe implémente 2 interfaces :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Interface</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IConnector</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cette interface permet de proposer des méthodes à implémenter afin que le connecteur puisse intégré à un service.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IConnectorObserver</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cette interface permet de proposer des méthodes à implémenter afin d&#8217;être observer par un service.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_interface_code_iconnector_code">Interface : <code>IConnector</code></h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Méthode</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>connection(tradingAccount: TradingAccount)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cette méthode permet d&#8217;initialiser les éléments d&#8217;une connection en fonction de l&#8217;Api d&#8217;un broker.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>login()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cette méthode permet d&#8217;ouvrir une session de connection avec le broker.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>logout()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cette méthode permet de fermer une session de connection avec le broker.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_interface_code_iconnectorobserver_code">Interface : <code>IConnectorObserver</code></h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Méthode</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>update(message: ConnectorEventEnum, data: Object)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cette est utilisée pour réaliser une mise à jour suite à un événement (Mise à jour d&#8217;un instrument, transaction placée&#8230;&#8203;). Cette méthode permet d&#8217;appeler les méthode update d&#8217;objets observeurs.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -445,13 +545,78 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="_architecture_projet_d_un_connecteur">Architecture projet d&#8217;un connecteur</h2>
 <div class="sectionbody">
-
+<div class="paragraph">
+<p>L&#8217;architecture du projet devra intégrer l&#8217;API intère modules (module api) ainsi que les librairies (dossier libs) du broker.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-19a38481ed20365939e13dbb0fc26dbf.svg" alt="diag 19a38481ed20365939e13dbb0fc26dbf" width="106" height="81">
+</div>
+</div>
+<div class="paragraph">
+<p>Gradle devra permettre la génération d&#8217;un fichier manifest. Ce fichier devra contenir des propriétés :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Propriété</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de donner un nom au broker</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">description</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de donner une description au broker</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Certaines de ses propriété seront transmises au différentes plateformes et notamment dans un premier lieu au service.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gestion_des_repositories">Gestion des repositories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Chaque connecteur devra avoir son propre respository et devra respecter une nomenclature de nommage.</p>
+</div>
+<div class="paragraph">
+<p>La nomenclature les la suivante : <code>traderbook/connector-BROKER-NAME</code></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Tous les caractères sont en minuscules</p>
+</li>
+<li>
+<p>Pas de caractères spéciaux</p>
+</li>
+<li>
+<p>La première partie est le mot <code>connector</code></p>
+</li>
+<li>
+<p>Les espaces sont remplacés par des tirets du 6 (-)</p>
+</li>
+<li>
+<p>La seconde partie est le nom du broker</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-19 19:54:57 CET
+Last updated 2018-11-20 18:24:27 CET
 </div>
 </div>
 </body>

@@ -423,9 +423,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_détails_des_spécifications">Détails des spécifications</a></li>
 <li><a href="#_architecture_structurelle_modules">Architecture structurelle (modules)</a></li>
 <li><a href="#_structure_d_un_projet">Structure d&#8217;un projet</a></li>
-<li><a href="#_détails_des_spécifications">Détails des spécifications</a></li>
 </ul>
 </div>
 </div>
@@ -449,27 +449,104 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Interagie directement avec la partie Client de l&#8217;application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le User est l&#8217;utilisateur finale. Il interagie directement avec la partie Client (plateforme de trading, gestionnaire d&#8217;algorithmes, backtests&#8230;&#8203;).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Client</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Communique directement avec la partie Server</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le Client correspond au différents outils proposés à l&#8217;User (plateforme de trading, gestionnaire d&#8217;algorithmes, backtests&#8230;&#8203;). Il interagie, par l&#8217;intermédiaire d&#8217;un reverse proxy, directement soit avec un Dispacher, doit un Service.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Server</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reçoit les communications en provenance des Clients et interagie avec les Data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reverse Proxy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de distribuer les requêtes en fonction des requêtes du Client. Ce reverse proxy permettra la gestion d&#8217;alias de domaine que les Clients pourront utiliser.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Data</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet soit le stockage des données en provenance du server, soit correspond à une API externe (ex: broker)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dispatcher</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le Dispatcher permet la création et la supervision des différents Services et permet la persistance des données en Database.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet d&#8217;interagir avec soit la Database, soit un Connector. C&#8217;est cette partie qui doit receptionner et transmettre les informations aux Clients.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet la persistence des données en provenance des différents Services et du Dispatcher.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet la communication entre le broker et le Service.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Broker</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet la gestion des comptes de trading coté broker.</p></td>
 </tr>
 </tbody>
 </table>
 <div class="imageblock">
 <div class="content">
-<img src="diag-6e45d278fe16981cd96c9ff680d8ba1c.svg" alt="diag 6e45d278fe16981cd96c9ff680d8ba1c" width="371" height="101">
+<img src="diag-6ae4133c981124fdb8add61cbbfcbdea.svg" alt="diag 6ae4133c981124fdb8add61cbbfcbdea" width="635" height="344">
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_détails_des_spécifications">Détails des spécifications</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Document</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdreverseproxy.html">Reverse proxy</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de détailler les solutions utilisé pour le reverse proxy</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stddispatcher.html">Dispatcher</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de détailler le fonctionnement d&#8217;un connecteur.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdservice.html">Service</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de décrire le fonctionnement du service.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdconnector.html">Connecteur</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de détailler le fonctionnement d&#8217;un connecteur.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Document</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdalgorithm.html">Algortihme</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet d&#8217;expliquer les éléments techniques d&#8217;un algorithme de trading.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stddeployment.html">Déploiement</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de présenter le procéssus de déploiement de l&#8217;application.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="trading-plateforme.html">Plateforme de trading</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de décrire les éléments techniques de la plateforme de trading.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -504,49 +581,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_détails_des_spécifications">Détails des spécifications</h2>
-<div class="sectionbody">
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Document</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdconnector.html">Connecteur</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de détailler le fonctionnement d&#8217;un connecteur.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdservice.html">Service</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de décrire le fonctionnement du service.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdalgorithm.html">Algortihme</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet d&#8217;expliquer les éléments techniques d&#8217;un algorithme de trading.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stddeployment.html">Déploiement</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de présenter le procéssus de déploiement de l&#8217;application.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="trading-plateforme.html">Plateforme de trading</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de décrire les éléments techniques de la plateforme de trading.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-19 19:51:44 CET
+Last updated 2018-11-20 20:04:31 CET
 </div>
 </div>
 </body>

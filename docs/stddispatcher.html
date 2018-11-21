@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Spécifications techniques d&#8217;un service</title>
+<title>Description du dispatcher</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,147 +419,176 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Spécifications techniques d&#8217;un service</h1>
+<h1>Description du dispatcher</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_service">Service</a></li>
-<li><a href="#_architecture_d_un_service">Architecture d&#8217;un Service</a>
-<ul class="sectlevel2">
-<li><a href="#_description_d_un_service">Description d&#8217;un service</a></li>
-<li><a href="#_la_database">La Database</a></li>
-<li><a href="#_le_connecteur">Le Connecteur</a></li>
-</ul>
-</li>
-<li><a href="#_communication_entre_le_service_et_les_connecteurs">Communication entre le Service et les Connecteurs</a></li>
+<li><a href="#_gestion_d_un_service_via_le_dispatcher">Gestion d&#8217;un service via le dispatcher</a></li>
+<li><a href="#_description_du_dispatcher">Description du dispatcher</a></li>
+<li><a href="#_routes_dispatcher">Routes Dispatcher</a></li>
+<li><a href="#_création_d_un_service">Création d&#8217;un service</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div class="sect1">
-<h2 id="_service">Service</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le service est la partie de l&#8217;architecture qui permet :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>La connexion d&#8217;un compte de trading</p>
-</li>
-<li>
-<p>La récupération des cotations</p>
-</li>
-<li>
-<p>La transmission des transactions</p>
-</li>
-</ul>
+<p>Le dispatcher est un module qui permet la création d&#8217;un service en fonction d&#8217;une demande client.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_architecture_d_un_service">Architecture d&#8217;un Service</h2>
+<h2 id="_gestion_d_un_service_via_le_dispatcher">Gestion d&#8217;un service via le dispatcher</h2>
 <div class="sectionbody">
 <div class="imageblock right">
 <div class="content">
-<img src="diag-5729a001a515a0f6cee37d6ac67bf4eb.svg" alt="diag 5729a001a515a0f6cee37d6ac67bf4eb" width="414" height="172">
+<img src="diag-0e1e7ea22f81c2d6deb3b9bc8b6d7e35.svg" alt="diag 0e1e7ea22f81c2d6deb3b9bc8b6d7e35" width="423" height="229">
 </div>
 </div>
 <div class="paragraph">
-<p>Un Service est un module autonome permettant de :</p>
+<p>C&#8217;est par l&#8217;intermédiaire d&#8217;un reverse proxy que le client pourra communiquer avec :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Communiquer avec une base de données</p>
+<p>Un dispatcher</p>
 </li>
 <li>
-<p>Charger un Connecteur</p>
-</li>
-<li>
-<p>Charger des Indicateurs techniques</p>
+<p>Un service</p>
 </li>
 </ul>
-</div>
-<div class="sect2">
-<h3 id="_description_d_un_service">Description d&#8217;un service</h3>
-<div class="paragraph">
-<p>Le Service réception les demandes du Client pour :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Transmettre les données à une base de données</p>
-</li>
-<li>
-<p>Transmettre des données à une l&#8217;API</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Lors de sa création, le service reçoit toutes les informations nécessaires pour se connecter à connecteur.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_la_database">La Database</h3>
-<div class="paragraph">
-<p>La base de données permet la persistances des données en provenance :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>des demandes Client &#8594; Service.</p>
-</li>
-<li>
-<p>des données Connecteur &#8594; Service.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_le_connecteur">Le Connecteur</h3>
-<div class="paragraph">
-<p>Doit être permettre la communication entre le Service et un broker. Elle doit permettre de :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Récupérer les cotations des instruments financiers.</p>
-</li>
-<li>
-<p>Récupérer les informations d&#8217;un compte de trading.</p>
-</li>
-<li>
-<p>Transmettre des transactions.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Le Connecteur utiliser l&#8217;Api qui est fourni par le Broker.</p>
-</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_communication_entre_le_service_et_les_connecteurs">Communication entre le Service et les Connecteurs</h2>
+<h2 id="_description_du_dispatcher">Description du dispatcher</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Un connecteur est un module permettant la communication entre un Service et un broker.</p>
+<p>Le dispatcher à pour rôle de gérer les services qui auront été créés suite à une demande d&#8217;execution d&#8217;un client.</p>
+</div>
+<div class="paragraph">
+<p>Un client peut faire une demande, au dispatcher, de :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Action</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La connection à pour rôle de créer un nouveau service qui sera associé au client.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Déconnection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La déconnection à pour rôle de stopper un service associé à un client.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_routes_dispatcher">Routes Dispatcher</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Les communication avec le dispatcher doivent se faire sur l&#8217;url suivante : <code>dispatcher.domain.tld</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Verbe HTTP</th>
+<th class="tableblock halign-left valign-top">Route</th>
+<th class="tableblock halign-left valign-top">Données</th>
+<th class="tableblock halign-left valign-top">Réponse</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/client/login</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "username": String,
+    "password": String
+    "broker": String
+    "accountType": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 200</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "urlws": String
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/client/logout</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "urlws": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 202</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "status": Boolean
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Les informations (informations de connection à un compte de trading) transmises par l&#8217;intermediaire des routes sont transmises au service pour sa création.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_création_d_un_service">Création d&#8217;un service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le diagramme de séquence ci-dessous explique comment est créé un service.</p>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="diag-de96204d4424c88b6d7d4f0c05b79d3b.svg" alt="diag de96204d4424c88b6d7d4f0c05b79d3b" width="383" height="172">
+<img src="diag-9fae6412f1c3bbd944ea9b0bcdf0fdd6.svg" alt="diag 9fae6412f1c3bbd944ea9b0bcdf0fdd6" width="583" height="331">
 </div>
-</div>
-<div class="paragraph">
-<p>L&#8217;initialisation d&#8217;un service charge automatiquement l&#8217;ensemble des manifests des connecteurs. Néanmoins seulement un connecteur sera chargé.</p>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-20 18:45:27 CET
+Last updated 2018-11-20 19:55:48 CET
 </div>
 </div>
 </body>

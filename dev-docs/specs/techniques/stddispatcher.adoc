@@ -1,0 +1,111 @@
+= Description du dispatcher
+:toc: left
+
+Le dispatcher est un module qui permet la création d'un service en fonction d'une demande client.
+
+== Gestion d'un service via le dispatcher
+
+[plantuml, format="svg", role="right"]
+....
+node Client
+
+node Server {
+    component "Reverse Proxy" as ReverseProxy
+    component Dispatcher
+    component Service1
+    component ServiceX
+
+    ReverseProxy -left- Dispatcher
+    Dispatcher -down- Service1
+    Dispatcher -down- ServiceX
+    ReverseProxy -down- Service1
+    ReverseProxy -down- ServiceX
+}
+
+Client -right- ReverseProxy
+....
+
+C'est par l'intermédiaire d'un reverse proxy que le client pourra communiquer avec :
+
+* Un dispatcher
+* Un service
+
+== Description du dispatcher
+
+Le dispatcher à pour rôle de gérer les services qui auront été créés suite à une demande d'execution d'un client.
+
+Un client peut faire une demande, au dispatcher, de :
+
+[%header,cols=2*]
+|===
+|Action  |Description
+
+|Connection
+|La connection à pour rôle de créer un nouveau service qui sera associé au client.
+
+|Déconnection
+|La déconnection à pour rôle de stopper un service associé à un client.
+|===
+
+== Routes Dispatcher
+
+Les communication avec le dispatcher doivent se faire sur l'url suivante : `dispatcher.domain.tld`.
+
+[%header,cols=4*]
+|===
+|Verbe HTTP |Route |Données  |Réponse
+
+|POST
+|/client/login
+a|
+[source,json]
+{
+    "username": String,
+    "password": String
+    "broker": String
+    "accountType": String
+}
+a|
+[source]
+Status Code : 200
+
+[source,json]
+{
+    "urlws": String
+}
+
+|POST
+|/client/logout
+a|
+[source,json]
+{
+    "urlws": String
+}
+a|
+[source]
+Status Code : 202
+
+[source,json]
+{
+    "status": Boolean
+}
+|===
+
+Les informations (informations de connection à un compte de trading) transmises par l'intermediaire des routes sont transmises au service pour sa création.
+
+== Création d'un service
+
+Le diagramme de séquence ci-dessous explique comment est créé un service.
+
+[plantuml, format="svg"]
+....
+Client -> "Reverse Proxy": Connexion request
+"Reverse Proxy" -> Dispatcher: Connexion request
+Dispatcher -> Service: Create service
+
+Dispatcher <- Service: Service created
+Dispatcher -> Database: Save instance
+Dispatcher <- Database: Instance saved
+"Reverse Proxy" <- Dispatcher: Return response
+Client <- "Reverse Proxy": Return response
+....
