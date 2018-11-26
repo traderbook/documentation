@@ -132,3 +132,56 @@ salt
 ....
 
 Chaque dossier positionné à la racine est un module. Est automatiquement importé, le module API.
+
+== Modèle de données
+[plantuml, format="svg"]
+....
+@startuml
+
+
+class User {
+ -id : Int
+ -username : String
+ -password : String
+ -email : String
+ -register(username, password, version, email)
+ -login(username, password)
+}
+
+
+class TradingAccount {
+ -id : Int
+ -username : String
+ -password : String
+ -broker : String
+ -token : String
+ -accountType : AccountTypeEnum
+
+}
+
+class Transaction {
+ -id : int
+}
+
+class Instrument {
+ -id : int
+ -name : string
+}
+
+class Ticks {
+ -id : int
+ -ask : float
+ -bid : float
+}
+
+' --- Relationship between classes --- '
+
+User *-- TradingAccount
+TradingAccount *-- Transaction
+Transaction -- Instrument
+Ticks --* Instrument
+
+
+
+@enduml
+....
