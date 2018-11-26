@@ -1,0 +1,90 @@
+= Routing de l'application par fonctionnalité
+
+
+
+[%header,cols=5*]
+|===
+|Description |Verbe HTTP |Route |Données| Réponse
+
+
+|F1 - Inscription d'un utilisateur
+|POST
+|/subscribe
+|{“username”: string, “password”, string}
+|Status Code : 200
+
+
+|F1 - Connexion d'un utilisateur
+|POST
+|/login
+|{“username”: string, “password”, string}
+|Status Code : 200
+
+|F1 - Erreur de connexion
+|POST
+|/login/error
+|{“username”: String, “password”, String}
+|Status Code : 401
+
+|F2 - Ajout d'un compte
+|POST
+|/client/add_account
+|{"username": String, "password": String, "broker": String "accountType": String}
+|Status Code: 200
+
+|F2 - Modification d'un compte
+|POST
+|/client/{account_id}/update_account
+|{"username": String, "password": String, "broker": String "accountType": String}
+|Status Code: 200
+
+|F2 - Suppression d'un compte
+|POST
+|/client/{account_id}/delete_account
+|{“account_id”: Integer }
+|Status Code: 200
+
+|F2 - Connexion à un compte
+|POST
+|/client/login
+|{"username": String, "password": String, "broker": String "accountType": String}
+|Status Code:200
+
+|F3 - Fermer une position
+|POST
+|/client/{account_id}/close_position
+|{“position_id”: Integer}
+|Status Code: 200
+
+|F3 - Modification d'un ordre
+|POST
+|/client/{account_id}/edit_order
+|{“order_id”: Integer,
+“status_order”: String}
+|Status Code: 200
+
+|F3 - Supprimer un ordre
+|POST
+|/client/{account_id}/delete_order
+|{“id”: Integer, “status_order”: String}
+|Status Code: 200
+
+|F3 - Consulter l'historique des ordres et positions
+|GET
+|/client/{account_id}/history
+|{“position_id”: Integer, “instrument”: String, “open_date”: Datetime, “close_date”: Datetime, “lots”: Integer, “open_price”: Float, “close_price”: Float, “sl”: Float, “tp”: Float, “pip”: Float, “profit”: Float}
+|Status Code: 200
+
+|F3 - Consulter le spread d'un marché
+|GET
+|/client/{account_id}
+|{“account_id”: Integer, “spread_value”, Float}
+|Status Code: 200
+
+|F3 - Placer un Takeprofit
+|POST
+|/client/{account_id}/takeprofit
+|{“order_id”: Integer, “tp”, Float}
+|Status Code: 200
+
+|===
