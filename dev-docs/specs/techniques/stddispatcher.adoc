@@ -1,9 +1,13 @@
-= Description du dispatcher
+= Description du ServiceFactory
 :toc: left
 
-Le dispatcher est un module qui permet la création d'un service en fonction d'une demande client.
+Le ServiceFactory est un module qui permet la création d'un service en fonction d'une demande client.
 
-== Gestion d'un service via le dispatcher
+.TODO List
+
+* Mettre en place un scan avec suppression automatique des versions des services non utilisés
+
+== Gestion d'un service via le ServiceFactory
 
 [plantuml, format="svg", role="right"]
 ....
@@ -15,13 +19,13 @@ node Client
 
 node Server {
     component "Reverse Proxy" as ReverseProxy
-    component Dispatcher
+    component ServiceFactory
     component Service1
     component ServiceX
 
-    ReverseProxy -left- Dispatcher
-    Dispatcher -down- Service1
-    Dispatcher -down- ServiceX
+    ReverseProxy -left- ServiceFactory
+    ServiceFactory -down- Service1
+    ServiceFactory -down- ServiceX
     ReverseProxy -down- Service1
     ReverseProxy -down- ServiceX
 }
@@ -31,14 +35,14 @@ Client -right- ReverseProxy
 
 C'est par l'intermédiaire d'un reverse proxy que le client pourra communiquer avec :
 
-* Un dispatcher
+* Un ServiceFactory
 * Un service
 
-== Description du dispatcher
+== Description du ServiceFactory
 
-Le dispatcher à pour rôle de gérer les services qui auront été créés suite à une demande d'execution d'un client.
+Le ServiceFactory à pour rôle de gérer les services qui auront été créés suite à une demande d'execution d'un client.
 
-Un client peut faire une demande, au dispatcher, de :
+Un client peut faire une demande, au ServiceFactory, de :
 
 [%header,cols=2*]
 |===
@@ -51,9 +55,9 @@ Un client peut faire une demande, au dispatcher, de :
 |La déconnection à pour rôle de stopper un service associé à un client.
 |===
 
-== Routes Dispatcher
+== Routes ServiceFactory
 
-Les communication avec le dispatcher doivent se faire sur l'url suivante : `dispatcher.domain.tld`.
+Les communication avec le ServiceFactory doivent se faire sur l'url suivante : `ServiceFactory.domain.tld`.
 
 [%header,cols=4*]
 |===

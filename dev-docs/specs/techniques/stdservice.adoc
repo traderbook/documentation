@@ -25,17 +25,17 @@ Diagramme de séquences - Création d'un service
 endlegend
 
 Client -> "Reverse Proxy": Connexion request
-"Reverse Proxy" -> Dispatcher: Connexion request
-Dispatcher -> Service: Create service
+"Reverse Proxy" -> ServiceFactory: Connexion request
+ServiceFactory -> Service: Create service
 
-Dispatcher <- Service: Service created
-Dispatcher -> Database: Save instance
-Dispatcher <- Database: Instance saved
-"Reverse Proxy" <- Dispatcher: Return response
+ServiceFactory <- Service: Service created
+ServiceFactory -> Database: Save instance
+ServiceFactory <- Database: Instance saved
+"Reverse Proxy" <- ServiceFactory: Return response
 Client <- "Reverse Proxy": Return response
 ....
 
-Un service sera associé à une url. L'url sera communiquée au Client en réponse à la création d'un Service  par l'intermédiaire du Dispatcher et du Reverse Proxy.
+Un service sera associé à une url. L'url sera communiquée au Client en réponse à la création d'un Service  par l'intermédiaire du ServiceFactory et du Reverse Proxy.
 
 === Conception des URLs
 

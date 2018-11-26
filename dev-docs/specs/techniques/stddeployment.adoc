@@ -6,16 +6,16 @@
 ....
 node Serveur {
     component "Reverse Proxy" as reverseproxy
-    component "Dispatcher" as dispatcher
+    component "ServiceFactory" as ServiceFactory
     component "Service X" as servicex
     component "Database" as database
 
     reverseproxy -up-> HTTPS
-    reverseproxy <--> dispatcher
-    dispatcher <-right-> servicex
+    reverseproxy <--> ServiceFactory
+    ServiceFactory <-right-> servicex
     reverseproxy <--> servicex
 
-    database <-up-> dispatcher
+    database <-up-> ServiceFactory
     database <-up-> servicex
 }
 ....
@@ -25,7 +25,7 @@ Les différents composants applicatifs seront gérés par des containers via Doc
 Règles d'expositions des ports et de gestion des communications :
 
 * Le Reverse Proxy doit être en mesure d'exposer un port HTTPS qui est le port 443.
-* Les containers de services et dispatcher seront liés par un système de label au Reverse Proxy en fonction de l'API de Traefic.
+* Les containers de services et ServiceFactory seront liés par un système de label au Reverse Proxy en fonction de l'API de Traefic.
 * Un port SSH sera exposé à la discretion de l'administrateur du système
 
 [%header,cols=2*]
@@ -35,7 +35,7 @@ Règles d'expositions des ports et de gestion des communications :
 |Reverse Proxy
 |Une image docker a été créé pour link:https://hub.docker.com/_/traefik/[Traefik].
 
-|Dispatcher
+|ServiceFactory
 |A définir
 
 |Services

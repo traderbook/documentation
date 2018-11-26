@@ -16,14 +16,14 @@ L'architecture globale de communication entre les différents éléments est le 
 |Reverse Proxy
 |Permet de distribuer les requêtes en fonction des requêtes du Client. Ce reverse proxy permettra la gestion d'alias de domaine que les Clients pourront utiliser.
 
-|Dispatcher
-|Le Dispatcher permet la création et la supervision des différents Services et permet la persistance des données en Database.
+|ServiceFactory
+|Le ServiceFactory permet la création et la supervision des différents Services et permet la persistance des données en Database.
 
 |Service
 |Permet d'interagir avec soit la Database, soit un Connector. C'est cette partie qui doit receptionner et transmettre les informations aux Clients.
 
 |Database
-|Permet la persistence des données en provenance des différents Services et du Dispatcher.
+|Permet la persistence des données en provenance des différents Services et du ServiceFactory.
 
 |Connector
 |Permet la communication entre le broker et le Service.
@@ -38,7 +38,7 @@ actor User
 
 node Client
 node "Reverse proxy" as reverseproxy
-node Dispatcher
+node ServiceFactory
 node Service
 node Connector
 database Database
@@ -46,9 +46,9 @@ cloud Broker
 
 User <-right-> Client
 Client <-right-> reverseproxy
-reverseproxy <-right-> Dispatcher
-Dispatcher <-right-> Service
-Dispatcher <-right-> Database
+reverseproxy <-right-> ServiceFactory
+ServiceFactory <-right-> Service
+ServiceFactory <-right-> Database
 reverseproxy <-right-> Service
 Service <-down-> Database
 Service <-down-> Connector
@@ -74,7 +74,7 @@ Connector <-down-> Broker
 |link:stdreverseproxy.html[Reverse proxy]
 |Permet de détailler les solutions utilisé pour le reverse proxy
 
-|link:stddispatcher.html[Dispatcher]
+|link:stdServiceFactory.html[ServiceFactory]
 |Permet de détailler le fonctionnement d'un connecteur.
 
 |link:stdservice.html[Service]
