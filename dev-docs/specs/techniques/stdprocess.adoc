@@ -30,10 +30,36 @@ featurex -up-> develop
 |Correspond à la branche qui est *obligatoirement associée à une issue*. C'est le développeur qui en est responsable.
 |===
 
-== Demande Pull request
 == Validation Pull request
+
+Une pull request n'est validé que si les conditions suivantes sont remplis :
+
+* Les nouvelles fonctionnalités ont des tests associés
+* Les tests se sont exécutés avec succès
+* Les fonctionnalités développées sont conformes aux spécifications
+* La convention de codage est conforme aux bonnes pratiques
+
 == Création des branches
+
+Les banches sont créées en fonction des conditions suivantes :
+
+* C'est une issue qui permet la création de la branche
+* Il faut que l'issue ait été définie pour créer une branche
+
+Une branche est créée en fonction des convensions suivantes :
+
+* La branche reprend les caractéristiques de l'issue.
+* La branche porte le nom du titre de l'issue en anglais.
+* Tous les termes sont séparés par des tirets du 6 (-)
+
+Voici un exemple de convension respecté : `issue-#01-issue-title`
+
 == Rédaction des issues
+
+Une issue doit respecter un minimum bonnes pratiques de rédactions :
+
+* Avoir un contexte (surtout lors de la rédaction d'un bug).
+* Avoir une définition claire.
 
 == Workflow des statuts d'avancement
 
