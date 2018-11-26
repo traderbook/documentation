@@ -1,0 +1,111 @@
+= Procédures
+:toc: left
+
+== Gestion des branches
+
+[plantuml, format="svg"]
+....
+rectangle "Master" as master
+rectangle "Develop" as develop
+rectangle "Feature 1" as feature1
+rectangle "Feature X" as featurex
+
+
+develop -up-> master
+feature1 -up-> develop
+featurex -up-> develop
+....
+
+[%header,cols=2*]
+|===
+| Statut | Description
+
+|Master
+|Correspond à la branche principale qui permettra de définir les montées en version de l'application.
+
+|Develop
+|Correspond à une branche proche de la version de production (avec des fonctionnalités supplémentaires) qui sera utilisée aussi pour le staging. Et ainsi effectuer des tests d'intégrations. Lorsqu'un tag est placé sur un commit cela doit déclancher une demande pull request qui sera validée par le responsable du repository.
+
+|Feature X
+|Correspond à la branche qui est *obligatoirement associée à une issue*. C'est le développeur qui en est responsable.
+|===
+
+== Demande Pull request
+== Validation Pull request
+== Création des branches
+== Rédaction des issues
+
+== Workflow des statuts d'avancement
+
+[%header,cols=2*]
+|===
+| Statut | Description
+
+|To define
+|C'est une issue qui est en cours de rédaction. La définition n'est pas complète et le développement ne peut pas commencer.
+
+|Defined
+|C'est un issue qui est complète et validé par le chef de projet. Un developpeur peut commencer le développement de l'issue. Pour informé qu'il travaille dessus, il la place dans "In progress".
+
+|In progress
+|C'est un issue en cours de développement
+
+|To validate
+|C'est une demande de Pull Request effectuée par le développeur, en attente de validation. Cela implique que le développeur doit définir un Reviewer.
+
+|To production
+|La Pull Request a été validée par le Reviewer. Elle est en attente de décision de mise en production.
+
+|Done
+|L'issue a été mise en production et peut être archivée.
+|===
+
+[plantuml, format="svg"]
+....
+
+legend
+Workflow du statut d'avancement d'un projet
+endlegend
+
+rectangle "To define" as todefine
+rectangle "Defined" as defined
+rectangle "In progress" as inprogress
+rectangle "To validate" as tovalidate
+rectangle "To production" as toproduction
+rectangle "Done" as done
+
+todefine "1" -right-> defined
+defined "2" -right-> inprogress
+inprogress "3" -right-> tovalidate
+tovalidate "4" -right-> toproduction
+toproduction "5" -right-> done
+
+inprogress "6" -right-> todefine
+tovalidate "7" -right-> defined
+....
+
+[%header,cols=2*]
+|===
+| Statut | Description
+
+|1
+|Permet de définir avec précision les caractéristiques de l'issue. Celle-ci sera passée de "To define" vers "Defined" par le validation du chef de projet.
+
+|2
+|Permet de passer de "Defined" vers "In progress" et permet d'identifier qu'un developpeur à pris en charge l'issue.
+
+|3
+|Lorqu'un développeur fait une demande de validation de son code par une Pull Request (*penser à definir un reviewer*).
+
+|4
+|Permet de préparer la mise en production d'une issue (elle est en attente).
+
+|5
+|Mise en production de l'issue effectuée. L'issue devra être archivée.
+
+|6
+|Si le développeur estime qu'il n'y a pas suffisement de précision et que cela est bloquant pour le développement, le développeur peut faire une demande précision sur les caractéristiques de l'issue.
+
+|7
+|Si les tests échouent et qu'un Reviewer estime que le code n'est pas conforme aux spécifications, celui-ci peut décider de faire une demande de correction en passant l'issue dans "Defined".
+|===
