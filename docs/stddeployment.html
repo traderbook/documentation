@@ -423,6 +423,65 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="content">
 <div class="sect1">
+<h2 id="_architecture_du_serveur_applicatif">Architecture du Serveur Applicatif</h2>
+<div class="sectionbody">
+<div class="imageblock right">
+<div class="content">
+<img src="diag-de9209e8ab47c601f95c0e4a231ee238.svg" alt="diag de9209e8ab47c601f95c0e4a231ee238" width="290" height="438">
+</div>
+</div>
+<div class="paragraph">
+<p>Les différents composants applicatifs seront gérés par des containers via Docker.</p>
+</div>
+<div class="paragraph">
+<p>Règles d&#8217;expositions des ports et de gestion des communications :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le Reverse Proxy doit être en mesure d&#8217;exposer un port HTTPS qui est le port 443.</p>
+</li>
+<li>
+<p>Les containers de services et dispatcher seront liés par un système de label au Reverse Proxy en fonction de l&#8217;API de Traefic.</p>
+</li>
+<li>
+<p>Un port SSH sera exposé à la discretion de l&#8217;administrateur du système</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Container</th>
+<th class="tableblock halign-left valign-top">Description et ressource</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reverse Proxy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Une image docker a été créé pour <a href="https://hub.docker.com/_/traefik/">Traefik</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Dispatcher</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A définir</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Services</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A définir</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Une imahe docker a été créé pour <a href="https://hub.docker.com/_/mongo/">Mongo</a>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_gestion_du_versioning">Gestion du versioning</h2>
 <div class="sectionbody">
 
@@ -449,7 +508,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-19 09:56:29 CET
+Last updated 2018-11-21 20:43:35 CET
 </div>
 </div>
 </body>

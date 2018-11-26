@@ -417,16 +417,52 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .show-for-print{display:inherit!important}}
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
 <h1>Spécification du reverse proxy</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_traefik">Traefik</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
-
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Le système utilisé pour le reverse proxy doit être en mesure de distribuer des URL à la volée.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_traefik">Traefik</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><span class="image"><img src="https://d33wubrfki0l68.cloudfront.net/7c5fd7d38c371e23cdff059e6cebb10292cd441c/7d420/assets/img/traefik-architecture.svg" alt="traefik architecture"></span></p>
+</div>
+<div class="paragraph">
+<p><a href="https://traefik.io/">Traefik</a> permet gestion des urls générées à chaud.</p>
+</div>
+<div class="paragraph">
+<p>Ce système est :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>utilisable avec Docker.</p>
+</li>
+<li>
+<p>intègre l&#8217;API de Let&#8217;s Encrypt pour créer des urls sécurisées.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-21 07:46:55 CET
+Last updated 2018-11-21 19:50:54 CET
 </div>
 </div>
 </body>

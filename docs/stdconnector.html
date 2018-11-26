@@ -417,9 +417,22 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 .show-for-print{display:inherit!important}}
 </style>
 </head>
-<body class="article">
+<body class="article toc2 toc-left">
 <div id="header">
 <h1>Spécification d&#8217;un connecteur</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_structure_d_un_connecteur">Structure d&#8217;un connecteur</a>
+<ul class="sectlevel2">
+<li><a href="#_fonctionnalités_d_un_connecteur">Fonctionnalités d&#8217;un connecteur</a></li>
+<li><a href="#_implémentation_d_un_connector">Implémentation d&#8217;un connector</a></li>
+</ul>
+</li>
+<li><a href="#_architecture_projet_d_un_connecteur">Architecture projet d&#8217;un connecteur</a></li>
+<li><a href="#_gestion_des_repositories">Gestion des repositories</a></li>
+</ul>
+</div>
 </div>
 <div id="content">
 <div id="preamble">
@@ -437,7 +450,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="diag-601d5d9e1a57bf9299d4897b7e673bf3.svg" alt="diag 601d5d9e1a57bf9299d4897b7e673bf3" width="1027" height="226">
+<img src="diag-b0b401e2082428436e5a113eca9c7e06.svg" alt="diag b0b401e2082428436e5a113eca9c7e06" width="1211" height="335">
 </div>
 </div>
 <div class="sect2">
@@ -539,6 +552,47 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tbody>
 </table>
 </div>
+<div class="sect3">
+<h4 id="_enumération_code_connectoreventenum_code">Enumération : <code>ConnectorEventEnum</code></h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Méthode</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ONCONNECTED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message envoyé lorsque le connecteur est indentifié chez le Broker.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ONCONNECTEDERROR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message envoyé lorsque le connecteur a reçu une erreur d&#8217;authentification auprès du Broker (Mauvais identifiants).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ONDISCONNECTED</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message envoyé lorsque le connecteur est déconnecté du Broker.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ONTICK</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message envoyé lorsqu&#8217;une nouvelle cotation a été émise par le Broker.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ONTRANSACTION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message envoyé lorsqu&#8217;une transaction a été transmise chez le Broker.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ONUNEXPECTEDERROR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Message envoyé lorsqu&#8217;une erreur a été transmise par le broker qui est non prise en compte par le système.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 </div>
@@ -616,7 +670,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-20 18:24:27 CET
+Last updated 2018-11-22 20:56:36 CET
 </div>
 </div>
 </body>

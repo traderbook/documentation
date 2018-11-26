@@ -1,4 +1,5 @@
 = Spécification d'un connecteur
+:toc: left
 
 Un connecteur doit permettre de transmettre des informations aux services qui l'utilisent.
 
@@ -8,31 +9,44 @@ Les noms des événements doivent être unifirmisés afin d'être compréhensibl
 
 [plantuml, format="svg"]
 ....
-enum ConnectorEventEnum {
-  ONCONNECTED
-  ONTICK
-  ONTRANSACTION
+package net.traderbook.api.connector {
+  interface IConnectorObserver {
+      - connector: IConnectorObserver
+      + update(message: ConnectorEventEnum, data: Object)
+  }
+
+  interface IConnector {
+      + connection(tradingAccount: TradingAccount)
+      + placeTransaction(trasaction: Transaction)
+      + login()
+      + logout()
+  }
 }
 
-class TradingAccount {
-    - usernmane
-    - password
-    - broker
-    - accountType
+package net.traderbook.connector {
+  class Connector {
+    - controller: IConnectorObserver
+    + Connector(controller: IConnectorObserver)
+  }
 }
 
-interface IConnector {
-  connection(tradingAccount: TradingAccount): Unit
-  login(): Unit
-  logout(): Unit
+package net.traderbook.api.enums {
+    enum ConnectorEventEnum {
+      ONCONNECTED
+      ONDISCONNECTED
+      ONTICK
+      ONTRANSACTION
+    }
 }
 
-interface IConnectorObserver {
-  connector: IConnectorObserver
-  update(message: ConnectorEventEnum, data: Object)
+package net.traderbook.api.models {
+    class TradingAccount {
+        - usernmane
+        - password
+        - broker
+        - accountType
+    }
 }
-
-class Connector
 
 IConnector <|-- Connector
 IConnectorObserver <|-- Connector
@@ -91,6 +105,32 @@ Cette classe implémente 2 interfaces :
 
 |`update(message: ConnectorEventEnum, data: Object)`
 |Cette est utilisée pour réaliser une mise à jour suite à un événement (Mise à jour d'un instrument, transaction placée...). Cette méthode permet d'appeler les méthode update d'objets observeurs.
+|===
+
+==== Enumération : `ConnectorEventEnum`
+
+[%header,cols=2*]
+|===
+|Méthode
+|Description
+
+|`ONCONNECTED`
+|Message envoyé lorsque le connecteur est indentifié chez le Broker.
+
+|`ONCONNECTEDERROR`
+|Message envoyé lorsque le connecteur a reçu une erreur d'authentification auprès du Broker (Mauvais identifiants).
+
+|`ONDISCONNECTED`
+|Message envoyé lorsque le connecteur est déconnecté du Broker.
+
+|`ONTICK`
+|Message envoyé lorsqu'une nouvelle cotation a été émise par le Broker.
+
+|`ONTRANSACTION`
+|Message envoyé lorsqu'une transaction a été transmise chez le Broker.
+
+|`ONUNEXPECTEDERROR`
+|Message envoyé lorsqu'une erreur a été transmise par le broker qui est non prise en compte par le système.
 |===
 
 == Architecture projet d'un connecteur

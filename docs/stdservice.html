@@ -424,14 +424,32 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_service">Service</a></li>
+<li><a href="#_création_d_un_service">Création d&#8217;un service</a>
+<ul class="sectlevel2">
+<li><a href="#_communication_entre_les_composants">Communication entre les composants</a></li>
+<li><a href="#_conception_des_urls">Conception des URLs</a></li>
+</ul>
+</li>
+<li><a href="#_consommation_d_un_service_entre_composants">Consommation d&#8217;un service entre composants</a>
+<ul class="sectlevel2">
+<li><a href="#_communication_entre_les_composants_2">Communication entre les composants</a></li>
+</ul>
+</li>
 <li><a href="#_architecture_d_un_service">Architecture d&#8217;un Service</a>
 <ul class="sectlevel2">
-<li><a href="#_description_d_un_service">Description d&#8217;un service</a></li>
-<li><a href="#_la_database">La Database</a></li>
+<li><a href="#_communication_entre_l_application_et_le_connecteur">Communication entre l&#8217;application et le connecteur</a></li>
+<li><a href="#_communication_entre_l_application_et_la_base_de_données">Communication entre l&#8217;application et la base de données</a></li>
 <li><a href="#_le_connecteur">Le Connecteur</a></li>
 </ul>
 </li>
-<li><a href="#_communication_entre_le_service_et_les_connecteurs">Communication entre le Service et les Connecteurs</a></li>
+<li><a href="#_structure_applicative">Structure applicative</a>
+<ul class="sectlevel2">
+<li><a href="#_authentification_d_un_compte_de_trading">Authentification d&#8217;un compte de trading</a></li>
+<li><a href="#_déconnection_d_un_compte_de_trading">Déconnection d&#8217;un compte de trading</a></li>
+<li><a href="#_placer_une_transaction">Placer une transaction</a></li>
+<li><a href="#_transmission_de_cotations">Transmission de cotations</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -458,68 +476,183 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
+<h2 id="_création_d_un_service">Création d&#8217;un service</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Cette partie explique comment est créé un service en fonction des différents composants applicatifs.</p>
+</div>
+<div class="sect2">
+<h3 id="_communication_entre_les_composants">Communication entre les composants</h3>
+<div class="paragraph">
+<p>Le diagramme de séquence ci-dessous explique comment est créé un service.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-a66e7459657cfc853133641abc16f46a.svg" alt="diag a66e7459657cfc853133641abc16f46a" width="583" height="371">
+</div>
+</div>
+<div class="paragraph">
+<p>Un service sera associé à une url. L&#8217;url sera communiquée au Client en réponse à la création d&#8217;un Service  par l&#8217;intermédiaire du Dispatcher et du Reverse Proxy.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_conception_des_urls">Conception des URLs</h3>
+<div class="paragraph">
+<p>Les Urls devront être constituées de la façon suivante : <code>ID-UNIQUE.domain.tld</code>.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Element</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ID-UNIQUE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un identifiant de service qui sera distibué au client.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">domain.tld</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au nom de domaine sur lequel le client pourra se connecter.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_consommation_d_un_service_entre_composants">Consommation d&#8217;un service entre composants</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_communication_entre_les_composants_2">Communication entre les composants</h3>
+<div class="paragraph">
+<p>Une fois que le service est créé le Client peut directement consommer le Service. Les communications entre les différents éléments se font par sockets.</p>
+</div>
+<div class="sect3">
+<h4 id="_demande_de_connexion">Demande de connexion</h4>
+<div class="imageblock">
+<div class="content">
+<img src="diag-ca5bec0e02a714ac1cca862a841b44ca.svg" alt="diag ca5bec0e02a714ac1cca862a841b44ca" width="403" height="355">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_demande_de_déconnexion">Demande de déconnexion</h4>
+<div class="paragraph">
+<p>Pour la demande déconnexion se référer au point ci-dessus <a href="#_demande_de_connexion">Demande de connexion</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_envoi_des_cotations_vers_le_client">Envoi des cotations vers le client</h4>
+<div class="imageblock">
+<div class="content">
+<img src="diag-85dcf2ea7e5f552ee9162025c9b1981f.svg" alt="diag 85dcf2ea7e5f552ee9162025c9b1981f" width="365" height="197">
+</div>
+</div>
+<div class="paragraph">
+<p>Lorsque qu&#8217;un Client est connecté à un Service (par l&#8217;intermiédiaire du Reverse Proxy), celui-ci à automatiquement souscrit à des cotations.</p>
+</div>
+<div class="paragraph">
+<p>Larqu&#8217;une nouvelle cotation est émise par le Broker (au Service), le Servoce doit être en mesure de pusser les informations au Client.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_transmission_d_une_transaction">Transmission d&#8217;une transaction</h4>
+<div class="paragraph">
+<p>Pour le diagramme de la transmission  d&#8217;une transaction se référer au point ci-dessus <a href="#_demande_de_connexion">Demande de connexion</a>.</p>
+</div>
+<div class="paragraph">
+<p>Lors qu&#8217;un utilisateur par un ordre par l&#8217;intermédiaire d&#8217;un client, celui-ci est directement transmis au Service par l&#8217;intermédiaire du Reverse Proxy.</p>
+</div>
+<div class="paragraph">
+<p>Lors que la transaction est traité par le Service, les informations liés sont enregistrées en base de données.</p>
+</div>
+<div class="paragraph">
+<p>Les réponses sont ensuite retournées au Client par l&#8217;intermédiaire du Reverse Proxy.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_architecture_d_un_service">Architecture d&#8217;un Service</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_communication_entre_l_application_et_le_connecteur">Communication entre l&#8217;application et le connecteur</h3>
 <div class="imageblock right">
 <div class="content">
-<img src="diag-5729a001a515a0f6cee37d6ac67bf4eb.svg" alt="diag 5729a001a515a0f6cee37d6ac67bf4eb" width="414" height="172">
+<img src="diag-4a9c7bd5fb1d0ea7ee4ff7e37450e480.svg" alt="diag 4a9c7bd5fb1d0ea7ee4ff7e37450e480" width="245" height="244">
 </div>
 </div>
 <div class="paragraph">
-<p>Un Service est un module autonome permettant de :</p>
+<p>Un Service est un container Docker autonome consommé par un Client (par l&#8217;intermediaire d&#8217;un Reverse Proxy).</p>
+</div>
+<div class="paragraph">
+<p>Un Service container contient 2 éléments :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Communiquer avec une base de données</p>
+<p>Une couche applicative (Application)</p>
 </li>
 <li>
-<p>Charger un Connecteur</p>
-</li>
-<li>
-<p>Charger des Indicateurs techniques</p>
-</li>
-</ul>
-</div>
-<div class="sect2">
-<h3 id="_description_d_un_service">Description d&#8217;un service</h3>
-<div class="paragraph">
-<p>Le Service réception les demandes du Client pour :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Transmettre les données à une base de données</p>
-</li>
-<li>
-<p>Transmettre des données à une l&#8217;API</p>
+<p>Une couche connecteur (Connector)</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Lors de sa création, le service reçoit toutes les informations nécessaires pour se connecter à connecteur.</p>
+<p>La couche applicative devra exposer sont service sur le port 80. Celui-ci ne sera pas exposé par le Service.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_la_database">La Database</h3>
 <div class="paragraph">
-<p>La base de données permet la persistances des données en provenance :</p>
+<p>Le Service :</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>des demandes Client &#8594; Service.</p>
+<p>Chargera le connecteur (Connector)</p>
 </li>
 <li>
-<p>des données Connecteur &#8594; Service.</p>
+<p>Consommera le connecteur (Connector)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_communication_entre_l_application_et_la_base_de_données">Communication entre l&#8217;application et la base de données</h3>
+<div class="imageblock right">
+<div class="content">
+<img src="diag-a6f479400736219e2ba674572e4bc1d0.svg" alt="diag a6f479400736219e2ba674572e4bc1d0" width="557" height="280">
+</div>
+</div>
+<div class="paragraph">
+<p>La base de données permet la persistances des données en provenance de la couche applicative.</p>
+</div>
+<div class="paragraph">
+<p>La configuration du container de Service devra réaliser un mapping de port avec le container de base de données afin que l&#8217;application puisse intéragir avec la base de données.</p>
+</div>
+<div class="ulist">
+<div class="title">TODO list</div>
+<ul>
+<li>
+<p>Trouver un framework mongodb avec Kotlin</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_le_connecteur">Le Connecteur</h3>
+<div class="imageblock left">
+<div class="content">
+<img src="diag-258dd67fbd1b817231f6d106d806ec90.svg" alt="diag 258dd67fbd1b817231f6d106d806ec90" width="321" height="244">
+</div>
+</div>
 <div class="paragraph">
-<p>Doit être permettre la communication entre le Service et un broker. Elle doit permettre de :</p>
+<p>Doit permettre la communication entre le Service et un broker. Elle doit permettre de :</p>
 </div>
 <div class="ulist">
 <ul>
@@ -541,25 +674,124 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_communication_entre_le_service_et_les_connecteurs">Communication entre le Service et les Connecteurs</h2>
+<h2 id="_structure_applicative">Structure applicative</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Un connecteur est un module permettant la communication entre un Service et un broker.</p>
+<p>La classe <code>Service</code> est la classe principale du service. Ce Service est composé d&#8217;une classe de contrôleur qui sera consommé par un Client afin de permettre les actions suivantes :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La connexion</p>
+</li>
+<li>
+<p>La déconnexion</p>
+</li>
+<li>
+<p>La récupération des cotations</p>
+</li>
+<li>
+<p>La transmission des transactions</p>
+</li>
+</ul>
 </div>
 <div class="imageblock">
 <div class="content">
-<img src="diag-de96204d4424c88b6d7d4f0c05b79d3b.svg" alt="diag de96204d4424c88b6d7d4f0c05b79d3b" width="383" height="172">
+<img src="diag-60aa045db437412fd8680edd00bfd52e.svg" alt="diag 60aa045db437412fd8680edd00bfd52e" width="1011" height="394">
 </div>
 </div>
 <div class="paragraph">
-<p>L&#8217;initialisation d&#8217;un service charge automatiquement l&#8217;ensemble des manifests des connecteurs. Néanmoins seulement un connecteur sera chargé.</p>
+<p>Pour plus de détails :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="stdconnector.html">Spécification sur les Connector</a></p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_authentification_d_un_compte_de_trading">Authentification d&#8217;un compte de trading</h3>
+<div class="paragraph">
+<p>Le service doit être en mesure de s&#8217;authentifier auprès d&#8217;un Broker.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-37a1e1c24b32220b0d5465f42c8cba23.svg" alt="diag 37a1e1c24b32220b0d5465f42c8cba23" width="1087" height="368">
+</div>
+</div>
+<div class="paragraph">
+<p>La réponse du service sera une classe <code>ServiceResponse</code> qui contiendra un objet de type <code>TradingAccount</code>. Le message sera une énumération de <code>ConnectorEventEnum</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-a7d7a828af8aa089694eb0211e46de63.svg" alt="diag a7d7a828af8aa089694eb0211e46de63" width="292" height="245">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_déconnection_d_un_compte_de_trading">Déconnection d&#8217;un compte de trading</h3>
+<div class="paragraph">
+<p>Cette section explique comment le service déclanche la connexion d&#8217;un compte de trading.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-eb522a8e0c6005f01ce33a8f0e481c36.svg" alt="diag eb522a8e0c6005f01ce33a8f0e481c36" width="668" height="255">
+</div>
+</div>
+<div class="paragraph">
+<p>La réponse du service sera une classe <code>ServiceResponse</code> qui contiendra un objet de type <code>TradingAccount</code>. Le message sera une énumération de <code>ConnectorEventEnum</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-a7d7a828af8aa089694eb0211e46de63.svg" alt="diag a7d7a828af8aa089694eb0211e46de63" width="292" height="245">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_placer_une_transaction">Placer une transaction</h3>
+<div class="paragraph">
+<p>Cette section explique comment le service transmet une transaction au Broker.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-29ee111497f92bd9011819dca871a04f.svg" alt="diag 29ee111497f92bd9011819dca871a04f" width="725" height="255">
+</div>
+</div>
+<div class="paragraph">
+<p>La réponse du service sera une classe <code>ServiceResponse</code> qui contiendra un objet de type <code>Transaction</code>. Le message sera une énumération de <code>ConnectorEventEnum</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-ce3526f3dd72d51fa1be75ea15617251.svg" alt="diag ce3526f3dd72d51fa1be75ea15617251" width="292" height="245">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_transmission_de_cotations">Transmission de cotations</h3>
+<div class="paragraph">
+<p>Cette section explique à quel moment et comment les cotations sont poussés au Client.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-ce60fb72b59f78b7cc24ddb7ac9f2b10.svg" alt="diag ce60fb72b59f78b7cc24ddb7ac9f2b10" width="773" height="226">
+</div>
+</div>
+<div class="paragraph">
+<p>La réponse du service sera une classe <code>ServiceResponse</code> qui contiendra un objet de type <code>TickCollection</code>. Le message sera une énumération de <code>ConnectorEventEnum</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-78b12b158f620d43b1eddfbdf182572b.svg" alt="diag 78b12b158f620d43b1eddfbdf182572b" width="304" height="258">
+</div>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-20 18:45:27 CET
+Last updated 2018-11-22 20:56:36 CET
 </div>
 </div>
 </body>

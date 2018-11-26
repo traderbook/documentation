@@ -7,6 +7,10 @@ Le dispatcher est un module qui permet la création d'un service en fonction d'u
 
 [plantuml, format="svg", role="right"]
 ....
+legend
+Legend
+endlegend
+
 node Client
 
 node Server {
@@ -92,20 +96,3 @@ Status Code : 202
 |===
 
 Les informations (informations de connection à un compte de trading) transmises par l'intermediaire des routes sont transmises au service pour sa création.
-
-== Création d'un service
-
-Le diagramme de séquence ci-dessous explique comment est créé un service.
-
-[plantuml, format="svg"]
-....
-Client -> "Reverse Proxy": Connexion request
-"Reverse Proxy" -> Dispatcher: Connexion request
-Dispatcher -> Service: Create service
-
-Dispatcher <- Service: Service created
-Dispatcher -> Database: Save instance
-Dispatcher <- Database: Instance saved
-"Reverse Proxy" <- Dispatcher: Return response
-Client <- "Reverse Proxy": Return response
-....

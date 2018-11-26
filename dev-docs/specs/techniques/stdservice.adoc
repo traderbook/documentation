@@ -9,45 +9,182 @@ Le service est la partie de l'architecture qui permet :
 * La récupération des cotations
 * La transmission des transactions
 
+== Création d'un service
+
+Cette partie explique comment est créé un service en fonction des différents composants applicatifs.
+
+=== Communication entre les composants
+
+Le diagramme de séquence ci-dessous explique comment est créé un service.
+
+[plantuml, format="svg"]
+....
+
+legend
+Diagramme de séquences - Création d'un service
+endlegend
+
+Client -> "Reverse Proxy": Connexion request
+"Reverse Proxy" -> Dispatcher: Connexion request
+Dispatcher -> Service: Create service
+
+Dispatcher <- Service: Service created
+Dispatcher -> Database: Save instance
+Dispatcher <- Database: Instance saved
+"Reverse Proxy" <- Dispatcher: Return response
+Client <- "Reverse Proxy": Return response
+....
+
+Un service sera associé à une url. L'url sera communiquée au Client en réponse à la création d'un Service  par l'intermédiaire du Dispatcher et du Reverse Proxy.
+
+=== Conception des URLs
+
+Les Urls devront être constituées de la façon suivante : `ID-UNIQUE.domain.tld`.
+
+[%header,cols=2*]
+|===
+|Element
+|Description
+
+|ID-UNIQUE
+|Correspond à un identifiant de service qui sera distibué au client.
+
+|domain.tld
+|Correspond au nom de domaine sur lequel le client pourra se connecter.
+|===
+
+== Consommation d'un service entre composants
+
+=== Communication entre les composants
+
+Une fois que le service est créé le Client peut directement consommer le Service. Les communications entre les différents éléments se font par sockets.
+
+==== Demande de connexion
+
+[plantuml, format="svg"]
+....
+
+legend
+Diagramme de séquences - Demande de connexion
+endlegend
+
+Client -> "Reverse Proxy": Request
+"Reverse Proxy" -> Service: Request
+Service <-> Service: Treatment
+Service -> Database: Save status
+Service <-- Database: Save response
+"Reverse Proxy" <- Service: Response
+Client <- "Reverse Proxy": Response
+....
+
+==== Demande de déconnexion
+
+Pour la demande déconnexion se référer au point ci-dessus link:#_demande_de_connexion[Demande de connexion].
+
+==== Envoi des cotations vers le client
+
+[plantuml, format="svg"]
+....
+
+legend
+Diagramme de séquences - Envoi des cotations
+endlegend
+
+Client <- "Reverse Proxy": Push
+"Reverse Proxy" <- Service: Push
+....
+
+Lorsque qu'un Client est connecté à un Service (par l'intermiédiaire du Reverse Proxy), celui-ci à automatiquement souscrit à des cotations.
+
+Larqu'une nouvelle cotation est émise par le Broker (au Service), le Servoce doit être en mesure de pusser les informations au Client.
+
+
+==== Transmission d'une transaction
+
+Pour le diagramme de la transmission  d'une transaction se référer au point ci-dessus link:#_demande_de_connexion[Demande de connexion].
+
+Lors qu'un utilisateur par un ordre par l'intermédiaire d'un client, celui-ci est directement transmis au Service par l'intermédiaire du Reverse Proxy.
+
+Lors que la transaction est traité par le Service, les informations liés sont enregistrées en base de données.
+
+Les réponses sont ensuite retournées au Client par l'intermédiaire du Reverse Proxy.
+
 == Architecture d'un Service
+
+=== Communication entre l'application et le connecteur
 
 [plantuml, format="svg", role="right"]
 ....
-node Service
-database Database
-node Connecteur
-node Indicateur
+node Service {
+    node Application
+    node Connector
 
-Service -down- Database
-Service -down- Connecteur
-Service -down- Indicateur
+    Application -left-> 80
+    Application <-down-> Connector
+}
 ....
 
-Un Service est un module autonome permettant de :
+Un Service est un container Docker autonome consommé par un Client (par l'intermediaire d'un Reverse Proxy).
 
-* Communiquer avec une base de données
-* Charger un Connecteur
-* Charger des Indicateurs techniques
+Un Service container contient 2 éléments :
 
-=== Description d'un service
+* Une couche applicative (Application)
+* Une couche connecteur (Connector)
 
-Le Service réception les demandes du Client pour :
+La couche applicative devra exposer sont service sur le port 80. Celui-ci ne sera pas exposé par le Service.
 
-* Transmettre les données à une base de données
-* Transmettre des données à une l'API
+Le Service :
 
-Lors de sa création, le service reçoit toutes les informations nécessaires pour se connecter à connecteur.
+* Chargera le connecteur (Connector)
+* Consommera le connecteur (Connector)
 
-=== La Database
+=== Communication entre l'application et la base de données
 
-La base de données permet la persistances des données en provenance :
+[plantuml, format="svg", role="right"]
+....
+node "Service container" as service {
+    node Application
+    node Connector
 
-* des demandes Client -> Service.
-* des données Connecteur -> Service.
+    Application -left-> 80
+    Application <-down-> Connector
+}
+
+node "Database container" as database {
+    database Database
+
+    Database -left-> 27017
+}
+
+database <-up-> service
+....
+
+La base de données permet la persistances des données en provenance de la couche applicative.
+
+La configuration du container de Service devra réaliser un mapping de port avec le container de base de données afin que l'application puisse intéragir avec la base de données.
+
+.TODO list
+
+* Trouver un framework mongodb avec Kotlin
 
 === Le Connecteur
 
-Doit être permettre la communication entre le Service et un broker. Elle doit permettre de :
+[plantuml, format="svg", role="left"]
+....
+node Service {
+    node Application
+    node Connector
+
+    Application -left-> 80
+    Application <-down-> Connector
+}
+
+cloud Broker
+
+Connector <-right-> Broker
+....
+
+Doit permettre la communication entre le Service et un broker. Elle doit permettre de :
 
 * Récupérer les cotations des instruments financiers.
 * Récupérer les informations d'un compte de trading.
@@ -55,20 +192,206 @@ Doit être permettre la communication entre le Service et un broker. Elle doit p
 
 Le Connecteur utiliser l'Api qui est fourni par le Broker.
 
-== Communication entre le Service et les Connecteurs
+== Structure applicative
 
-Un connecteur est un module permettant la communication entre un Service et un broker.
+La classe `Service` est la classe principale du service. Ce Service est composé d'une classe de contrôleur qui sera consommé par un Client afin de permettre les actions suivantes :
+
+* La connexion
+* La déconnexion
+* La récupération des cotations
+* La transmission des transactions
 
 [plantuml, format="svg"]
 ....
-node Service
-node Broker1
-node Broker2
-node BrokerX
+legend
+Diagramme de classe - Gestion d'un service
+endlegend
 
-Service -down- Broker1
-Service -down- Broker2
-Service -down- BrokerX
+package net.traderbook.service {
+    class Service {
+        - controller: ServiceController
+        + main(args: Array<String>)
+    }
+
+    class ServiceController {
+        - connector: IConnector
+        - load(tradingAccount: TradingAccount)
+    }
+}
+
+package net.traderbook.api.connector {
+  interface IConnectorObserver {
+      - connector: IConnectorObserver
+      + update(message: ConnectorEventEnum, data: Object)
+  }
+
+  interface IConnector {
+      + connection(tradingAccount: TradingAccount)
+      + placeTransaction(trasaction: Transaction)
+      + login()
+      + logout()
+  }
+}
+
+package net.traderbook.connector {
+  class Connector {
+    - controller: IConnectorObserver
+    + Connector(controller: IConnectorObserver)
+  }
+
+  Connector -up-|> IConnectorObserver
+  Connector -down-|> IConnector
+}
+
+ServiceController *-right- Connector
+Service -up-* ServiceController
+ServiceController -up-|> IConnectorObserver
+ServiceController -up-|> IConnector
 ....
 
-L'initialisation d'un service charge automatiquement l'ensemble des manifests des connecteurs. Néanmoins seulement un connecteur sera chargé.
+Pour plus de détails :
+
+* link:stdconnector.html[Spécification sur les Connector]
+
+=== Authentification d'un compte de trading
+
+Le service doit être en mesure de s'authentifier auprès d'un Broker.
+
+[plantuml, format="svg"]
+....
+legend
+Diagramme de séquences - Connexion
+endlegend
+
+Service -> ServiceController: connection(tradingAccount: TradingAccount)
+ServiceController -> ServiceController: load(tradingAccount: TradingAccount)
+ServiceController -> Connector: connection(tradingAccount: TradingAccount)
+ServiceController -> Connector: login()
+Connector -> Connector: update(message: ConnectorEventEnum, data: Object)
+Connector -> ServiceController: update(message: ConnectorEventEnum, data: Object)
+Service <- ServiceController: Response
+....
+
+La réponse du service sera une classe `ServiceResponse` qui contiendra un objet de type `TradingAccount`. Le message sera une énumération de `ConnectorEventEnum`.
+
+[plantuml, format="svg"]
+....
+legend
+Diagramme de classe - Objet réponse
+endlegend
+
+class ServiceResponse<T> {
+    - message: ConnectorEventEnum
+    - data: T
+}
+
+class TradingAccount
+
+TradingAccount --* ServiceResponse
+....
+
+=== Déconnection d'un compte de trading
+
+Cette section explique comment le service déclanche la connexion d'un compte de trading.
+
+[plantuml, format="svg"]
+....
+legend
+Diagramme de séquences - Déconnexion
+endlegend
+
+Service -> ServiceController: logout()
+ServiceController -> Connector: logout()
+Connector -> ServiceController: update(message: ConnectorEventEnum, data: Object)
+Service <- ServiceController: Response: ServiceResponse
+....
+
+La réponse du service sera une classe `ServiceResponse` qui contiendra un objet de type `TradingAccount`. Le message sera une énumération de `ConnectorEventEnum`.
+
+[plantuml, format="svg"]
+....
+legend
+Diagramme de classe - Objet réponse
+endlegend
+
+class ServiceResponse<T> {
+    - message: ConnectorEventEnum
+    - data: T
+}
+
+class TradingAccount
+
+TradingAccount --* ServiceResponse
+....
+
+=== Placer une transaction
+
+Cette section explique comment le service transmet une transaction au Broker.
+
+[plantuml, format="svg"]
+....
+legend
+Diagramme de séquences - Placer un transaction
+endlegend
+
+Service -> ServiceController: transaction(transaction: Transaction)
+ServiceController -> Connector: transaction(transaction: Transaction)
+Connector -> ServiceController: update(message: ConnectorEventEnum, data: Object)
+Service <- ServiceController: Response
+....
+
+La réponse du service sera une classe `ServiceResponse` qui contiendra un objet de type `Transaction`. Le message sera une énumération de `ConnectorEventEnum`.
+
+[plantuml, format="svg"]
+....
+legend
+Diagramme de classe - Objet réponse
+endlegend
+
+class ServiceResponse<T> {
+    - message: ConnectorEventEnum
+    - data: T
+}
+
+class Transaction
+
+Transaction --* ServiceResponse
+....
+
+=== Transmission de cotations
+
+Cette section explique à quel moment et comment les cotations sont poussés au Client.
+
+[plantuml, format="svg"]
+....
+legend
+Diagramme de séquences - Placer un transaction
+endlegend
+
+Service -> ServiceController: connection(tradingAccount: TradingAccount)
+Connector -> ServiceController: update(message: ConnectorEventEnum, data: Object)
+Service <- ServiceController: Response
+....
+
+La réponse du service sera une classe `ServiceResponse` qui contiendra un objet de type `TickCollection`. Le message sera une énumération de `ConnectorEventEnum`.
+
+[plantuml, format="svg"]
+....
+legend
+Diagramme de classe - Objet réponse
+endlegend
+
+class ServiceResponse<T> {
+    - message: ConnectorEventEnum
+    - data: T
+}
+
+class TickCollection {
+    - ticks: Map<TickEnum, Tick>
+}
+
+class Tick
+
+TickCollection --* ServiceResponse
+Tick -right-* TickCollection
+....

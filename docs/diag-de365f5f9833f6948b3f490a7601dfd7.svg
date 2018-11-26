@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="123px" preserveAspectRatio="none" style="width:287px;height:123px;" version="1.1" viewBox="0 0 287 123" width="287px" zoomAndPan="magnify"><defs><filter height="300%" id="f11u4yb3u5109j" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><ellipse cx="16" cy="60" fill="#000000" filter="url(#f11u4yb3u5109j)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#f11u4yb3u5109j)" height="104.2969" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="214" x="61" y="8"/><rect fill="#FFFFFF" height="72" rx="12.5" ry="12.5" style="stroke: #FFFFFF; stroke-width: 1.0;" width="208" x="64" y="37.2969"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="61" x2="275" y1="34.2969" y2="34.2969"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="141" y="25.9951">Initialize</text><ellipse cx="82" cy="72.2969" fill="#000000" filter="url(#f11u4yb3u5109j)" rx="10" ry="10" style="stroke: none; stroke-width: 1.0;"/><rect fill="#FEFECE" filter="url(#f11u4yb3u5109j)" height="50" rx="12.5" ry="12.5" style="stroke: #A80036; stroke-width: 1.5;" width="94" x="110" y="47.2969"/><line style="stroke: #A80036; stroke-width: 1.5;" x1="110" x2="204" y1="73.5938" y2="73.5938"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="74" x="120" y="65.292">Connexion</text><ellipse cx="232" cy="72.2969" fill="none" filter="url(#f11u4yb3u5109j)" rx="10" ry="10" style="stroke: #000000; stroke-width: 1.0;"/><ellipse cx="232.5" cy="72.7969" fill="#000000" rx="6" ry="6" style="stroke: none; stroke-width: 1.0;"/><!--link *start*Initialize to Connexion--><path d="M92.2539,72.2969 C96.4033,72.2969 100.5527,72.2969 104.702,72.2969 " fill="none" id="*start*Initialize-Connexion" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="109.9579,72.2969,100.9579,68.2969,104.9579,72.2969,100.9579,76.2969,109.9579,72.2969" style="stroke: #A80036; stroke-width: 1.0;"/><!--link Connexion to *end*Initialize--><path d="M204.168,72.2969 C208.44,72.2969 212.711,72.2969 216.983,72.2969 " fill="none" id="Connexion-*end*Initialize" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="221.998,72.2969,212.998,68.2969,216.998,72.2969,212.998,76.2969,221.998,72.2969" style="stroke: #A80036; stroke-width: 1.0;"/><!--link *start to Initialize--><path d="M26.0938,60 C35.9279,60 45.7621,60 55.5962,60 " fill="none" id="*start-Initialize" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="60.7388,60,51.7388,56,55.7388,60,51.7388,64,60.7388,60" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+[*] -> Initialize
+
+state Initialize {
+    [*] -> Connexion
+
+    Connexion -> [*]
+}
+@enduml
+
+PlantUML version 1.2018.10(Sat Aug 25 19:02:59 CEST 2018)
+(APACHE source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 11.0.1+13-LTS
+Operating System: Linux
+OS Version: 4.9.0-8-amd64
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>

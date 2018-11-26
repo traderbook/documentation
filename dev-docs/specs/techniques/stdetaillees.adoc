@@ -55,6 +55,16 @@ Service <-down-> Connector
 Connector <-down-> Broker
 ....
 
+
+
+.TODO
+
+* Créer 2 graphiques de communication
+** Un grahique qui créer un service
+** Un grahique qui consomme le service
+* Mettre des légendes aux graphiques
+
+
 == Détails des spécifications
 
 [%header,cols=2*]

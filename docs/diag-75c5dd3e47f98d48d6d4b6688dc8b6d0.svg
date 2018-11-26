@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="197px" preserveAspectRatio="none" style="width:365px;height:197px;" version="1.1" viewBox="0 0 365 197" width="365px" zoomAndPan="magnify"><defs><filter height="300%" id="fmh8nzjcvy830" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="80.5" x2="80.5" y1="38.2969" y2="116.5625"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="177.5" x2="177.5" y1="38.2969" y2="116.5625"/><line style="stroke: #A80036; stroke-width: 1.0; stroke-dasharray: 5.0,5.0;" x1="279.5" x2="279.5" y1="38.2969" y2="116.5625"/><rect fill="#FEFECE" filter="url(#fmh8nzjcvy830)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="53" x="52.5" y="3"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="59.5" y="22.9951">Client</text><rect fill="#FEFECE" filter="url(#fmh8nzjcvy830)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="53" x="52.5" y="115.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="39" x="59.5" y="135.5576">Client</text><rect fill="#FEFECE" filter="url(#fmh8nzjcvy830)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="112" x="119.5" y="3"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="126.5" y="22.9951">Reverse Proxy</text><rect fill="#FEFECE" filter="url(#fmh8nzjcvy830)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="112" x="119.5" y="115.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="98" x="126.5" y="135.5576">Reverse Proxy</text><rect fill="#FEFECE" filter="url(#fmh8nzjcvy830)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="64" x="245.5" y="3"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="50" x="252.5" y="22.9951">Service</text><rect fill="#FEFECE" filter="url(#fmh8nzjcvy830)" height="30.2969" style="stroke: #A80036; stroke-width: 1.5;" width="64" x="245.5" y="115.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="50" x="252.5" y="135.5576">Service</text><polygon fill="#A80036" points="92,65.4297,82,69.4297,92,73.4297,88,69.4297" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="86" x2="176.5" y1="69.4297" y2="69.4297"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="31" x="98" y="64.3638">Push</text><polygon fill="#A80036" points="188.5,94.5625,178.5,98.5625,188.5,102.5625,184.5,98.5625" style="stroke: #A80036; stroke-width: 1.0;"/><line style="stroke: #A80036; stroke-width: 1.0;" x1="182.5" x2="278.5" y1="98.5625" y2="98.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="31" x="194.5" y="93.4966">Push</text><rect fill="#DDDDDD" height="26.2969" rx="5" ry="5" style="stroke: #000000; stroke-width: 1.0;" width="343" x="11" y="159.8594"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="331" x="17" y="177.8545">Diagramme de séquences - Envoi des cotations</text><!--
+@startuml
+
+legend
+Diagramme de séquences - Envoi des cotations
+endlegend
+
+Client <- "Reverse Proxy": Push
+"Reverse Proxy" <- Service: Push
+@enduml
+
+PlantUML version 1.2018.10(Sat Aug 25 19:02:59 CEST 2018)
+(APACHE source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 11.0.1+13-LTS
+Operating System: Linux
+OS Version: 4.9.0-8-amd64
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>
