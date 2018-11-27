@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="247px" preserveAspectRatio="none" style="width:103px;height:247px;" version="1.1" viewBox="0 0 103 247" width="103px" zoomAndPan="magnify"><defs><filter height="300%" id="f1koc2y1oj73g4" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--entity master--><rect fill="#FEFECE" filter="url(#f1koc2y1oj73g4)" height="36.2969" style="stroke: #000000; stroke-width: 1.5;" width="67" x="15.5" y="8"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="47" x="25.5" y="30.9951">Master</text><!--entity develop--><rect fill="#FEFECE" filter="url(#f1koc2y1oj73g4)" height="36.2969" style="stroke: #000000; stroke-width: 1.5;" width="77" x="10.5" y="104"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="57" x="20.5" y="126.9951">Develop</text><!--entity feature--><rect fill="#FEFECE" filter="url(#f1koc2y1oj73g4)" height="36.2969" style="stroke: #000000; stroke-width: 1.5;" width="86" x="6" y="200"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="66" x="16" y="222.9951">Feature X</text><!--link master to develop--><path d="M49,49.662 C49,66.34 49,88.664 49,103.868 " fill="none" id="master-develop" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="49,44.241,45,53.241,49,49.241,53,53.241,49,44.241" style="stroke: #A80036; stroke-width: 1.0;"/><!--link develop to feature--><path d="M49,145.6621 C49,162.3399 49,184.6642 49,199.8683 " fill="none" id="develop-feature" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="49,140.241,45,149.241,49,145.241,53,149.241,49,140.241" style="stroke: #A80036; stroke-width: 1.0;"/><!--
+@startuml
+rectangle "Master" as master
+rectangle "Develop" as develop
+rectangle "Feature X" as feature
+
+
+develop -up-> master
+feature -up-> develop
+@enduml
+
+PlantUML version 1.2018.10(Sat Aug 25 19:02:59 CEST 2018)
+(APACHE source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 11.0.1+13-LTS
+Operating System: Linux
+OS Version: 4.9.0-8-amd64
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>
