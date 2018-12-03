@@ -45,6 +45,10 @@ Pour la suite Intellig, il est préférable d'installer les plugins suivants :
 
 Pour installer un plugin sur Intellij, suivre cette : link:https://www.jetbrains.com/help/idea/managing-plugins.html[procédures]
 
+== Contribution au projet
+
+Afin de collaborer en bon éduforme, il convient de respecter quelques bonnes pratiques. link:stdprocess.html[Une procédure a été rédigée] afin d'établir quelques règle de développement.
+
 == Spécifications fonctionnelles
 
 L'accès aux :
