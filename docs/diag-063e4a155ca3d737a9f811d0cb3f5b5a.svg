@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="138px" preserveAspectRatio="none" style="width:719px;height:138px;" version="1.1" viewBox="0 0 719 138" width="719px" zoomAndPan="magnify"><defs><filter height="300%" id="fv8j0enda4lbj" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><!--entity todefine--><rect fill="#FEFECE" filter="url(#fv8j0enda4lbj)" height="36.2969" style="stroke: #000000; stroke-width: 1.5;" width="85" x="6" y="47"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="65" x="16" y="69.9951">To define</text><!--entity defined--><rect fill="#FEFECE" filter="url(#fv8j0enda4lbj)" height="36.2969" style="stroke: #000000; stroke-width: 1.5;" width="74" x="126.5" y="47"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="54" x="136.5" y="69.9951">Defined</text><!--entity inprogress--><rect fill="#FEFECE" filter="url(#fv8j0enda4lbj)" height="36.2969" style="stroke: #000000; stroke-width: 1.5;" width="98" x="235.5" y="47"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="78" x="245.5" y="69.9951">In progress</text><!--entity tovalidate--><rect fill="#FEFECE" filter="url(#fv8j0enda4lbj)" height="36.2969" style="stroke: #000000; stroke-width: 1.5;" width="94" x="368.5" y="47"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="74" x="378.5" y="69.9951">To validate</text><!--entity toproduction--><rect fill="#FEFECE" filter="url(#fv8j0enda4lbj)" height="36.2969" style="stroke: #000000; stroke-width: 1.5;" width="117" x="498" y="47"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="97" x="508" y="69.9951">To production</text><!--entity done--><rect fill="#FEFECE" filter="url(#fv8j0enda4lbj)" height="36.2969" style="stroke: #000000; stroke-width: 1.5;" width="58" x="650.5" y="47"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="38" x="660.5" y="69.9951">Done</text><!--link todefine to defined--><path d="M91.1758,65 C101.2,65 111.224,65 121.248,65 " fill="none" id="todefine-defined" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="126.49,65,117.49,61,121.49,65,117.49,69,126.49,65" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="98.9065" y="60.8111">1</text><!--link defined to inprogress--><path d="M200.84,65 C210.673,65 220.506,65 230.338,65 " fill="none" id="defined-inprogress" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="235.48,65,226.48,61,230.48,65,226.48,69,235.48,65" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="208.4621" y="60.669">2</text><!--link inprogress to tovalidate--><path d="M333.625,65 C343.52,65 353.416,65 363.311,65 " fill="none" id="inprogress-tovalidate" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="368.486,65,359.486,61,363.486,65,359.486,69,368.486,65" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="341.4277" y="60.9533">3</text><!--link tovalidate to toproduction--><path d="M462.592,65 C472.588,65 482.584,65 492.58,65 " fill="none" id="tovalidate-toproduction" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="497.807,65,488.807,61,492.807,65,488.807,69,497.807,65" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="470.4155" y="60.9059">4</text><!--link toproduction to done--><path d="M615.117,65 C625.112,65 635.106,65 645.1,65 " fill="none" id="toproduction-done" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="650.327,65,641.327,61,645.327,65,641.327,69,650.327,65" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="623.1398" y="61.0954">5</text><!--link inprogress to todefine--><path d="M260.789,46.8687 C244.838,35.852 222.81,22.822 201,17 C169.224,8.5175 158.658,8.088 127,17 C108.188,22.2958 89.4274,33.4927 74.9661,43.7408 " fill="none" id="inprogress-todefine" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="70.6209,46.8833,80.2577,44.8506,74.6725,43.9533,75.5697,38.3681,70.6209,46.8833" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="244.3025" y="36.0609">6</text><!--link tovalidate to defined--><path d="M392.424,46.8743 C376.883,35.8598 355.388,22.8302 334,17 C291.978,5.5449 277.707,4.4448 236,17 C218.316,22.3236 200.976,33.5218 187.69,43.7636 " fill="none" id="tovalidate-defined" style="stroke: #A80036; stroke-width: 1.0;"/><polygon fill="#A80036" points="183.701,46.9038,193.2469,44.4797,187.6297,43.811,188.2983,38.1938,183.701,46.9038" style="stroke: #A80036; stroke-width: 1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacingAndGlyphs" textLength="8" x="376.132" y="36.0682">7</text><rect fill="#DDDDDD" height="26.2969" rx="5" ry="5" style="stroke: #000000; stroke-width: 1.0;" width="319" x="203.5" y="101"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacingAndGlyphs" textLength="307" x="209.5" y="118.9951">Workflow du statut d'avancement d'un projet</text><!--
+@startuml
+
+legend
+Workflow du statut d'avancement d'un projet
+endlegend
+
+rectangle "To define" as todefine
+rectangle "Defined" as defined
+rectangle "In progress" as inprogress
+rectangle "To validate" as tovalidate
+rectangle "To production" as toproduction
+rectangle "Done" as done
+
+todefine "1" -right-> defined
+defined "2" -right-> inprogress
+inprogress "3" -right-> tovalidate
+tovalidate "4" -right-> toproduction
+toproduction "5" -right-> done
+
+inprogress "6" -right-> todefine
+tovalidate "7" -right-> defined
+@enduml
+
+PlantUML version 1.2018.10(Sat Aug 25 19:02:59 CEST 2018)
+(APACHE source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Java Version: 11.0.1+13-LTS
+Operating System: Linux
+OS Version: 4.9.0-8-amd64
+Default Encoding: UTF-8
+Language: fr
+Country: FR
+--></g></svg>
