@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Description du dispatcher</title>
+<title>Description du service factory</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,13 +419,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Description du dispatcher</h1>
+<h1>Description du service factory</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_gestion_d_un_service_via_le_dispatcher">Gestion d&#8217;un service via le dispatcher</a></li>
-<li><a href="#_description_du_dispatcher">Description du dispatcher</a></li>
-<li><a href="#_routes_dispatcher">Routes Dispatcher</a></li>
+<li><a href="#_gestion_d_un_service_via_le_service_factory">Gestion d&#8217;un service via le service factory</a></li>
+<li><a href="#_description_du_service_factory">Description du service factory</a></li>
+<li><a href="#_routes_service_factory">Routes service factory</a></li>
 </ul>
 </div>
 </div>
@@ -433,16 +433,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le dispatcher est un module qui permet la création d&#8217;un service en fonction d&#8217;une demande client.</p>
+<p>Le service factory est un module qui permet la création d&#8217;un service en fonction d&#8217;une demande client.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_gestion_d_un_service_via_le_dispatcher">Gestion d&#8217;un service via le dispatcher</h2>
+<h2 id="_gestion_d_un_service_via_le_service_factory">Gestion d&#8217;un service via le service factory</h2>
 <div class="sectionbody">
 <div class="imageblock right">
 <div class="content">
-<img src="diag-c8f7365ad1d9ea3c530c564852536149.svg" alt="diag c8f7365ad1d9ea3c530c564852536149" width="423" height="288">
+<img src="diag-bcacee4e7043d33ab5fa48d52a12d0cd.svg" alt="diag bcacee4e7043d33ab5fa48d52a12d0cd" width="451" height="288">
 </div>
 </div>
 <div class="paragraph">
@@ -451,7 +451,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p>Un dispatcher</p>
+<p>Un service factory</p>
 </li>
 <li>
 <p>Un service</p>
@@ -461,53 +461,104 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_description_du_dispatcher">Description du dispatcher</h2>
+<h2 id="_description_du_service_factory">Description du service factory</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Le dispatcher à pour rôle de gérer les services qui auront été créés suite à une demande d&#8217;execution d&#8217;un client.</p>
+<p>Le service factory à pour rôle de gérer les services qui auront été créés suite à une demande d&#8217;execution d&#8217;un client.</p>
 </div>
 <div class="paragraph">
-<p>Un client peut faire une demande, au dispatcher, de :</p>
+<p>Un client peut faire une demande, au service factory, de :</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
+<th class="tableblock halign-left valign-top">Référence</th>
 <th class="tableblock halign-left valign-top">Action</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Connection</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La connection à pour rôle de créer un nouveau service qui sera associé au client.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Création compte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Créer un compte utilisateur</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Déconnection</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La déconnection à pour rôle de stopper un service associé à un client.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Création service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Créer un service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Destruction service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Détruire un service</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ajout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ajouter un compte de trading</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Liste</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lister les comptes de trading</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Suppression</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supprimer les comptes de trading</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modification</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Modifier les comptes de trading</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Suppression compte perso</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supprimer un compte personnel</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mot de passe oublié</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Réinitialisation du mot de passe</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Liste Brokers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lister les Brokers</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Se connecter</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_routes_dispatcher">Routes Dispatcher</h2>
+<h2 id="_routes_service_factory">Routes service factory</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Les communication avec le dispatcher doivent se faire sur l&#8217;url suivante : <code>dispatcher.domain.tld</code>.</p>
+<p>Les communication avec le service factory doivent se faire sur l&#8217;url suivante : <code>service_factory.domain.tld</code>.</p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
+<th class="tableblock halign-left valign-top">Référence</th>
 <th class="tableblock halign-left valign-top">Verbe HTTP</th>
 <th class="tableblock halign-left valign-top">Route</th>
 <th class="tableblock halign-left valign-top">Données</th>
@@ -516,14 +567,40 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/client/login</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/users/</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "email": String,
+    "password": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 201</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "id": Integer
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/service</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">{
     "username": String,
-    "password": String
-    "broker": String
+    "password": String,
+    "broker": String,
     "accountType": String
 }</code></pre>
 </div>
@@ -542,8 +619,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div></div></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/client/logout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DELETE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/service/{id}</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">{
@@ -564,6 +642,194 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div></div></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/trading-accounts</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "token": String
+    "type compte": String
+    "brokername": String
+    "username": String
+    "password": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 201</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "id": Integer
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/trading-accounts</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "token": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 202</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "array": Type de compte, brokername, username, password
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DELETE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/trading-accounts/{id}</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "token": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 204</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "id": Integer
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PUT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/trading-accounts/{id}</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "token": String
+    "type compte": String
+    "brokername": String
+    "username": String
+    "password": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 201</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "id": Integer
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DELETE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/service/{id}</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "token": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 204</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/users/forgotten</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "email": String
+    "token": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 201</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GET</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/brokers</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "token": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 200</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "array": brokername, id
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/users/auth</p></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "email": String
+    "password": String
+}</code></pre>
+</div>
+</div></div></td>
+<td class="tableblock halign-left valign-top"><div><div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>Status Code : 201</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-json" data-lang="json">{
+    "token":
+}</code></pre>
+</div>
+</div></div></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -574,7 +840,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-26 15:05:47 CET
+Last updated 2018-12-10 13:48:46 CET
 </div>
 </div>
 </body>
