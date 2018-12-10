@@ -569,7 +569,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/users/</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/users</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">{
@@ -594,10 +594,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/services</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">{
+    "token": String,
     "username": String,
     "password": String,
     "broker": String,
@@ -621,24 +622,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DELETE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/service/{id}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/services/{id}</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">{
-    "urlws": String
+    "token": String
 }</code></pre>
 </div>
 </div></div></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>Status Code : 202</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
-    "status": Boolean
-}</code></pre>
+<pre class="highlight"><code>Status Code : 204</code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -688,9 +682,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
-    "array": Type de compte, brokername, username, password
-}</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">[{
+     "type compte": String
+     "brokername": String
+     "username": String
+     "password": String
+ }]</code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -708,13 +705,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>Status Code : 204</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
-    "id": Integer
-}</code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -737,19 +727,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="content">
 <pre class="highlight"><code>Status Code : 201</code></pre>
 </div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
-    "id": Integer
-}</code></pre>
-</div>
 </div></div></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">DELETE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/service/{id}</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/users/{id}</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">{
@@ -766,12 +749,11 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">POST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">/users/forgotten</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">/users/forgot</p></td>
 <td class="tableblock halign-left valign-top"><div><div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">{
     "email": String
-    "token": String
 }</code></pre>
 </div>
 </div></div></td>
@@ -799,9 +781,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code class="language-json" data-lang="json">{
-    "array": brokername, id
-}</code></pre>
+<pre class="highlight"><code class="language-json" data-lang="json">[{
+     "brokername": String,
+     "broker_id": String
+ }]</code></pre>
 </div>
 </div></div></td>
 </tr>
@@ -825,7 +808,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-json" data-lang="json">{
-    "token":
+    "token": String
 }</code></pre>
 </div>
 </div></div></td>
@@ -840,7 +823,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-10 13:48:46 CET
+Last updated 2018-12-10 14:04:00 CET
 </div>
 </div>
 </body>
