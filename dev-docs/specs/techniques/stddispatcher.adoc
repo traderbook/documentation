@@ -1,9 +1,9 @@
-= Description du dispatcher
+= Description du service factory
 :toc: left
 
-Le dispatcher est un module qui permet la création d'un service en fonction d'une demande client.
+Le service factory est un module qui permet la création d'un service en fonction d'une demande client.
 
-== Gestion d'un service via le dispatcher
+== Gestion d'un service via le service factory
 
 [plantuml, format="svg", role="right"]
 ....
@@ -15,13 +15,13 @@ node Client
 
 node Server {
     component "Reverse Proxy" as ReverseProxy
-    component Dispatcher
+    component "Service Factory" as ServiceFactory
     component Service1
     component ServiceX
 
-    ReverseProxy -left- Dispatcher
-    Dispatcher -down- Service1
-    Dispatcher -down- ServiceX
+    ReverseProxy -left- ServiceFactory
+    ServiceFactory -down- Service1
+    ServiceFactory -down- ServiceX
     ReverseProxy -down- Service1
     ReverseProxy -down- ServiceX
 }
@@ -31,42 +31,102 @@ Client -right- ReverseProxy
 
 C'est par l'intermédiaire d'un reverse proxy que le client pourra communiquer avec :
 
-* Un dispatcher
+* Un service factory
 * Un service
 
-== Description du dispatcher
+== Description du service factory
 
-Le dispatcher à pour rôle de gérer les services qui auront été créés suite à une demande d'execution d'un client.
+Le service factory à pour rôle de gérer les services qui auront été créés suite à une demande d'execution d'un client.
 
-Un client peut faire une demande, au dispatcher, de :
+Un client peut faire une demande, au service factory, de :
 
-[%header,cols=2*]
+[%header,cols=3*]
 |===
-|Action  |Description
+|Référence |Action  |Description
 
+|1
+|Création compte
+|Créer un compte utilisateur
+
+|2
+|Création service
+|Créer un service
+
+|3
+|Destruction service
+|Détruire un service
+
+
+|4
+|Ajout
+|Ajouter un compte de trading
+
+|5
+|Liste
+|Lister les comptes de trading
+
+|6
+|Suppression
+|Supprimer les comptes de trading
+
+|7
+|Modification
+|Modifier les comptes de trading
+
+
+|8
+|Suppression compte perso
+|Supprimer un compte personnel
+
+|9
+|Mot de passe oublié
+|Réinitialisation du mot de passe
+
+|10
+|Liste Brokers
+|Lister les Brokers
+
+|11
 |Connection
-|La connection à pour rôle de créer un nouveau service qui sera associé au client.
+|Se connecter
 
-|Déconnection
-|La déconnection à pour rôle de stopper un service associé à un client.
 |===
 
-== Routes Dispatcher
+== Routes service factory
 
-Les communication avec le dispatcher doivent se faire sur l'url suivante : `dispatcher.domain.tld`.
+Les communication avec le service factory doivent se faire sur l'url suivante : `service_factory.domain.tld`.
 
-[%header,cols=4*]
+[%header,cols=5*]
 |===
-|Verbe HTTP |Route |Données  |Réponse
+|Référence |Verbe HTTP |Route |Données  |Réponse
 
+|1
 |POST
-|/client/login
+|/users/
+a|
+[source,json]
+{
+    "email": String,
+    "password": String
+}
+a|
+[source]
+Status Code : 201
+
+[source,json]
+{
+    "id": Integer
+}
+
+|2
+|POST
+|/service
 a|
 [source,json]
 {
     "username": String,
-    "password": String
-    "broker": String
+    "password": String,
+    "broker": String,
     "accountType": String
 }
 a|
@@ -78,8 +138,9 @@ Status Code : 200
     "urlws": String
 }
 
-|POST
-|/client/logout
+|3
+|DELETE
+|/service/{id}
 a|
 [source,json]
 {
@@ -92,6 +153,142 @@ Status Code : 202
 [source,json]
 {
     "status": Boolean
+}
+
+|4
+|POST
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": String
+    "type compte": String
+    "brokername": String
+    "username": String
+    "password": String
+}
+a|
+[source]
+Status Code : 201
+
+[source,json]
+{
+    "id": Integer
+}
+
+|5
+|GET
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": String
+}
+a|
+[source]
+Status Code : 202
+
+[source,json]
+{
+    "array": Type de compte, brokername, username, password
+}
+
+|6
+|DELETE
+|/trading-accounts/{id}
+a|
+[source,json]
+{
+    "token": String
+}
+a|
+[source]
+Status Code : 204
+
+[source,json]
+{
+    "id": Integer
+}
+
+|7
+|PUT
+|/trading-accounts/{id}
+a|
+[source,json]
+{
+    "token": String
+    "type compte": String
+    "brokername": String
+    "username": String
+    "password": String
+}
+a|
+[source]
+Status Code : 201
+
+[source,json]
+{
+    "id": Integer
+}
+
+|8
+|DELETE
+|/service/{id}
+a|
+[source,json]
+{
+    "token": String
+}
+a|
+[source]
+Status Code : 204
+
+|9
+|POST
+|/users/forgotten
+a|
+[source,json]
+{
+    "email": String
+    "token": String
+}
+a|
+[source]
+Status Code : 201
+
+|10
+|GET
+|/brokers
+a|
+[source,json]
+{
+    "token": String
+}
+a|
+[source]
+Status Code : 200
+
+[source,json]
+{
+    "array": brokername, id
+}
+
+|11
+|POST
+|/users/auth
+a|
+[source,json]
+{
+    "email": String
+    "password": String
+}
+a|
+[source]
+Status Code : 201
+
+[source,json]
+{
+    "token":
 }
 |===
 
