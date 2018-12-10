@@ -74,7 +74,7 @@ Connector <-down-> Broker
 |link:stdreverseproxy.html[Reverse proxy]
 |Permet de détailler les solutions utilisé pour le reverse proxy
 
-|link:stddispatcher.html[Dispatcher]
+|link:stddispatcher.html[Service factory]
 |Permet de détailler le fonctionnement d'un connecteur.
 
 |link:stdservice.html[Service]
