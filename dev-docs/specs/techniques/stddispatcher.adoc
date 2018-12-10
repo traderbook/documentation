@@ -393,3 +393,107 @@ a|
     "id": 1
 }
 |===
+
+.Suppression d'un compte de trading via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|6
+|Suppression de compte qui n'existe pas
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "delete account": "name account"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_deleted"
+}
+
+|6
+|Suppression de compte qui n'appartient pas à l'utilisateur
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "delete account": "name account"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_deleted"
+}
+
+|6
+|Suppression de compte avec succès
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "delete account": "name account"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_deleted"
+}
+|===
+
+.Modification d'un compte de trading via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|7
+|Modification de compte avec succès
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "change account": "name account"
+}
+a|
+[source,json]
+{
+    "message": "account_modified_successfully"
+}
+
+|7
+|Modification de compte n'appartenant pas à l'utilisateur
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "change account": "name account"
+}
+a|
+[source,json]
+{
+    "message": "account_modified_successfully"
+}
+
+|7
+|Modification de compte avec data manquante
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "change account": "name account"
+}
+a|
+[source,json]
+{
+    "message": "missing_data"
+}
+|====
