@@ -293,3 +293,103 @@ Status Code : 201
 |===
 
 Les informations (informations de connection à un compte de trading) transmises par l'intermediaire des routes sont transmises au service pour sa création.
+
+== Cahier de recettes
+
+.Création d'un compte utilisateur via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|1
+|Pas d'utilisateur existant en base de donées
+|/users
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld",
+    "password": "secret"
+}
+a|
+[source,json]
+{
+    "id": 1
+}
+
+|1
+|Pas d'utilisateur existant en base de donées avec un mot de passe trop cours
+|/users
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld",
+    "password": "pass"
+}
+a|
+[source,json]
+{
+    "message": "password_to_short"
+}
+
+|1
+|Pas d'utilisateur existant en base de donées avec un email invalid
+|/users
+a|
+[source,json]
+{
+    "email": "john.doedomain.tld",
+    "password": "secret"
+}
+a|
+[source,json]
+{
+    "message": "invalid_email"
+}
+
+|1
+|Pas d'utilisateur existant en base de donées, mais oublie la saisie du mot de passe
+|/users
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld"
+}
+a|
+[source,json]
+{
+    "message": "required_fields"
+}
+
+|1
+|Pas d'utilisateur existant en base de donées, mais oublie la saisie de l'email
+|/users
+a|
+[source,json]
+{
+    "password": "secret"
+}
+a|
+[source,json]
+{
+    "message": "required_fields"
+}
+
+|1
+|Un utilisateur "john.doe@domain.tld" existe en base de données
+|/users
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld",
+    "password": "secret"
+}
+a|
+[source,json]
+{
+    "id": 1
+}
+|===
