@@ -392,4 +392,129 @@ a|
 {
     "id": 1
 }
+
+|4
+|Enregistrement du compte en Base
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "DEMO"
+    "brokerName": "nombroker"
+    "userName": "username"
+    "password": "secret"
+
+}
+a|
+[source,json]
+{
+    "id": 1
+}
+
+|4
+|Enregistrement du compte en Base mais accountType non conforme
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "1234"
+    "brokerName": "nombroker"
+    "userName": "username"
+    "password": "secret"
+
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+
+|4
+|Enregistrement du compte en Base mais brokerName non conforme
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "DEMO"
+    "brokerName": "test123"
+    "userName": "username"
+    "password": "secret"
+
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+
+|4
+|Enregistrement du compte en Base mais userName non conforme
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "DEMO"
+    "brokerName": "brokername"
+    "userName": "badusername"
+    "password": "secret"
+
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+
+|4
+|Enregistrement du compte en Base mais password non conforme
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "DEMO"
+    "brokerName": "brokername"
+    "userName": "username"
+    "password": "invalidsecret"
+
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+
+|5
+|Lister les comptes de trading si comptes existants
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token"
+
+}
+a|
+[source,json]
+{
+    "array": "AccountType, brokerName, userName, password"
+}
+
+|5
+|Lister les comptes de trading si comptes inexistants
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token"
+
+}
+a|
+[source,json]
+{
+    "array": ""
+}
 |===
