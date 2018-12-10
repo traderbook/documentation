@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Spécifications techniques détaillées</title>
+<title>Gestion des données</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,197 +419,228 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Spécifications techniques détaillées</h1>
+<h1>Gestion des données</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_détails_des_spécifications">Détails des spécifications</a></li>
-<li><a href="#_architecture_structurelle_modules">Architecture structurelle (modules)</a></li>
-<li><a href="#_structure_d_un_projet">Structure d&#8217;un projet</a></li>
+<li><a href="#_modèle_de_données">Modèle de données</a></li>
+<li><a href="#_dictionnaire_des_données">Dictionnaire des données</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
-<div id="preamble">
+<div class="sect1">
+<h2 id="_modèle_de_données">Modèle de données</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>L&#8217;architecture globale de communication entre les différents éléments est le suivant :</p>
+<div class="imageblock">
+<div class="content">
+<img src="data-model.svg" alt="data model" width="284" height="609">
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dictionnaire_des_données">Dictionnaire des données</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Table <code>users</code></caption>
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Rôle</th>
+<th class="tableblock halign-left valign-top">Colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">User</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Le User est l&#8217;utilisateur finale. Il interagie directement avec la partie Client (plateforme de trading, gestionnaire d&#8217;algorithmes, backtests&#8230;&#8203;).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">email</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(100)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permettre de communiquer avec l&#8217;utilisateur mais aussi de s&#8217;authentifier. Sera utiliser dans le cadre d&#8217;un procéssus de mot de passe oublié.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Client</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Le Client correspond au différents outils proposés à l&#8217;User (plateforme de trading, gestionnaire d&#8217;algorithmes, backtests&#8230;&#8203;). Il interagie, par l&#8217;intermédiaire d&#8217;un reverse proxy, directement soit avec un Dispacher, doit un Service.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(250)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet l&#8217;authentification.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Reverse Proxy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de distribuer les requêtes en fonction des requêtes du Client. Ce reverse proxy permettra la gestion d&#8217;alias de domaine que les Clients pourront utiliser.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verified</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOLEAN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de vérifier (par l&#8217;envoi d&#8217;un email) que l&#8217;utilisateur n&#8217;a pas fait de faute dans son email. Il faudra mettre en place un système de suppression automatique du compte si non validé.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Dispatcher</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Le Dispatcher permet la création et la supervision des différents Services et permet la persistance des données en Database.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet d&#8217;interagir avec soit la Database, soit un Connector. C&#8217;est cette partie qui doit receptionner et transmettre les informations aux Clients.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Database</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet la persistence des données en provenance des différents Services et du Dispatcher.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Connector</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet la communication entre le broker et le Service.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Broker</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet la gestion des comptes de trading coté broker.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">code_password_forgot</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(10)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Création d&#8217;un code permettant le changement de mot de passe.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="imageblock">
-<div class="content">
-<img src="diag-6ae4133c981124fdb8add61cbbfcbdea.svg" alt="diag 6ae4133c981124fdb8add61cbbfcbdea" width="635" height="344">
-</div>
-</div>
-<div class="ulist">
-<div class="title">TODO</div>
-<ul>
-<li>
-<p>Créer 2 graphiques de communication</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Un grahique qui créer un service</p>
-</li>
-<li>
-<p>Un grahique qui consomme le service</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p>Mettre des légendes aux graphiques</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_détails_des_spécifications">Détails des spécifications</h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Table <code>accounts</code></caption>
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Document</th>
+<th class="tableblock halign-left valign-top">Colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdreverseproxy.html">Reverse proxy</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de détailler les solutions utilisé pour le reverse proxy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">account_type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(4)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet d&#8217;identifier le type de compte de trading de l&#8217;utilisateur (DEMO, REAL).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stddispatcher.html">Service factory</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de détailler le fonctionnement d&#8217;un connecteur.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">broker_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(50)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chaque connecteur possède un identifiant et chaque identifiant est associé à un broker.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdservice.html">Service</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de décrire le fonctionnement du service.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(100)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un login fourni généralement par le broker. Permet de s&#8217;authentifier au compte de trading.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdconnector.html">Connecteur</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de détailler le fonctionnement d&#8217;un connecteur.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(100)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un mot de passe fourni généralement par le broker. Permet de s&#8217;authentifier au compte de trading.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">currency</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(20)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La devise utilisée par le compte de trading. Cette donnée sera utilisée pour le calcul des profits.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de lier un compte de trading à un utilisateur.</p></td>
 </tr>
 </tbody>
 </table>
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Table <code>transactions</code></caption>
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Document</th>
+<th class="tableblock halign-left valign-top">Colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stddatadictionary.html">Gestion des données</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de définir la structure des données.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open_price</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le prix d&#8217;achat ou de vente d&#8217;un produit financier qui d&#8217;éclenche la prise de position.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stdalgorithm.html">Algortihme</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet d&#8217;expliquer les éléments techniques d&#8217;un algorithme de trading.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">close_price</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le prix qui clôture la prise de position.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="stddeployment.html">Déploiement</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de présenter le procéssus de déploiement de l&#8217;application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATETIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La date de prise de position.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="trading-plateforme.html">Plateforme de trading</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de décrire les éléments techniques de la plateforme de trading.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">close_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATETIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La date qui clôture la position.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instrument</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(20)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au code qui défini le nom du produit financier.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volume</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La quantité de produit financier acheté. C&#8217;est généralement donné en "lots"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stoploss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un prix de protection défini par le trader. Permet de limité les pertes si le marché le va pas dans le sens de l&#8217;analyse du trader.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">takeprofit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un prix d&#8217;objectif défini par le trader. Permet de clôturer la position avec des profits.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence en point entre le prix d&#8217;ouverture et de clôture.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">profit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond aux gains ou pertes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trading_account_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de lier la transaction à un compte de trading.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">transaction_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARACHAR(100)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un identifiant de transaction fourni par le broker.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_architecture_structurelle_modules">Architecture structurelle (modules)</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Certaines informations entre la partie Client et Server vont être communes. Afin de faciliter la communication entre les différents module, un module API sera créé et importé dans chacun des autres module.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="diag-7c568f7dd5f45bcfb40e6c6dc4ffc671.svg" alt="diag 7c568f7dd5f45bcfb40e6c6dc4ffc671" width="226" height="172">
-</div>
-</div>
-<div class="paragraph">
-<p>Il sera donc nécessaire de créer des sous modules Git afin d&#8217;importé facilement les projets. C&#8217;est-à-dire que le module API est un sous module Git du repository qui hebergera le module Client ou encore Server.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_structure_d_un_projet">Structure d&#8217;un projet</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Un projet doit être strucuté de la façon suivante :</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="diag-5dba32e981a76372ff7d9d56479f8abd.svg" alt="diag 5dba32e981a76372ff7d9d56479f8abd" width="106" height="67">
-</div>
-</div>
-<div class="paragraph">
-<p>Chaque dossier positionné à la racine est un module. Est automatiquement importé, le module API.</p>
-</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Table <code>services</code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">urlws</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(250)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de stocker l&#8217;url d&#8217;accès au service de l&#8217;application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(10)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de concerver la version du service que le client utilise</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de lier le service à un utilisateur.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-11-26 15:05:47 CET
+Last updated 2018-12-10 13:45:01 CET
 </div>
 </div>
 </body>

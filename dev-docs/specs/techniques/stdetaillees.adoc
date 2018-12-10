@@ -74,7 +74,7 @@ Connector <-down-> Broker
 |link:stdreverseproxy.html[Reverse proxy]
 |Permet de détailler les solutions utilisé pour le reverse proxy
 
-|link:stddispatcher.html[Dispatcher]
+|link:stddispatcher.html[Service factory]
 |Permet de détailler le fonctionnement d'un connecteur.
 
 |link:stdservice.html[Service]
@@ -87,6 +87,10 @@ Connector <-down-> Broker
 [%header,cols=2*]
 |===
 | Document | Description
+
+|link:stddatadictionary.html[Gestion des données]
+|Permet de définir la structure des données.
+
 
 |link:stdalgorithm.html[Algortihme]
 |Permet d'expliquer les éléments techniques d'un algorithme de trading.
