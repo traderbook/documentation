@@ -88,6 +88,10 @@ Connector <-down-> Broker
 |===
 | Document | Description
 
+|link:stddatadictionary.html[Gestion des données]
+|Permet de définir la structure des données.
+
+
 |link:stdalgorithm.html[Algortihme]
 |Permet d'expliquer les éléments techniques d'un algorithme de trading.
 

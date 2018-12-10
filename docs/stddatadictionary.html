@@ -5,7 +5,7 @@
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="Asciidoctor 1.5.4">
-<title>Procédures</title>
+<title>Gestion des données</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
@@ -419,219 +419,219 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Procédures</h1>
+<h1>Gestion des données</h1>
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_gestion_des_branches">Gestion des branches</a></li>
-<li><a href="#_validation_pull_request">Validation Pull request</a></li>
-<li><a href="#_création_des_branches">Création des branches</a></li>
-<li><a href="#_rédaction_des_issues">Rédaction des issues</a></li>
-<li><a href="#_workflow_des_statuts_d_avancement">Workflow des statuts d&#8217;avancement</a></li>
+<li><a href="#_modèle_de_données">Modèle de données</a></li>
+<li><a href="#_dictionnaire_des_données">Dictionnaire des données</a></li>
 </ul>
 </div>
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_gestion_des_branches">Gestion des branches</h2>
+<h2 id="_modèle_de_données">Modèle de données</h2>
 <div class="sectionbody">
 <div class="imageblock">
 <div class="content">
-<img src="diag-1ebb628e3ba4fc0aaaf5a4edf13abade.svg" alt="diag 1ebb628e3ba4fc0aaaf5a4edf13abade" width="224" height="247">
+<img src="data-model.svg" alt="data model" width="284" height="609">
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dictionnaire_des_données">Dictionnaire des données</h2>
+<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Table <code>users</code></caption>
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Statut</th>
+<th class="tableblock halign-left valign-top">Colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Master</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la branche principale qui permettra de définir les montées en version de l&#8217;application.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">email</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(100)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permettre de communiquer avec l&#8217;utilisateur mais aussi de s&#8217;authentifier. Sera utiliser dans le cadre d&#8217;un procéssus de mot de passe oublié.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Develop</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à une branche proche de la version de production (avec des fonctionnalités supplémentaires) qui sera utilisée aussi pour le staging. Et ainsi effectuer des tests d&#8217;intégrations. Lorsqu&#8217;un tag est placé sur un commit cela doit déclancher une demande pull request qui sera validée par le responsable du repository.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(250)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet l&#8217;authentification.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Feature X</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la branche qui est <strong>obligatoirement associée à une issue</strong>. C&#8217;est le développeur qui en est responsable.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">verified</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BOOLEAN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de vérifier (par l&#8217;envoi d&#8217;un email) que l&#8217;utilisateur n&#8217;a pas fait de faute dans son email. Il faudra mettre en place un système de suppression automatique du compte si non validé.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">code_password_forgot</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(10)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Création d&#8217;un code permettant le changement de mot de passe.</p></td>
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_validation_pull_request">Validation Pull request</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Une pull request n&#8217;est validé que si les conditions suivantes sont remplis :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Les nouvelles fonctionnalités ont des tests associés</p>
-</li>
-<li>
-<p>Les tests se sont exécutés avec succès</p>
-</li>
-<li>
-<p>Les fonctionnalités développées sont conformes aux spécifications</p>
-</li>
-<li>
-<p>La convention de codage est conforme aux bonnes pratiques</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_création_des_branches">Création des branches</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Les banches sont créées en fonction des conditions suivantes :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>C&#8217;est une issue qui permet la création de la branche</p>
-</li>
-<li>
-<p>Il faut que l&#8217;issue ait été définie pour créer une branche</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Une branche est créée en fonction des convensions suivantes :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>La branche reprend les caractéristiques de l&#8217;issue.</p>
-</li>
-<li>
-<p>La branche porte le nom du titre de l&#8217;issue en anglais.</p>
-</li>
-<li>
-<p>Tous les termes sont séparés par des tirets du 6 (-)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Voici un exemple de convension respecté : <code>issue-#01-issue-title</code></p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_rédaction_des_issues">Rédaction des issues</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Une issue doit respecter un minimum bonnes pratiques de rédactions :</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Avoir un contexte (surtout lors de la rédaction d&#8217;un bug).</p>
-</li>
-<li>
-<p>Avoir une définition claire.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_workflow_des_statuts_d_avancement">Workflow des statuts d&#8217;avancement</h2>
-<div class="sectionbody">
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Table <code>accounts</code></caption>
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Statut</th>
+<th class="tableblock halign-left valign-top">Colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">To define</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C&#8217;est une issue qui est en cours de rédaction. La définition n&#8217;est pas complète et le développement ne peut pas commencer.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">account_type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(4)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet d&#8217;identifier le type de compte de trading de l&#8217;utilisateur (DEMO, REAL).</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defined</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C&#8217;est un issue qui est complète et validé par le chef de projet. Un developpeur peut commencer le développement de l&#8217;issue. Pour informé qu&#8217;il travaille dessus, il la place dans "In progress".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">broker_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(50)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Chaque connecteur possède un identifiant et chaque identifiant est associé à un broker.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">In progress</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C&#8217;est un issue en cours de développement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(100)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un login fourni généralement par le broker. Permet de s&#8217;authentifier au compte de trading.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">To validate</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C&#8217;est une demande de Pull Request effectuée par le développeur, en attente de validation. Cela implique que le développeur doit définir un Reviewer.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">password</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(100)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un mot de passe fourni généralement par le broker. Permet de s&#8217;authentifier au compte de trading.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">To production</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">La Pull Request a été validée par le Reviewer. Elle est en attente de décision de mise en production.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">currency</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(20)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La devise utilisée par le compte de trading. Cette donnée sera utilisée pour le calcul des profits.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Done</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">L&#8217;issue a été mise en production et peut être archivée.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de lier un compte de trading à un utilisateur.</p></td>
 </tr>
 </tbody>
 </table>
-<div class="imageblock">
-<div class="content">
-<img src="diag-063e4a155ca3d737a9f811d0cb3f5b5a.svg" alt="diag 063e4a155ca3d737a9f811d0cb3f5b5a" width="719" height="138">
-</div>
-</div>
 <table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 3. Table <code>transactions</code></caption>
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Statut</th>
+<th class="tableblock halign-left valign-top">Colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
 <th class="tableblock halign-left valign-top">Description</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de définir avec précision les caractéristiques de l&#8217;issue. Celle-ci sera passée de "To define" vers "Defined" par le validation du chef de projet.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open_price</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le prix d&#8217;achat ou de vente d&#8217;un produit financier qui d&#8217;éclenche la prise de position.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de passer de "Defined" vers "In progress" et permet d&#8217;identifier qu&#8217;un developpeur à pris en charge l&#8217;issue.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">close_price</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Le prix qui clôture la prise de position.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lorqu&#8217;un développeur fait une demande de validation de son code par une Pull Request (<strong>penser à definir un reviewer</strong>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">open_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATETIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La date de prise de position.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de préparer la mise en production d&#8217;une issue (elle est en attente).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">close_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DATETIME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La date qui clôture la position.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mise en production de l&#8217;issue effectuée. L&#8217;issue devra être archivée.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instrument</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(20)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond au code qui défini le nom du produit financier.</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Si le développeur estime qu&#8217;il n&#8217;y a pas suffisement de précision et que cela est bloquant pour le développement, le développeur peut faire une demande précision sur les caractéristiques de l&#8217;issue.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">volume</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">La quantité de produit financier acheté. C&#8217;est généralement donné en "lots"</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Si les tests échouent et qu&#8217;un Reviewer estime que le code n&#8217;est pas conforme aux spécifications, celui-ci peut décider de faire une demande de correction en passant l&#8217;issue dans "Defined".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">stoploss</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un prix de protection défini par le trader. Permet de limité les pertes si le marché le va pas dans le sens de l&#8217;analyse du trader.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">takeprofit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un prix d&#8217;objectif défini par le trader. Permet de clôturer la position avec des profits.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence en point entre le prix d&#8217;ouverture et de clôture.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">profit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond aux gains ou pertes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trading_account_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de lier la transaction à un compte de trading.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">transaction_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARACHAR(100)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à un identifiant de transaction fourni par le broker.</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 4. Table <code>services</code></caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Colonne</th>
+<th class="tableblock halign-left valign-top">Type</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">urlws</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(250)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de stocker l&#8217;url d&#8217;accès au service de l&#8217;application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VARCHAR(10)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de concerver la version du service que le client utilise</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user_id</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTEGER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de lier le service à un utilisateur.</p></td>
 </tr>
 </tbody>
 </table>
@@ -640,7 +640,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2018-12-03 10:35:47 CET
+Last updated 2018-12-10 13:45:01 CET
 </div>
 </div>
 </body>

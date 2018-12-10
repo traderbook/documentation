@@ -1,0 +1,187 @@
+= Gestion des données
+:toc: left
+
+== Modèle de données
+
+[plantuml, data-model, format="svg"]
+....
+legend
+Diagramme de modèle des données
+endlegend
+
+class users {
+    + email
+    + password
+    + verified
+    + code_password_forgot
+}
+
+class trading_accounts {
+    + account_type
+    + broker_id
+    + username
+    + password
+    + currency
+    + user_id
+}
+
+class transactions {
+    + open_price
+    + close_price
+    + open_date
+    + close_date
+    + instrument
+    + volume
+    + stoploss
+    + takeprofit
+    + pip
+    + profit
+    + trading_account_id
+    + transaction_id
+}
+
+class services {
+    + urlws
+    + version
+    + user_id
+}
+
+users -- "0.n" trading_accounts
+users -- "0.n" services
+trading_accounts -- "0.n" transactions
+....
+
+== Dictionnaire des données
+
+.Table `users`
+[%header,cols=3*]
+|===
+|Colonne
+|Type
+|Description
+
+|email
+|VARCHAR(100)
+|Permettre de communiquer avec l'utilisateur mais aussi de s'authentifier. Sera utiliser dans le cadre d'un procéssus de mot de passe oublié.
+
+
+|password
+|VARCHAR(250)
+|Permet l'authentification.
+
+|verified
+|BOOLEAN
+|Permet de vérifier (par l'envoi d'un email) que l'utilisateur n'a pas fait de faute dans son email. Il faudra mettre en place un système de suppression automatique du compte si non validé.
+
+|code_password_forgot
+|VARCHAR(10)
+|Création d'un code permettant le changement de mot de passe.
+|===
+
+.Table `accounts`
+[%header,cols=3*]
+|===
+|Colonne
+|Type
+|Description
+
+|account_type
+|VARCHAR(4)
+|Permet d'identifier le type de compte de trading de l'utilisateur (DEMO, REAL).
+
+|broker_id
+|VARCHAR(50)
+|Chaque connecteur possède un identifiant et chaque identifiant est associé à un broker.
+
+|username
+|VARCHAR(100)
+|Correspond à un login fourni généralement par le broker. Permet de s'authentifier au compte de trading.
+
+|password
+|VARCHAR(100)
+|Correspond à un mot de passe fourni généralement par le broker. Permet de s'authentifier au compte de trading.
+
+|currency
+|VARCHAR(20)
+|La devise utilisée par le compte de trading. Cette donnée sera utilisée pour le calcul des profits.
+
+|user_id
+|INTEGER
+|Permet de lier un compte de trading à un utilisateur.
+|===
+
+.Table `transactions`
+[%header,cols=3*]
+|===
+|Colonne
+|Type
+|Description
+
+|open_price
+|DOUBLE
+|Le prix d'achat ou de vente d'un produit financier qui d'éclenche la prise de position.
+
+|close_price
+|DOUBLE
+|Le prix qui clôture la prise de position.
+
+|open_date
+|DATETIME
+|La date de prise de position.
+
+|close_date
+|DATETIME
+|La date qui clôture la position.
+
+|instrument
+|VARCHAR(20)
+|Correspond au code qui défini le nom du produit financier.
+
+|volume
+|DOUBLE
+|La quantité de produit financier acheté. C'est généralement donné en "lots"
+
+|stoploss
+|DOUBLE
+|Correspond à un prix de protection défini par le trader. Permet de limité les pertes si le marché le va pas dans le sens de l'analyse du trader.
+
+|takeprofit
+|DOUBLE
+|Correspond à un prix d'objectif défini par le trader. Permet de clôturer la position avec des profits.
+
+|pip
+|DOUBLE
+|Correspond à la différence en point entre le prix d'ouverture et de clôture.
+
+|profit
+|DOUBLE
+|Correspond aux gains ou pertes.
+
+|trading_account_id
+|INTEGER
+|Permet de lier la transaction à un compte de trading.
+
+|transaction_id
+|VARACHAR(100)
+|Correspond à un identifiant de transaction fourni par le broker.
+|===
+
+.Table `services`
+[%header,cols=3*]
+|===
+|Colonne
+|Type
+|Description
+
+|urlws
+|VARCHAR(250)
+|Permet de stocker l'url d'accès au service de l'application
+
+|version
+|VARCHAR(10)
+|Permet de concerver la version du service que le client utilise
+
+|user_id
+|INTEGER
+|Permet de lier le service à un utilisateur.
+|===
