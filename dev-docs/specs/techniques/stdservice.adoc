@@ -9,6 +9,34 @@ Le service est la partie de l'architecture qui permet :
 * La récupération des cotations
 * La transmission des transactions
 
+== Description d'un service
+
+Le service a pour rôle de communiquer avec le service factory et le reverse proxy.
+
+Un service permet d'effectuer les actions suivantes :
+
+[%header,cols=3*]
+|===
+|Référence |Action  |Description
+
+|1
+|Ouverture
+|Ouvrir une position sur un marché
+
+|2
+|Fermeture
+|Fermer une position sur un marché
+
+|3
+|Récupération cotations
+|Récupérer des cotations
+
+|4
+|Récupération de la liste des produits financiers
+|Récupérer la liste des produits financiers
+
+|===
+
 == Création d'un service
 
 Cette partie explique comment est créé un service en fonction des différents composants applicatifs.
