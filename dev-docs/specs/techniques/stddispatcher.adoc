@@ -396,8 +396,7 @@ a|
 }
 |===
 
-
-.Suppression d'un compte de trading via l'API
+.Création d'un service via l'API
 [%header,cols=5*]
 |===
 |Ref
@@ -406,102 +405,103 @@ a|
 |Data
 |Result
 
-|6
-|Suppression de compte qui n'existe pas
-|/trading-account/{id}
+|2
+|Il n'y a pas de service créé
+|/services
 a|
 [source,json]
 {
-    "token": "token"
+    "username": "john-account",
+    "password": "password-account",
+    "broker": "lamx-exchange",
+    "accountType": "DEMO"
 }
 a|
 [source,json]
 {
-    "message": "account_successfully_deleted"
-}
-
-
-|6
-|Suppression de compte qui n'appartient pas à l'utilisateur
-|/trading-account/{id}
-a|
-[source,json]
-{
-    "token": "token"
-}
-a|
-[source,json]
-{
-    "message": "account_successfully_deleted"
+    "urlws": "token"
 }
 
-|6
-|Suppression de compte avec succès
-|/trading-account/{id}
+|2
+|Il n'y a pas de service créé mais oublie une ou plusieurs données obligatoire.
+|/services
 a|
 [source,json]
 {
-    "token": "token"
-}
-a|
-[source,json]
-{
-    "message": "account_successfully_deleted"
-}
-|===
-
-.Modification d'un compte de trading via l'API
-[%header,cols=5*]
-|===
-|Ref
-|Context
-|Url
-|Data
-|Result
-
-|7
-|Modification de compte avec succès
-|/trading-account/{id}
-a|
-[source,json]
-{
-    "token": "token"
-}
-a|
-[source,json]
-{
-    "message": "account_successfully_modified"
-}
-
-|7
-|Modification de compte n'appartenant pas à l'utilisateur
-|/trading-account/{id}
-a|
-[source,json]
-{
-    "token": "token"
-}
-a|
-[source,json]
-{
-    "message": "account_successfully_modified"
-}
-
-|7
-|Modification de compte avec data manquante
-|/trading-account/{id}
-a|
-[source,json]
-{
-    "token": "token"
+    "password": "password-account",
+    "broker": "lamx-exchange",
+    "accountType": "DEMO"
 }
 a|
 [source,json]
 {
     "message": "required_fields"
 }
+
+|2
+|Il n'y a pas de service créé mais utiliser des identifiants invalides
+|/services
+a|
+[source,json]
+{
+    "username": "john-account",
+    "password": "wrong-password-account",
+    "broker": "lamx-exchange",
+    "accountType": "DEMO"
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+
+|2
+|Il n'y a pas de service créé mais le broker est temporairement indisponible
+|/services
+a|
+[source,json]
+{
+    "username": "john-account",
+    "password": "password-account",
+    "broker": "lamx-exchange",
+    "accountType": "DEMO"
+}
+a|
+[source,json]
+{
+    "message": "maintenance"
+}
 |===
 
+.Suppression d'un service via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|3
+|Le service est créé et doit être supprimé
+|/services/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+|
+
+|3
+|Le service n'existe pas et doit être supprimé
+|/services/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+|
+|===
 
 .Création d'un compte de trading via l'API
 [%header,cols=5*]
@@ -648,6 +648,111 @@ a|
 }
 |===
 
+.Suppression d'un compte de trading via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|6
+|Suppression de compte qui n'existe pas
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_deleted"
+}
+
+
+|6
+|Suppression de compte qui n'appartient pas à l'utilisateur
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_deleted"
+}
+
+|6
+|Suppression de compte avec succès
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_deleted"
+}
+|===
+
+.Modification d'un compte de trading via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|7
+|Modification de compte avec succès
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_modified"
+}
+
+|7
+|Modification de compte n'appartenant pas à l'utilisateur
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_modified"
+}
+
+|7
+|Modification de compte avec data manquante
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "required_fields"
+}
+|===
+
 .Gestion d'un mot de passe oublié via l'API
 [%header,cols=5*]
 |===
@@ -712,113 +817,6 @@ a|
 {
     "message": "required_fields"
 }
-|===
-
-.Création d'un service via l'API
-[%header,cols=5*]
-|===
-|Ref
-|Context
-|Url
-|Data
-|Result
-
-|2
-|Il n'y a pas de service créé
-|/services
-a|
-[source,json]
-{
-    "username": "john-account",
-    "password": "password-account",
-    "broker": "lamx-exchange",
-    "accountType": "DEMO"
-}
-a|
-[source,json]
-{
-    "urlws": "token"
-}
-
-|2
-|Il n'y a pas de service créé mais oublie une ou plusieurs données obligatoire.
-|/services
-a|
-[source,json]
-{
-    "password": "password-account",
-    "broker": "lamx-exchange",
-    "accountType": "DEMO"
-}
-a|
-[source,json]
-{
-    "message": "required_fields"
-}
-
-|2
-|Il n'y a pas de service créé mais utiliser des identifiants invalides
-|/services
-a|
-[source,json]
-{
-    "username": "john-account",
-    "password": "wrong-password-account",
-    "broker": "lamx-exchange",
-    "accountType": "DEMO"
-}
-a|
-[source,json]
-{
-    "message": "bad_credentials"
-}
-
-|2
-|Il n'y a pas de service créé mais le broker est temporairement indisponible
-|/services
-a|
-[source,json]
-{
-    "username": "john-account",
-    "password": "password-account",
-    "broker": "lamx-exchange",
-    "accountType": "DEMO"
-}
-a|
-[source,json]
-{
-    "message": "maintenance"
-}
-|===
-
-.Suppression d'un service via l'API
-[%header,cols=5*]
-|===
-|Ref
-|Context
-|Url
-|Data
-|Result
-
-|3
-|Le service est créé et doit être supprimé
-|/services/{id}
-a|
-[source,json]
-{
-    "token": "token"
-}
-|
-
-|3
-|Le service n'existe pas et doit être supprimé
-|/services/{id}
-a|
-[source,json]
-{
-    "token": "token"
-}
-|
 |===
 
 
