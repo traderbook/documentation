@@ -9,8 +9,35 @@ Le service est la partie de l'architecture qui permet :
 * La récupération des cotations
 * La transmission des transactions
 
-== Routes websocket
+== Description d'un service
 
+Le service a pour rôle de communiquer avec le service factory et le reverse proxy.
+
+Un service permet d'effectuer les actions suivantes :
+
+[%header,cols=3*]
+|===
+|Référence |Action  |Description
+
+|1
+|Ouverture
+|Ouvrir une position sur un marché
+
+|2
+|Fermeture
+|Fermer une position sur un marché
+
+|3
+|Récupération cotations
+|Récupérer des cotations
+
+|4
+|Récupération de la liste des produits financiers
+|Récupérer la liste des produits financiers
+
+|===
+
+== Routes
 
 [%header,cols=4*]
 |===
@@ -23,26 +50,26 @@ a|
 {
     "token": String,
     "instrument": String
-    "volume": Integer
+    "volume": float
     "openprice": float
     "type-transaction": String
     "stop-loose": float
     "take-profit": float
     "expiration": date
-    "commentaire": String
+    "commentaire": varchar(255)
 }
 a|
 [source,json]
 {
     "token": String,
     "instrument": String
-    "volume": Integer
+    "volume": float
     "openprice": float
     "type-transaction": String
     "stop-loose": float
     "take-profit": float
     "expiration": date
-    "commentaire": String
+    "commentaire": varchar(255)
     "open-date": date
     "idTransaction": Integer
 }
@@ -53,7 +80,7 @@ a|
  [source,json]
  {
      "token": String
-     "volume": Integer
+     "volume": float
      "comment": String
  }
  a|
@@ -70,14 +97,14 @@ a|
  {
      "stop-loose": float
      "take-profit": float
-     "commentaire": String
+     "commentaire": varchar(255)
  }
  a|
  [source,json]
  {
      "stop-loose": float
      "take-profit": float
-     "commentaire": String
+     "commentaire": varchar(255)
      "modify-date": Date
  }
 
@@ -103,6 +130,7 @@ a|
   {
   }
 |===
+
 == Création d'un service
 
 Cette partie explique comment est créé un service en fonction des différents composants applicatifs.
