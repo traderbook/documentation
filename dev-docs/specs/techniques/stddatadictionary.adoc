@@ -67,7 +67,7 @@ trading_accounts -- "0.n" transactions
 
 |password
 |VARCHAR(250)
-|Permet l'authentification.
+|Permet l'authentification et doit être d'une taille minimum de 6 caractères.
 
 |verified
 |BOOLEAN
