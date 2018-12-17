@@ -102,7 +102,7 @@ Les communication avec le service factory doivent se faire sur l'url suivante : 
 
 |1
 |POST
-|/users/
+|/users
 a|
 [source,json]
 {
@@ -120,10 +120,11 @@ Status Code : 201
 
 |2
 |POST
-|/service
+|/services
 a|
 [source,json]
 {
+    "token": String,
     "username": String,
     "password": String,
     "broker": String,
@@ -140,21 +141,15 @@ Status Code : 200
 
 |3
 |DELETE
-|/service/{id}
+|/services/{id}
 a|
 [source,json]
 {
-    "urlws": String
+    "token": String
 }
 a|
 [source]
-Status Code : 202
-
-[source,json]
-{
-    "status": Boolean
-}
-
+Status Code : 204
 |4
 |POST
 |/trading-accounts
@@ -189,10 +184,12 @@ a|
 Status Code : 202
 
 [source,json]
-{
-    "array": Type de compte, brokername, username, password
-}
-
+[{
+     "type compte": String
+     "brokername": String
+     "username": String
+     "password": String
+ }]
 |6
 |DELETE
 |/trading-accounts/{id}
@@ -204,12 +201,6 @@ a|
 a|
 [source]
 Status Code : 204
-
-[source,json]
-{
-    "id": Integer
-}
-
 |7
 |PUT
 |/trading-accounts/{id}
@@ -225,15 +216,9 @@ a|
 a|
 [source]
 Status Code : 201
-
-[source,json]
-{
-    "id": Integer
-}
-
 |8
 |DELETE
-|/service/{id}
+|/users/{id}
 a|
 [source,json]
 {
@@ -242,15 +227,13 @@ a|
 a|
 [source]
 Status Code : 204
-
 |9
 |POST
-|/users/forgotten
+|/users/forgot
 a|
 [source,json]
 {
     "email": String
-    "token": String
 }
 a|
 [source]
@@ -269,9 +252,10 @@ a|
 Status Code : 200
 
 [source,json]
-{
-    "array": brokername, id
-}
+[{
+     "brokername": String,
+     "broker_id": String
+ }]
 
 |11
 |POST
@@ -288,7 +272,7 @@ Status Code : 201
 
 [source,json]
 {
-    "token":
+    "token": String
 }
 |===
 
