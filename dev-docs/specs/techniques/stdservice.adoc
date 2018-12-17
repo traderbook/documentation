@@ -9,6 +9,100 @@ Le service est la partie de l'architecture qui permet :
 * La récupération des cotations
 * La transmission des transactions
 
+== Routes websocket
+
+
+[%header,cols=4*]
+|===
+|Référence |Route |Données  |Réponse
+
+|1
+|/transactions/open
+a|
+[source,json]
+{
+    "token": String,
+    "instrument": String
+    "volume": Integer
+    "openprice": float
+    "type-transaction": String
+    "stop-loose": float
+    "take-profit": float
+    "expiration": date
+    "commentaire": String
+}
+a|
+[source,json]
+{
+    "token": String,
+    "instrument": String
+    "volume": Integer
+    "openprice": float
+    "type-transaction": String
+    "stop-loose": float
+    "take-profit": float
+    "expiration": date
+    "commentaire": String
+    "open-date": date
+    "idTransaction": Integer
+}
+
+|2
+ |/transaction/close
+ a|
+ [source,json]
+ {
+     "token": String
+     "volume": Integer
+     "comment": String
+ }
+ a|
+ [source,json]
+ {
+     "close-date": date
+     "close-price": float
+ }
+
+ |3
+ |/transaction/modify
+ a|
+ [source,json]
+ {
+     "stop-loose": float
+     "take-profit": float
+     "commentaire": String
+ }
+ a|
+ [source,json]
+ {
+     "stop-loose": float
+     "take-profit": float
+     "commentaire": String
+     "modify-date": Date
+ }
+
+  |4
+  |/quotations
+  a|
+  [source,json]
+  {
+  }
+  a|
+  [source,json]
+  {
+  }
+
+  |5
+  |/financial-products
+  a|
+  [source,json]
+  {
+  }
+  a|
+  [source,json]
+  {
+  }
+|===
 == Création d'un service
 
 Cette partie explique comment est créé un service en fonction des différents composants applicatifs.
