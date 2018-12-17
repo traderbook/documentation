@@ -277,3 +277,554 @@ Status Code : 201
 |===
 
 Les informations (informations de connection à un compte de trading) transmises par l'intermediaire des routes sont transmises au service pour sa création.
+
+== Cahier de recettes
+
+Les requêtes nécessitant un token retourne une erreur de type 404. L'objectif est de ne founir aucune information sur les données demandées.
+
+.Création d'un compte utilisateur via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|1
+|Pas d'utilisateur existant en base de donées
+|/users
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld",
+    "password": "secret"
+}
+a|
+[source,json]
+{
+    "id": 1
+}
+
+|1
+|Pas d'utilisateur existant en base de donées avec un mot de passe trop cours
+|/users
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld",
+    "password": "pass"
+}
+a|
+[source,json]
+{
+    "message": "password_to_short"
+}
+
+|1
+|Pas d'utilisateur existant en base de donées avec un email invalid
+|/users
+a|
+[source,json]
+{
+    "email": "john.doedomain.tld",
+    "password": "secret"
+}
+a|
+[source,json]
+{
+    "message": "invalid_email"
+}
+
+|1
+|Pas d'utilisateur existant en base de donées, mais oublie la saisie du mot de passe
+|/users
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld"
+}
+a|
+[source,json]
+{
+    "message": "required_fields"
+}
+
+|1
+|Pas d'utilisateur existant en base de donées, mais oublie la saisie de l'email
+|/users
+a|
+[source,json]
+{
+    "password": "secret"
+}
+a|
+[source,json]
+{
+    "message": "required_fields"
+}
+
+|1
+|Un utilisateur "john.doe@domain.tld" existe en base de données
+|/users
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld",
+    "password": "secret"
+}
+a|
+[source,json]
+{
+    "id": 1
+}
+|===
+
+.Création d'un service via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|2
+|Il n'y a pas de service créé
+|/services
+a|
+[source,json]
+{
+    "username": "john-account",
+    "password": "password-account",
+    "broker": "lamx-exchange",
+    "accountType": "DEMO"
+}
+a|
+[source,json]
+{
+    "urlws": "token"
+}
+
+|2
+|Il n'y a pas de service créé mais oublie une ou plusieurs données obligatoire.
+|/services
+a|
+[source,json]
+{
+    "password": "password-account",
+    "broker": "lamx-exchange",
+    "accountType": "DEMO"
+}
+a|
+[source,json]
+{
+    "message": "required_fields"
+}
+
+|2
+|Il n'y a pas de service créé mais utiliser des identifiants invalides
+|/services
+a|
+[source,json]
+{
+    "username": "john-account",
+    "password": "wrong-password-account",
+    "broker": "lamx-exchange",
+    "accountType": "DEMO"
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+
+|2
+|Il n'y a pas de service créé mais le broker est temporairement indisponible
+|/services
+a|
+[source,json]
+{
+    "username": "john-account",
+    "password": "password-account",
+    "broker": "lamx-exchange",
+    "accountType": "DEMO"
+}
+a|
+[source,json]
+{
+    "message": "maintenance"
+}
+|===
+
+.Suppression d'un service via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|3
+|Le service est créé et doit être supprimé
+|/services/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+|
+
+|3
+|Le service n'existe pas et doit être supprimé
+|/services/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+|
+|===
+
+.Création d'un compte de trading via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|4
+|Enregistrement du compte en Base
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "DEMO"
+    "brokerName": "nombroker"
+    "userName": "username"
+    "password": "secret"
+
+}
+a|
+[source,json]
+{
+    "id": 1
+}
+
+|4
+|Enregistrement du compte en Base mais accountType non conforme
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "1234"
+    "brokerName": "nombroker"
+    "userName": "username"
+    "password": "secret"
+
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+
+|4
+|Enregistrement du compte en Base mais brokerName non conforme
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "DEMO"
+    "brokerName": "test123"
+    "userName": "username"
+    "password": "secret"
+
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+
+|4
+|Enregistrement du compte en Base mais userName non conforme
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "DEMO"
+    "brokerName": "brokername"
+    "userName": "badusername"
+    "password": "secret"
+
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+
+|4
+|Enregistrement du compte en Base mais password non conforme
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token",
+    "accountType": "DEMO"
+    "brokerName": "brokername"
+    "userName": "username"
+    "password": "invalidsecret"
+
+}
+a|
+[source,json]
+{
+    "message": "bad_credentials"
+}
+|===
+
+.Lister les compte de trading via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|5
+|Lister les comptes de trading si comptes existants
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token"
+
+}
+a|
+[source,json]
+{
+    "array": "AccountType, brokerName, userName, password"
+}
+
+|5
+|Lister les comptes de trading si comptes inexistants
+|/trading-accounts
+a|
+[source,json]
+{
+    "token": "token"
+
+}
+a|
+[source,json]
+{
+    "array": ""
+}
+|===
+
+.Suppression d'un compte de trading via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|6
+|Suppression de compte qui n'existe pas
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_deleted"
+}
+
+
+|6
+|Suppression de compte qui n'appartient pas à l'utilisateur
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_deleted"
+}
+
+|6
+|Suppression de compte avec succès
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_deleted"
+}
+|===
+
+.Modification d'un compte de trading via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|7
+|Modification de compte avec succès
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_modified"
+}
+
+|7
+|Modification de compte n'appartenant pas à l'utilisateur
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "account_successfully_modified"
+}
+
+|7
+|Modification de compte avec data manquante
+|/trading-account/{id}
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+{
+    "message": "required_fields"
+}
+|===
+
+.Gestion d'un mot de passe oublié via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|9
+|Récupération d'un mot de passe avec un email existant en base de données
+|/users/forgot
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld"
+}
+a|
+[source,json]
+{
+    "message": "success"
+}
+
+|9
+|Récupération d'un mot de passe avec un email inexistant en base de données
+|/users/forgot
+a|
+[source,json]
+{
+    "email": "john.doe@domain.tld"
+}
+a|
+[source,json]
+{
+    "message": "success"
+}
+
+|9
+|Récupération d'un mot de passe avec un email existant mais un email invalide
+|/users/forgot
+a|
+[source,json]
+{
+    "email": "john.doedomain.tld"
+}
+a|
+[source,json]
+{
+    "message": "invalid_email"
+}
+
+|9
+|Récupération d'un mot de passe avec un email existant sans saisir son email
+|/users/forgot
+a|
+[source,json]
+{
+    "email": ""
+}
+a|
+[source,json]
+{
+    "message": "required_fields"
+}
+|===
+
+
+.Lister les brokers via l'API
+[%header,cols=5*]
+|===
+|Ref
+|Context
+|Url
+|Data
+|Result
+
+|10
+|Liste les brokers
+|/brokers
+a|
+[source,json]
+{
+    "token": "token"
+}
+a|
+[source,json]
+[{
+     "brokername": "Lamx Exchange",
+     "broker_id": "lamx-exchange"
+}]
+|===
