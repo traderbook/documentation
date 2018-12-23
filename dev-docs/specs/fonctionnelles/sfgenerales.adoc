@@ -75,6 +75,10 @@ Un utilisateur de la plateforme de trading doit être en mesure de :
 
 [plantuml, diagram-usecase, png]
 ....
+legend
+Diagramme de cas d'utilisation
+endlegend
+
 (F2 - Gérer des comptes) << S'authentifier >>
 (F3 - Gérer des ordres) << S'authentifier >>
 (F4 - Gérer des graphiques) << S'authentifier >>
