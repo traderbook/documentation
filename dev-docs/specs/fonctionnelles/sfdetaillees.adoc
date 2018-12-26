@@ -10,7 +10,7 @@
 Un utilisateur doit pouvoir créer un profil utilisateur afin de protéger les données de ses comptes de trading.
 
 
-[plantuml, format="svg"]
+[plantuml, creation-profil, format="svg"]
 ....
 (*) -right-> "
 {{
@@ -43,7 +43,7 @@ Un utilisateur doit pouvoir s'authentifier avec les informations qu'il a saisi l
 
 Par l'intermédiaire du formulaire d'authentification, l'utilisateur doit pouvoir accéder au formulaire de création de profil.
 
-[plantuml, format="svg"]
+[plantuml, authentification, format="svg"]
 ....
 (*) -right-> "
 {{
@@ -73,7 +73,7 @@ Trading platform inteface
 
 Si l'utilisateur ne saisi pas les bonnes informations d'authentification, celui-ci reste sur le formulaire et voir apparaître un message l'informant que les informations d'authentification ne sont pas correctes.
 
-[plantuml, format="svg"]
+[plantuml, authentification-erreur, format="svg"]
 ....
 (*) -right-> "
 {{
@@ -130,7 +130,7 @@ Pour le création d'un compte de trading :
 * Une fois connecté, l'utilisateur est dirigé vers la liste des comptes de trading.
 * L'utilisateur voir le nom d'utilisateur saisi ainsi que le statut de connection du compte.
 
-[plantuml, format="svg"]
+[plantuml, scenario-creation-compte, format="svg"]
 ....
 (*) -right-> "
 {{
@@ -205,7 +205,7 @@ Pour le création d'un compte de trading :
 * Une fois connecté, l'utilisateur est dirigé vers la liste des comptes de trading.
 * L'utilisateur voir les changements effectés sur le compte de trading.
 
-[plantuml, format="svg"]
+[plantuml, scenario-modification-compte, format="svg"]
 ....
 (*) -right-> "
 {{
@@ -275,7 +275,7 @@ Pour la suppression d'un compte de trading :
 * Lorsque l'utilisateur utilise le menu contextuel, il doit pouvoir sélectionner une option de suppression.
 * Lorsque l'utilisateur a cliqué sur sur l'option de suppression, le compte se supprime de la liste.
 
-[plantuml, format="svg"]
+[plantuml, scenario-suppression-compte, format="svg"]
 ....
 (*) -right-> "
 {{
@@ -309,7 +309,7 @@ Pour la connection à un compte de trading :
 * Lorsque l'utilisateur utilise menu contextuel, il doit pouvoir sélectionner une option de connection.
 * Lorsque l'utilisateur a cliqué sur l'option de connection, le compte affiche un statut connecté.
 
-[plantuml, format="svg"]
+[plantuml, scenario-connection-compte, format="svg"]
 ....
 (*) -right-> "
 {{
@@ -344,7 +344,7 @@ L'utilisateur doit pouvoir gérer les ordres qu'il passe par l'intermediaire de 
 
 Un utilisateur doit retrouver un tableau des positions actuellement placé sur les marchés. Chaque ligne possède un bouton permettant la clôture d'une position.
 
-[plantuml, format="svg"]
+[plantuml, gestion-positions, format="svg"]
 ....
 salt
 {+
@@ -362,7 +362,7 @@ L'utilisateur doit pouvoir gérer les ordres positionnés en attente.
 
 L'utilisateur doit pouvoir supprimer un ordre mais celui-ci doit pouvoir être éditable.
 
-[plantuml, format="svg"]
+[plantuml, gestion-ordres, format="svg"]
 ....
 salt
 {+
@@ -378,7 +378,7 @@ salt
 
 L'utilisateur doit pouvoir accéder aux positions qui ont été fermés pour réaliser sont analyse.
 
-[plantuml, format="svg"]
+[plantuml, gestion-historique, format="svg"]
 ....
 salt
 {+
@@ -399,7 +399,7 @@ Un utilisateur doit pouvoir placer des ordres ou des positions de deux manières
 
 Les actions précédentes permettent d'ouvrir une interface pour le placement des transactions :
 
-[plantuml, format="svg"]
+[plantuml, ouverture-ordre, format="svg"]
 ....
 (*) -right-> "
 {{
@@ -477,7 +477,7 @@ La liste des instruments financiers peut être représenté dans l'interface par
 * L'Ask
 * Le bid
 
-[plantuml, format="svg"]
+[plantuml, liste-instruments-financiers, format="svg"]
 ....
 salt
 {
@@ -520,7 +520,7 @@ Un utilisateur doit être en mesure de réaliser des recherches. Associé à la 
 
 Le système de recherche doit être insensible à la casse.
 
-[plantuml, format="svg"]
+[plantuml, recherche-instruments-financiers, format="svg"]
 ....
 (*) -right-> "
 {{
@@ -578,7 +578,7 @@ La zone de graphique doit permettre l'accès aux différents instruments financi
 
 Un onglet correspond à un graphique qui contient l'évolution des marchés sur un instrument financier.
 
-[plantuml, format="svg"]
+[plantuml, interface-zone-graphique, format="svg"]
 ....
 salt
 {
@@ -613,7 +613,7 @@ De façon générique à tous les graphiques, il doit être possible pour un uti
 * Placer des graphiques
 * Placer des objets
 
-[plantuml, format="svg"]
+[plantuml, barre-outil-graphiques, format="svg"]
 ....
 salt
 {
@@ -629,7 +629,7 @@ Tools
 
 La zone de graphique devra donc intégrer cette barre d'outil.
 
-== F5 - Gérer des algorthmes
+== F5 - Gérer des algorithmes
 
 Un utilisateur doit pouvoir gérer des algorithmes de trading. Il doit donc pouvoir effectuer les opérations générales d'un CRUD :
 
@@ -666,7 +666,7 @@ L'interface devra donc prendre en compte :
 
 L'utilisateur aura besoin de tester son algorithme de trading. Il faut donc prévoir lors du lancement du backtest une phase de paramétrage.
 
-[plantuml, format="svg"]
+[plantuml, configuration-parametres, format="svg"]
 ....
 salt
 {
@@ -689,7 +689,7 @@ End | "10.10.2019"
 
 L'utilisateur doit être en mesure d'accéder au listing des backtests effectés. L'objectif étant de pouvoir réaliser un comparatif.
 
-[plantuml, format="svg"]
+[plantuml, listing-backtests, format="svg"]
 ....
 salt
 {#
@@ -745,7 +745,7 @@ Un utilisateur doit pouvoir analyses ses performances de trading. Les performanc
 
 On peut donc mettre en place un onglet analytics dans la zone d'analyses des ordres.
 
-[plantuml, format="svg"]
+[plantuml, analyse-performances, format="svg"]
 ....
 salt
 {+
