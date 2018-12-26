@@ -7,7 +7,7 @@ Les noms des événements doivent être unifirmisés afin d'être compréhensibl
 
 == Structure d'un connecteur
 
-[plantuml, format="svg"]
+[plantuml, structure-connecteur, format="svg"]
 ....
 package net.traderbook.api.connector {
   interface IConnectorObserver {
@@ -137,7 +137,7 @@ Cette classe implémente 2 interfaces :
 
 L'architecture du projet devra intégrer l'API intère modules (module api) ainsi que les librairies (dossier libs) du broker.
 
-[plantuml, format="svg"]
+[plantuml, archi-projet-connecteur, format="svg"]
 ....
 salt
 {

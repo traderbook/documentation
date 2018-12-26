@@ -32,7 +32,7 @@ L'architecture globale de communication entre les différents éléments est le 
 |Permet la gestion des comptes de trading coté broker.
 |===
 
-[plantuml, format="svg"]
+[plantuml, archi-globale, format="svg"]
 ....
 actor User
 
@@ -106,7 +106,7 @@ Connector <-down-> Broker
 
 Certaines informations entre la partie Client et Server vont être communes. Afin de faciliter la communication entre les différents module, un module API sera créé et importé dans chacun des autres module.
 
-[plantuml, format="svg"]
+[plantuml, archi-structurelle, format="svg"]
 ....
 node API
 node Client
@@ -122,7 +122,7 @@ Il sera donc nécessaire de créer des sous modules Git afin d'importé facileme
 
 Un projet doit être strucuté de la façon suivante :
 
-[plantuml, format="svg"]
+[plantuml, structure-projet, format="svg"]
 ....
 salt
 {
