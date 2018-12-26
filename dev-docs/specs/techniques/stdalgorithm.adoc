@@ -24,7 +24,7 @@ Pour se faire l'agorithme doit prendre 3 méthodes qui seront :
 |===
 
 
-[plantuml, format="svg"]
+[plantuml, description-algorithme, format="svg"]
 ....
 enum InstrumentEnum {
   EURUSD
