@@ -760,7 +760,7 @@ Ratio win/lose | 20%/80%
 }
 ....
 
-Différentes information doivent être disponibles pour l'utilisateur :
+Différentes informations doivent être disponibles pour l'utilisateur :
 
 [cols=2*]
 |===
