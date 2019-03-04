@@ -37,6 +37,10 @@ Trading platform inteface
 "
 ....
 
+Maquette :
+
+image:https://imgur.com/y383DhR.jpg[noAccount,800]
+
 ==== Authentification d'un profil
 
 Un utilisateur doit pouvoir s'authentifier avec les informations qu'il a saisi lors de la création de son profil.
@@ -68,6 +72,10 @@ Trading platform inteface
 }}
 "
 ....
+
+Maquette :
+
+image:https://imgur.com/Mg7zhZr.jpg[noAccount,800]
 
 ==== Authentification d'un profil (cas d'erreur)
 
