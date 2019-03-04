@@ -286,7 +286,7 @@ other username <&lock-locked>
 
 Maquette :
 
-image:https://imgur.com/D3qU2Ey.jpg[ModificationCompte,800]
+image:https://imgur.com/kT2UXMf.jpg[ModificationCompte,800]
 
 ==== Supprimer un compte
 
