@@ -195,7 +195,11 @@ username <&lock-locked>
 
 Maquette :
 
-image:https://imgur.com/Oq20DNY.jpg[noAccount,800]
+image:https://imgur.com/Oq20DNY.jpg[AucunCompte,800]
+
+image:https://imgur.com/D4Oob39.jpg[AjoutBroker,800]
+
+image:https://imgur.com/QdcM5YU.jpg[GestionCompte,800]
 
 ==== Modifier un compte
 
@@ -272,6 +276,10 @@ other username <&lock-locked>
 "
 ....
 
+Maquette :
+
+image:https://imgur.com/D3qU2Ey.jpg[ModificationCompte,800]
+
 ==== Supprimer un compte
 
 Pour la suppression d'un compte de trading :
@@ -306,6 +314,10 @@ No account found
 "
 ....
 
+Maquette :
+
+image:https://imgur.com/s69bmTd.jpg[SuppresionCompte,800]
+
 ==== Connection à un compte
 
 Pour la connection à un compte de trading :
@@ -339,6 +351,10 @@ username <&lock-locked>
 }}
 "
 ....
+
+Maquette :
+
+image:https://imgur.com/kVLBIFI.jpg[ConnexionCompte,800]
 
 == F3 - Gérer des ordres
 
