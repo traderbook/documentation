@@ -195,9 +195,7 @@ username <&lock-locked>
 
 Maquette :
 
-[#img-noAccount]
-[caption="no broker: ",link=https://imgur.com/Oq20DNY]
-image::https://imgur.com/Oq20DNY[noAccount,300,200]
+image:https://imgur.com/Oq20DNY.jpg[noAccount,800]
 
 ==== Modifier un compte
 
