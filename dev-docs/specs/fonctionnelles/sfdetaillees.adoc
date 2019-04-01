@@ -364,6 +364,7 @@ Maquette :
 
 image:https://imgur.com/kVLBIFI.jpg[ConnexionCompte,800]
 
+
 == F3 - Gérer des ordres
 
 L'utilisateur doit pouvoir gérer les ordres qu'il passe par l'intermediaire de la plateforme de trading.
@@ -384,6 +385,8 @@ salt
 }
 ....
 
+image:https://imgur.com/yZEl2Hu.jpg[GestionPosition,800]
+
 === Gérer les ordres
 
 L'utilisateur doit pouvoir gérer les ordres positionnés en attente.
@@ -402,6 +405,8 @@ salt
 }
 ....
 
+image:https://imgur.com/MsesnMe.jpg[GestionOrdres,800]
+
 === Gérer l'historique
 
 L'utilisateur doit pouvoir accéder aux positions qui ont été fermés pour réaliser sont analyse.
@@ -417,6 +422,8 @@ salt
 }
 }
 ....
+
+image:https://imgur.com/Jng1tCI.jpg[OrdreHistorique,800]
 
 === Ouvrir un ordre
 
