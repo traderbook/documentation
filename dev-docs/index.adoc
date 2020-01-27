@@ -26,7 +26,7 @@ TraderBook un projet open source de gestion d'ordre de trading et de développem
 
 TraderBook un projet open source sur lequel vous pouvez contribuer de plusieurs manières :
 
-* En apprortant votre contribution en tant que développeur
+* En apportant votre contribution en tant que développeur
 * En testant la plateforme et en faisant un retour issue de votre expérience
 * En proposant des améliorations
 * En contribuant à la documentation
