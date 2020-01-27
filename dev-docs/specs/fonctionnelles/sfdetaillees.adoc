@@ -71,7 +71,7 @@ Trading platform inteface
 
 ==== Authentification d'un profil (cas d'erreur)
 
-Si l'utilisateur ne saisi pas les bonnes informations d'authentification, celui-ci reste sur le formulaire et voir apparaître un message l'informant que les informations d'authentification ne sont pas correctes.
+Si l'utilisateur ne saisit pas les bonnes informations d'authentification, celui-ci reste sur le formulaire et voit apparaître un message l'informant que les informations d'authentification ne sont pas correctes.
 
 [plantuml, format="svg"]
 ....
