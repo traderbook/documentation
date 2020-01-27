@@ -1,0 +1,159 @@
+= Spécifications techniques générales
+:toc: left
+
+== Lexique technique
+
+[%header,cols=2*]
+|===
+|Nom  |Description
+
+|Client
+|Correspond soit à une plateforme de trading, soit un algorithme de trading.
+
+|Service
+|Permet à une interface Cliente de se connecter pour interagir avec les données de l'application ou des API
+
+|Connecteur
+|Un connecteur est un module proposant une API permettant à un autre module de communiquer avec broker.
+|===
+
+== Positionnement du projet
+
+[plantuml, format="svg"]
+....
+cloud "Marchés financiers" as Market
+node Banques
+node Brokers
+node "Service TraderBook (Server)" as Service
+node "Plateforme TraderBook (Client)" as Platform
+actor User
+
+Banques -up-> Market
+Brokers -up-> Banques
+Service -up-> Brokers
+Platform -up-> Service
+User -up-> Platform
+....
+
+Les projet TraderBook se positionnent entre un utilisateur et un Broker.
+
+Les Brokers sont concidérer comme des intermédiaires entre les banques et les utilisateurs.
+
+Les différentes plateformes et service de TraderBook permettront de faciliter la communication entre le Client et les Broker.
+
+== Langage de programmation
+
+Cette section présent les langages de programmation utilisés pour le projet.
+
+=== Kotlin
+
+Description :
+
+Le programme est développé en kotlin qui est un langage orienté objet et fonctionnel.
+
+Raisons :
+
+* La programmation fonctionnelles est un strandard en trading algorithmique.
+* Est basé sur les fondamentaux de JAVA
+* La plupart des API broker sont développés en JAVA
+* Permet le développement d'application :
+** Bureau
+** Mobile
+** Serveur
+
+link:https://kotlinlang.org[]
+
+== Frameworks
+
+Cette section présente les frameworks utilisés pour le projet.
+
+=== Tornadofx
+
+Description :
+
+Ce Framework est utilisé pour la partie graphique. Il permet de développer des interfaces utilisateurs simplement (par le biais de kotlin) et rapidement.
+
+Raisons :
+
+* Est basé sur JavaFx
+
+link:https://tornadofx.io[]
+
+=== JetBrains Exposed
+
+Description :
+
+Ce framework permet de gérer une base de données embarquée avec l'application.
+
+Raisons :
+
+* Proposé par Jetbrain
+* Utilise SQLite
+
+link:https://github.com/JetBrains/Exposed[]
+
+=== Jetbrains Xodus
+
+Description :
+
+Ce Framework permet le stockage des données dans des fichiers. Il sera utilisé pour stocker les données utilisateur non sensible dans le dossiers principal de l'utilisateur.
+
+Raisons :
+
+* Proposé par Jetbrain
+
+link:https://jetbrains.github.io/xodus/[]
+
+== OS
+
+L'application devra être cross plateforme :
+
+* Linux
+* Mac OS
+* Window
+
+== Outils liés au developpement
+
+=== Gestion de package
+
+La gestion des packages se fera via Gradle et le repository principal sera Maven.
+
+=== Build automation
+
+Gradle sera utilisé pour les gestion du build automation.
+
+=== Outil de versioning
+
+L'outil de versioning utilisé sera Git.
+
+=== Outils d'intégration continue
+
+Les outils d'intégration utilisés seront :
+
+* Circle CI pour créer des version téléchargeable de la plateforme
+* Jenkin pour la mise ne place de services
+
+=== IDE - Interface de développement
+
+L'outil récommandé est Intellij IDE configuré pour Kotlin.
+
+Voir : link:https://www.jetbrains.com/education/?fromMenu#lang=kotlin&role=learner[Kotlin Edu]
+
+== Compatibilité
+
+[%header,cols=2*]
+|===
+|Nom | Version
+
+| JVM
+| 11.0.1
+
+| Gradle
+| 4.10.2
+
+| Kotlin
+| 1.2.61
+
+| Groovy
+| 2.4.15
+|===

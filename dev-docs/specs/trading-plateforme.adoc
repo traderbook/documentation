@@ -4,7 +4,7 @@
 
 Présentation de l'architecture globale de la plataforme de trading sur le poste utilisateur.
 
-[plantuml, format="svg"]
+[plantuml, archi-plateforme, format="svg"]
 ....
 actor User
 node Client

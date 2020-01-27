@@ -1,0 +1,180 @@
+= Spécification d'un connecteur
+:toc: left
+
+Un connecteur doit permettre de transmettre des informations aux services qui l'utilisent.
+
+Les noms des événements doivent être unifirmisés afin d'être compréhensible par l'ensemble des modules.
+
+== Structure d'un connecteur
+
+[plantuml, format="svg"]
+....
+package net.traderbook.api.connector {
+  interface IConnectorObserver {
+      - connector: IConnectorObserver
+      + update(message: ConnectorEventEnum, data: Object)
+  }
+
+  interface IConnector {
+      + connection(tradingAccount: TradingAccount)
+      + placeTransaction(trasaction: Transaction)
+      + login()
+      + logout()
+  }
+}
+
+package net.traderbook.connector {
+  class Connector {
+    - controller: IConnectorObserver
+    + Connector(controller: IConnectorObserver)
+  }
+}
+
+package net.traderbook.api.enums {
+    enum ConnectorEventEnum {
+      ONCONNECTED
+      ONDISCONNECTED
+      ONTICK
+      ONTRANSACTION
+    }
+}
+
+package net.traderbook.api.models {
+    class TradingAccount {
+        - usernmane
+        - password
+        - broker
+        - accountType
+    }
+}
+
+IConnector <|-- Connector
+IConnectorObserver <|-- Connector
+TradingAccount *-- Connector
+ConnectorEventEnum *-- Connector
+....
+
+=== Fonctionnalités d'un connecteur
+
+La classe `Connector` est la classe principale permettant de gérer :
+
+* La connexion avec un broker
+* La gestion des informations (souscription d'instruments financiers, cotations...)
+* La gestion des transactions
+* La gestion des données du compte de trading
+
+=== Implémentation d'un connector
+
+Cette classe implémente 2 interfaces :
+
+[%header,cols=2*]
+|===
+|Interface
+|Description
+
+|`IConnector`
+|Cette interface permet de proposer des méthodes à implémenter afin que le connecteur puisse intégré à un service.
+
+|`IConnectorObserver`
+|Cette interface permet de proposer des méthodes à implémenter afin d'être observer par un service.
+|===
+
+==== Interface : `IConnector`
+
+[%header,cols=2*]
+|===
+|Méthode
+|Description
+
+|`connection(tradingAccount: TradingAccount)`
+|Cette méthode permet d'initialiser les éléments d'une connection en fonction de l'Api d'un broker.
+
+|`login()`
+|Cette méthode permet d'ouvrir une session de connection avec le broker.
+
+|`logout()`
+|Cette méthode permet de fermer une session de connection avec le broker.
+|===
+
+==== Interface : `IConnectorObserver`
+
+[%header,cols=2*]
+|===
+|Méthode
+|Description
+
+|`update(message: ConnectorEventEnum, data: Object)`
+|Cette est utilisée pour réaliser une mise à jour suite à un événement (Mise à jour d'un instrument, transaction placée...). Cette méthode permet d'appeler les méthode update d'objets observeurs.
+|===
+
+==== Enumération : `ConnectorEventEnum`
+
+[%header,cols=2*]
+|===
+|Méthode
+|Description
+
+|`ONCONNECTED`
+|Message envoyé lorsque le connecteur est indentifié chez le Broker.
+
+|`ONCONNECTEDERROR`
+|Message envoyé lorsque le connecteur a reçu une erreur d'authentification auprès du Broker (Mauvais identifiants).
+
+|`ONDISCONNECTED`
+|Message envoyé lorsque le connecteur est déconnecté du Broker.
+
+|`ONTICK`
+|Message envoyé lorsqu'une nouvelle cotation a été émise par le Broker.
+
+|`ONTRANSACTION`
+|Message envoyé lorsqu'une transaction a été transmise chez le Broker.
+
+|`ONUNEXPECTEDERROR`
+|Message envoyé lorsqu'une erreur a été transmise par le broker qui est non prise en compte par le système.
+|===
+
+== Architecture projet d'un connecteur
+
+L'architecture du projet devra intégrer l'API intère modules (module api) ainsi que les librairies (dossier libs) du broker.
+
+[plantuml, format="svg"]
+....
+salt
+{
+{T
+ + Project name
+ ++ api
+ ++ app
+ ++ libs
+ ++ gradle files
+}
+}
+....
+
+Gradle devra permettre la génération d'un fichier manifest. Ce fichier devra contenir des propriétés :
+
+[%header,cols=2*]
+|===
+|Propriété
+|Description
+
+|name
+|Permet de donner un nom au broker
+
+|description
+|Permet de donner une description au broker
+|===
+
+Certaines de ses propriété seront transmises au différentes plateformes et notamment dans un premier lieu au service.
+
+== Gestion des repositories
+
+Chaque connecteur devra avoir son propre respository et devra respecter une nomenclature de nommage.
+
+La nomenclature les la suivante : `traderbook/connector-BROKER-NAME`
+
+* Tous les caractères sont en minuscules
+* Pas de caractères spéciaux
+* La première partie est le mot `connector`
+* Les espaces sont remplacés par des tirets du 6 (-)
+* La seconde partie est le nom du broker

@@ -5,11 +5,8 @@ Le service factory est un module qui permet la création d'un service en fonctio
 
 == Gestion d'un service via le service factory
 
-[plantuml, format="svg", role="right"]
+[plantuml,gestion-service, format="svg", role="right"]
 ....
-legend
-Legend
-endlegend
 
 node Client
 

@@ -3,7 +3,7 @@
 
 == Gestion des branches
 
-[plantuml, format="svg"]
+[plantuml, gestion-branches, format="svg"]
 ....
 rectangle "Master" as master
 rectangle "Develop" as develop
@@ -86,7 +86,7 @@ Une issue doit respecter un minimum bonnes pratiques de rédactions :
 |L'issue a été mise en production et peut être archivée.
 |===
 
-[plantuml, format="svg"]
+[plantuml, workflow-statut-avancement, format="svg"]
 ....
 
 legend

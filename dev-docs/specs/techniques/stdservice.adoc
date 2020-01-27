@@ -17,7 +17,7 @@ Cette partie explique comment est créé un service en fonction des différents 
 
 Le diagramme de séquence ci-dessous explique comment est créé un service.
 
-[plantuml, format="svg"]
+[plantuml, communication-composants, format="svg"]
 ....
 
 legend
@@ -61,7 +61,7 @@ Une fois que le service est créé le Client peut directement consommer le Servi
 
 ==== Demande de connexion
 
-[plantuml, format="svg"]
+[plantuml, demande-connexion, format="svg"]
 ....
 
 legend
@@ -83,7 +83,7 @@ Pour la demande déconnexion se référer au point ci-dessus link:#_demande_de_c
 
 ==== Envoi des cotations vers le client
 
-[plantuml, format="svg"]
+[plantuml, envoi-cotations, format="svg"]
 ....
 
 legend
@@ -113,7 +113,7 @@ Les réponses sont ensuite retournées au Client par l'intermédiaire du Reverse
 
 === Communication entre l'application et le connecteur
 
-[plantuml, format="svg", role="right"]
+[plantuml,communication-appli-connecteur, format="svg", role="right"]
 ....
 node Service {
     node Application
@@ -140,7 +140,7 @@ Le Service :
 
 === Communication entre l'application et la base de données
 
-[plantuml, format="svg", role="right"]
+[plantuml,communication-appli-bdd, format="svg", role="right"]
 ....
 node "Service container" as service {
     node Application
@@ -169,7 +169,7 @@ La configuration du container de Service devra réaliser un mapping de port avec
 
 === Le Connecteur
 
-[plantuml, format="svg", role="left"]
+[plantuml, connecteur, format="svg", role="left"]
 ....
 node Service {
     node Application
@@ -201,7 +201,7 @@ La classe `Service` est la classe principale du service. Ce Service est composé
 * La récupération des cotations
 * La transmission des transactions
 
-[plantuml, format="svg"]
+[plantuml, structure-applicative, format="svg"]
 ....
 legend
 Diagramme de classe - Gestion d'un service
@@ -257,7 +257,7 @@ Pour plus de détails :
 
 Le service doit être en mesure de s'authentifier auprès d'un Broker.
 
-[plantuml, format="svg"]
+[plantuml, authentification-compte-trading, format="svg"]
 ....
 legend
 Diagramme de séquences - Connexion
@@ -274,7 +274,7 @@ Service <- ServiceController: Response
 
 La réponse du service sera une classe `ServiceResponse` qui contiendra un objet de type `TradingAccount`. Le message sera une énumération de `ConnectorEventEnum`.
 
-[plantuml, format="svg"]
+[plantuml, reponse-service-authentification, format="svg"]
 ....
 legend
 Diagramme de classe - Objet réponse
@@ -294,7 +294,7 @@ TradingAccount --* ServiceResponse
 
 Cette section explique comment le service déclanche la connexion d'un compte de trading.
 
-[plantuml, format="svg"]
+[plantuml, deconnection-compte-trading, format="svg"]
 ....
 legend
 Diagramme de séquences - Déconnexion
@@ -308,7 +308,7 @@ Service <- ServiceController: Response: ServiceResponse
 
 La réponse du service sera une classe `ServiceResponse` qui contiendra un objet de type `TradingAccount`. Le message sera une énumération de `ConnectorEventEnum`.
 
-[plantuml, format="svg"]
+[plantuml, reponse-service-deconnection, format="svg"]
 ....
 legend
 Diagramme de classe - Objet réponse
@@ -328,7 +328,7 @@ TradingAccount --* ServiceResponse
 
 Cette section explique comment le service transmet une transaction au Broker.
 
-[plantuml, format="svg"]
+[plantuml, placement-transaction, format="svg"]
 ....
 legend
 Diagramme de séquences - Placer un transaction
@@ -342,7 +342,7 @@ Service <- ServiceController: Response
 
 La réponse du service sera une classe `ServiceResponse` qui contiendra un objet de type `Transaction`. Le message sera une énumération de `ConnectorEventEnum`.
 
-[plantuml, format="svg"]
+[plantuml, reponse-service-transaction, format="svg"]
 ....
 legend
 Diagramme de classe - Objet réponse
@@ -362,7 +362,7 @@ Transaction --* ServiceResponse
 
 Cette section explique à quel moment et comment les cotations sont poussés au Client.
 
-[plantuml, format="svg"]
+[plantuml, transmission-cotations, format="svg"]
 ....
 legend
 Diagramme de séquences - Placer un transaction
@@ -375,7 +375,7 @@ Service <- ServiceController: Response
 
 La réponse du service sera une classe `ServiceResponse` qui contiendra un objet de type `TickCollection`. Le message sera une énumération de `ConnectorEventEnum`.
 
-[plantuml, format="svg"]
+[plantuml, reponse-service-transmission-cotations, format="svg"]
 ....
 legend
 Diagramme de classe - Objet réponse

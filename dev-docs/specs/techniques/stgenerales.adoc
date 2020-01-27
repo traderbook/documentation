@@ -19,7 +19,7 @@
 
 == Positionnement du projet
 
-[plantuml, format="svg"]
+[plantuml, positionnement-projet, format="svg"]
 ....
 cloud "Marchés financiers" as Market
 node Banques

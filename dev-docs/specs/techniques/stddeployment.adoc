@@ -2,7 +2,7 @@
 
 == Architecture du Serveur Applicatif
 
-[plantuml, format="svg", role="right"]
+[plantuml, archi-serveur-applicatif, format="svg", role="right"]
 ....
 node Serveur {
     component "Reverse Proxy" as reverseproxy

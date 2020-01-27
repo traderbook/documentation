@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.4">
+<title>Document fonctionnel détaillé</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
+<style>
+/* Asciidoctor default stylesheet | MIT License | http://asciidoctor.org */
+/* Remove comment around @import statement below when using as a custom stylesheet */
+/*@import "https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700";*/
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
+audio,canvas,video{display:inline-block}
+audio:not([controls]){display:none;height:0}
+[hidden],template{display:none}
+script{display:none!important}
+html{font-family:sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}
+body{margin:0}
+a{background:transparent}
+a:focus{outline:thin dotted}
+a:active,a:hover{outline:0}
+h1{font-size:2em;margin:.67em 0}
+abbr[title]{border-bottom:1px dotted}
+b,strong{font-weight:bold}
+dfn{font-style:italic}
+hr{-moz-box-sizing:content-box;box-sizing:content-box;height:0}
+mark{background:#ff0;color:#000}
+code,kbd,pre,samp{font-family:monospace;font-size:1em}
+pre{white-space:pre-wrap}
+q{quotes:"\201C" "\201D" "\2018" "\2019"}
+small{font-size:80%}
+sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}
+sup{top:-.5em}
+sub{bottom:-.25em}
+img{border:0}
+svg:not(:root){overflow:hidden}
+figure{margin:0}
+fieldset{border:1px solid silver;margin:0 2px;padding:.35em .625em .75em}
+legend{border:0;padding:0}
+button,input,select,textarea{font-family:inherit;font-size:100%;margin:0}
+button,input{line-height:normal}
+button,select{text-transform:none}
+button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance:button;cursor:pointer}
+button[disabled],html input[disabled]{cursor:default}
+input[type="checkbox"],input[type="radio"]{box-sizing:border-box;padding:0}
+input[type="search"]{-webkit-appearance:textfield;-moz-box-sizing:content-box;-webkit-box-sizing:content-box;box-sizing:content-box}
+input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance:none}
+button::-moz-focus-inner,input::-moz-focus-inner{border:0;padding:0}
+textarea{overflow:auto;vertical-align:top}
+table{border-collapse:collapse;border-spacing:0}
+*,*:before,*:after{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}
+html,body{font-size:100%}
+body{background:#fff;color:rgba(0,0,0,.8);padding:0;margin:0;font-family:"Noto Serif","DejaVu Serif",serif;font-weight:400;font-style:normal;line-height:1;position:relative;cursor:auto}
+a:hover{cursor:pointer}
+img,object,embed{max-width:100%;height:auto}
+object,embed{height:100%}
+img{-ms-interpolation-mode:bicubic}
+.left{float:left!important}
+.right{float:right!important}
+.text-left{text-align:left!important}
+.text-right{text-align:right!important}
+.text-center{text-align:center!important}
+.text-justify{text-align:justify!important}
+.hide{display:none}
+body{-webkit-font-smoothing:antialiased}
+img,object,svg{display:inline-block;vertical-align:middle}
+textarea{height:auto;min-height:50px}
+select{width:100%}
+.center{margin-left:auto;margin-right:auto}
+.spread{width:100%}
+p.lead,.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{font-size:1.21875em;line-height:1.6}
+.subheader,.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{line-height:1.45;color:#7a2518;font-weight:400;margin-top:0;margin-bottom:.25em}
+div,dl,dt,dd,ul,ol,li,h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6,pre,form,p,blockquote,th,td{margin:0;padding:0;direction:ltr}
+a{color:#2156a5;text-decoration:underline;line-height:inherit}
+a:hover,a:focus{color:#1d4b8f}
+a img{border:none}
+p{font-family:inherit;font-weight:400;font-size:1em;line-height:1.6;margin-bottom:1.25em;text-rendering:optimizeLegibility}
+p aside{font-size:.875em;line-height:1.35;font-style:italic}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{font-family:"Open Sans","DejaVu Sans",sans-serif;font-weight:300;font-style:normal;color:#ba3925;text-rendering:optimizeLegibility;margin-top:1em;margin-bottom:.5em;line-height:1.0125em}
+h1 small,h2 small,h3 small,#toctitle small,.sidebarblock>.content>.title small,h4 small,h5 small,h6 small{font-size:60%;color:#e99b8f;line-height:0}
+h1{font-size:2.125em}
+h2{font-size:1.6875em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.375em}
+h4,h5{font-size:1.125em}
+h6{font-size:1em}
+hr{border:solid #ddddd8;border-width:1px 0 0;clear:both;margin:1.25em 0 1.1875em;height:0}
+em,i{font-style:italic;line-height:inherit}
+strong,b{font-weight:bold;line-height:inherit}
+small{font-size:60%;line-height:inherit}
+code{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;color:rgba(0,0,0,.9)}
+ul,ol,dl{font-size:1em;line-height:1.6;margin-bottom:1.25em;list-style-position:outside;font-family:inherit}
+ul,ol,ul.no-bullet,ol.no-bullet{margin-left:1.5em}
+ul li ul,ul li ol{margin-left:1.25em;margin-bottom:0;font-size:1em}
+ul.square li ul,ul.circle li ul,ul.disc li ul{list-style:inherit}
+ul.square{list-style-type:square}
+ul.circle{list-style-type:circle}
+ul.disc{list-style-type:disc}
+ul.no-bullet{list-style:none}
+ol li ul,ol li ol{margin-left:1.25em;margin-bottom:0}
+dl dt{margin-bottom:.3125em;font-weight:bold}
+dl dd{margin-bottom:1.25em}
+abbr,acronym{text-transform:uppercase;font-size:90%;color:rgba(0,0,0,.8);border-bottom:1px dotted #ddd;cursor:help}
+abbr{text-transform:none}
+blockquote{margin:0 0 1.25em;padding:.5625em 1.25em 0 1.1875em;border-left:1px solid #ddd}
+blockquote cite{display:block;font-size:.9375em;color:rgba(0,0,0,.6)}
+blockquote cite:before{content:"\2014 \0020"}
+blockquote cite a,blockquote cite a:visited{color:rgba(0,0,0,.6)}
+blockquote,blockquote p{line-height:1.6;color:rgba(0,0,0,.85)}
+@media only screen and (min-width:768px){h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2}
+h1{font-size:2.75em}
+h2{font-size:2.3125em}
+h3,#toctitle,.sidebarblock>.content>.title{font-size:1.6875em}
+h4{font-size:1.4375em}}
+table{background:#fff;margin-bottom:1.25em;border:solid 1px #dedede}
+table thead,table tfoot{background:#f7f8f7;font-weight:bold}
+table thead tr th,table thead tr td,table tfoot tr th,table tfoot tr td{padding:.5em .625em .625em;font-size:inherit;color:rgba(0,0,0,.8);text-align:left}
+table tr th,table tr td{padding:.5625em .625em;font-size:inherit;color:rgba(0,0,0,.8)}
+table tr.even,table tr.alt,table tr:nth-of-type(even){background:#f8f8f7}
+table thead tr th,table tfoot tr th,table tbody tr td,table tr td,table tfoot tr td{display:table-cell;line-height:1.6}
+body{tab-size:4}
+h1,h2,h3,#toctitle,.sidebarblock>.content>.title,h4,h5,h6{line-height:1.2;word-spacing:-.05em}
+h1 strong,h2 strong,h3 strong,#toctitle strong,.sidebarblock>.content>.title strong,h4 strong,h5 strong,h6 strong{font-weight:400}
+.clearfix:before,.clearfix:after,.float-group:before,.float-group:after{content:" ";display:table}
+.clearfix:after,.float-group:after{clear:both}
+*:not(pre)>code{font-size:.9375em;font-style:normal!important;letter-spacing:0;padding:.1em .5ex;word-spacing:-.15em;background-color:#f7f7f8;-webkit-border-radius:4px;border-radius:4px;line-height:1.45;text-rendering:optimizeSpeed}
+pre,pre>code{line-height:1.45;color:rgba(0,0,0,.9);font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;font-weight:400;text-rendering:optimizeSpeed}
+.keyseq{color:rgba(51,51,51,.8)}
+kbd{font-family:"Droid Sans Mono","DejaVu Sans Mono",monospace;display:inline-block;color:rgba(0,0,0,.8);font-size:.65em;line-height:1.45;background-color:#f7f7f7;border:1px solid #ccc;-webkit-border-radius:3px;border-radius:3px;-webkit-box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em white inset;box-shadow:0 1px 0 rgba(0,0,0,.2),0 0 0 .1em #fff inset;margin:0 .15em;padding:.2em .5em;vertical-align:middle;position:relative;top:-.1em;white-space:nowrap}
+.keyseq kbd:first-child{margin-left:0}
+.keyseq kbd:last-child{margin-right:0}
+.menuseq,.menu{color:rgba(0,0,0,.8)}
+b.button:before,b.button:after{position:relative;top:-1px;font-weight:400}
+b.button:before{content:"[";padding:0 3px 0 2px}
+b.button:after{content:"]";padding:0 2px 0 3px}
+p a>code:hover{color:rgba(0,0,0,.9)}
+#header,#content,#footnotes,#footer{width:100%;margin-left:auto;margin-right:auto;margin-top:0;margin-bottom:0;max-width:62.5em;*zoom:1;position:relative;padding-left:.9375em;padding-right:.9375em}
+#header:before,#header:after,#content:before,#content:after,#footnotes:before,#footnotes:after,#footer:before,#footer:after{content:" ";display:table}
+#header:after,#content:after,#footnotes:after,#footer:after{clear:both}
+#content{margin-top:1.25em}
+#content:before{content:none}
+#header>h1:first-child{color:rgba(0,0,0,.85);margin-top:2.25rem;margin-bottom:0}
+#header>h1:first-child+#toc{margin-top:8px;border-top:1px solid #ddddd8}
+#header>h1:only-child,body.toc2 #header>h1:nth-last-child(2){border-bottom:1px solid #ddddd8;padding-bottom:8px}
+#header .details{border-bottom:1px solid #ddddd8;line-height:1.45;padding-top:.25em;padding-bottom:.25em;padding-left:.25em;color:rgba(0,0,0,.6);display:-ms-flexbox;display:-webkit-flex;display:flex;-ms-flex-flow:row wrap;-webkit-flex-flow:row wrap;flex-flow:row wrap}
+#header .details span:first-child{margin-left:-.125em}
+#header .details span.email a{color:rgba(0,0,0,.85)}
+#header .details br{display:none}
+#header .details br+span:before{content:"\00a0\2013\00a0"}
+#header .details br+span.author:before{content:"\00a0\22c5\00a0";color:rgba(0,0,0,.85)}
+#header .details br+span#revremark:before{content:"\00a0|\00a0"}
+#header #revnumber{text-transform:capitalize}
+#header #revnumber:after{content:"\00a0"}
+#content>h1:first-child:not([class]){color:rgba(0,0,0,.85);border-bottom:1px solid #ddddd8;padding-bottom:8px;margin-top:0;padding-top:1rem;margin-bottom:1.25rem}
+#toc{border-bottom:1px solid #efefed;padding-bottom:.5em}
+#toc>ul{margin-left:.125em}
+#toc ul.sectlevel0>li>a{font-style:italic}
+#toc ul.sectlevel0 ul.sectlevel1{margin:.5em 0}
+#toc ul{font-family:"Open Sans","DejaVu Sans",sans-serif;list-style-type:none}
+#toc li{line-height:1.3334;margin-top:.3334em}
+#toc a{text-decoration:none}
+#toc a:active{text-decoration:underline}
+#toctitle{color:#7a2518;font-size:1.2em}
+@media only screen and (min-width:768px){#toctitle{font-size:1.375em}
+body.toc2{padding-left:15em;padding-right:0}
+#toc.toc2{margin-top:0!important;background-color:#f8f8f7;position:fixed;width:15em;left:0;top:0;border-right:1px solid #efefed;border-top-width:0!important;border-bottom-width:0!important;z-index:1000;padding:1.25em 1em;height:100%;overflow:auto}
+#toc.toc2 #toctitle{margin-top:0;margin-bottom:.8rem;font-size:1.2em}
+#toc.toc2>ul{font-size:.9em;margin-bottom:0}
+#toc.toc2 ul ul{margin-left:0;padding-left:1em}
+#toc.toc2 ul.sectlevel0 ul.sectlevel1{padding-left:0;margin-top:.5em;margin-bottom:.5em}
+body.toc2.toc-right{padding-left:0;padding-right:15em}
+body.toc2.toc-right #toc.toc2{border-right-width:0;border-left:1px solid #efefed;left:auto;right:0}}
+@media only screen and (min-width:1280px){body.toc2{padding-left:20em;padding-right:0}
+#toc.toc2{width:20em}
+#toc.toc2 #toctitle{font-size:1.375em}
+#toc.toc2>ul{font-size:.95em}
+#toc.toc2 ul ul{padding-left:1.25em}
+body.toc2.toc-right{padding-left:0;padding-right:20em}}
+#content #toc{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+#content #toc>:first-child{margin-top:0}
+#content #toc>:last-child{margin-bottom:0}
+#footer{max-width:100%;background-color:rgba(0,0,0,.8);padding:1.25em}
+#footer-text{color:rgba(255,255,255,.8);line-height:1.44}
+.sect1{padding-bottom:.625em}
+@media only screen and (min-width:768px){.sect1{padding-bottom:1.25em}}
+.sect1+.sect1{border-top:1px solid #efefed}
+#content h1>a.anchor,h2>a.anchor,h3>a.anchor,#toctitle>a.anchor,.sidebarblock>.content>.title>a.anchor,h4>a.anchor,h5>a.anchor,h6>a.anchor{position:absolute;z-index:1001;width:1.5ex;margin-left:-1.5ex;display:block;text-decoration:none!important;visibility:hidden;text-align:center;font-weight:400}
+#content h1>a.anchor:before,h2>a.anchor:before,h3>a.anchor:before,#toctitle>a.anchor:before,.sidebarblock>.content>.title>a.anchor:before,h4>a.anchor:before,h5>a.anchor:before,h6>a.anchor:before{content:"\00A7";font-size:.85em;display:block;padding-top:.1em}
+#content h1:hover>a.anchor,#content h1>a.anchor:hover,h2:hover>a.anchor,h2>a.anchor:hover,h3:hover>a.anchor,#toctitle:hover>a.anchor,.sidebarblock>.content>.title:hover>a.anchor,h3>a.anchor:hover,#toctitle>a.anchor:hover,.sidebarblock>.content>.title>a.anchor:hover,h4:hover>a.anchor,h4>a.anchor:hover,h5:hover>a.anchor,h5>a.anchor:hover,h6:hover>a.anchor,h6>a.anchor:hover{visibility:visible}
+#content h1>a.link,h2>a.link,h3>a.link,#toctitle>a.link,.sidebarblock>.content>.title>a.link,h4>a.link,h5>a.link,h6>a.link{color:#ba3925;text-decoration:none}
+#content h1>a.link:hover,h2>a.link:hover,h3>a.link:hover,#toctitle>a.link:hover,.sidebarblock>.content>.title>a.link:hover,h4>a.link:hover,h5>a.link:hover,h6>a.link:hover{color:#a53221}
+.audioblock,.imageblock,.literalblock,.listingblock,.stemblock,.videoblock{margin-bottom:1.25em}
+.admonitionblock td.content>.title,.audioblock>.title,.exampleblock>.title,.imageblock>.title,.listingblock>.title,.literalblock>.title,.stemblock>.title,.openblock>.title,.paragraph>.title,.quoteblock>.title,table.tableblock>.title,.verseblock>.title,.videoblock>.title,.dlist>.title,.olist>.title,.ulist>.title,.qlist>.title,.hdlist>.title{text-rendering:optimizeLegibility;text-align:left;font-family:"Noto Serif","DejaVu Serif",serif;font-size:1rem;font-style:italic}
+table.tableblock>caption.title{white-space:nowrap;overflow:visible;max-width:0}
+.paragraph.lead>p,#preamble>.sectionbody>.paragraph:first-of-type p{color:rgba(0,0,0,.85)}
+table.tableblock #preamble>.sectionbody>.paragraph:first-of-type p{font-size:inherit}
+.admonitionblock>table{border-collapse:separate;border:0;background:none;width:100%}
+.admonitionblock>table td.icon{text-align:center;width:80px}
+.admonitionblock>table td.icon img{max-width:none}
+.admonitionblock>table td.icon .title{font-weight:bold;font-family:"Open Sans","DejaVu Sans",sans-serif;text-transform:uppercase}
+.admonitionblock>table td.content{padding-left:1.125em;padding-right:1.25em;border-left:1px solid #ddddd8;color:rgba(0,0,0,.6)}
+.admonitionblock>table td.content>:last-child>:last-child{margin-bottom:0}
+.exampleblock>.content{border-style:solid;border-width:1px;border-color:#e6e6e6;margin-bottom:1.25em;padding:1.25em;background:#fff;-webkit-border-radius:4px;border-radius:4px}
+.exampleblock>.content>:first-child{margin-top:0}
+.exampleblock>.content>:last-child{margin-bottom:0}
+.sidebarblock{border-style:solid;border-width:1px;border-color:#e0e0dc;margin-bottom:1.25em;padding:1.25em;background:#f8f8f7;-webkit-border-radius:4px;border-radius:4px}
+.sidebarblock>:first-child{margin-top:0}
+.sidebarblock>:last-child{margin-bottom:0}
+.sidebarblock>.content>.title{color:#7a2518;margin-top:0;text-align:center}
+.exampleblock>.content>:last-child>:last-child,.exampleblock>.content .olist>ol>li:last-child>:last-child,.exampleblock>.content .ulist>ul>li:last-child>:last-child,.exampleblock>.content .qlist>ol>li:last-child>:last-child,.sidebarblock>.content>:last-child>:last-child,.sidebarblock>.content .olist>ol>li:last-child>:last-child,.sidebarblock>.content .ulist>ul>li:last-child>:last-child,.sidebarblock>.content .qlist>ol>li:last-child>:last-child{margin-bottom:0}
+.literalblock pre,.listingblock pre:not(.highlight),.listingblock pre[class="highlight"],.listingblock pre[class^="highlight "],.listingblock pre.CodeRay,.listingblock pre.prettyprint{background:#f7f7f8}
+.sidebarblock .literalblock pre,.sidebarblock .listingblock pre:not(.highlight),.sidebarblock .listingblock pre[class="highlight"],.sidebarblock .listingblock pre[class^="highlight "],.sidebarblock .listingblock pre.CodeRay,.sidebarblock .listingblock pre.prettyprint{background:#f2f1f1}
+.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{-webkit-border-radius:4px;border-radius:4px;word-wrap:break-word;padding:1em;font-size:.8125em}
+.literalblock pre.nowrap,.literalblock pre[class].nowrap,.listingblock pre.nowrap,.listingblock pre[class].nowrap{overflow-x:auto;white-space:pre;word-wrap:normal}
+@media only screen and (min-width:768px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:.90625em}}
+@media only screen and (min-width:1280px){.literalblock pre,.literalblock pre[class],.listingblock pre,.listingblock pre[class]{font-size:1em}}
+.literalblock.output pre{color:#f7f7f8;background-color:rgba(0,0,0,.9)}
+.listingblock pre.highlightjs{padding:0}
+.listingblock pre.highlightjs>code{padding:1em;-webkit-border-radius:4px;border-radius:4px}
+.listingblock pre.prettyprint{border-width:0}
+.listingblock>.content{position:relative}
+.listingblock code[data-lang]:before{display:none;content:attr(data-lang);position:absolute;font-size:.75em;top:.425rem;right:.5rem;line-height:1;text-transform:uppercase;color:#999}
+.listingblock:hover code[data-lang]:before{display:block}
+.listingblock.terminal pre .command:before{content:attr(data-prompt);padding-right:.5em;color:#999}
+.listingblock.terminal pre .command:not([data-prompt]):before{content:"$"}
+table.pyhltable{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.pyhltable td{vertical-align:top;padding-top:0;padding-bottom:0;line-height:1.45}
+table.pyhltable td.code{padding-left:.75em;padding-right:0}
+pre.pygments .lineno,table.pyhltable td:not(.code){color:#999;padding-left:0;padding-right:.5em;border-right:1px solid #ddddd8}
+pre.pygments .lineno{display:inline-block;margin-right:.25em}
+table.pyhltable .linenodiv{background:none!important;padding-right:0!important}
+.quoteblock{margin:0 1em 1.25em 1.5em;display:table}
+.quoteblock>.title{margin-left:-1.5em;margin-bottom:.75em}
+.quoteblock blockquote,.quoteblock blockquote p{color:rgba(0,0,0,.85);font-size:1.15rem;line-height:1.75;word-spacing:.1em;letter-spacing:0;font-style:italic;text-align:justify}
+.quoteblock blockquote{margin:0;padding:0;border:0}
+.quoteblock blockquote:before{content:"\201c";float:left;font-size:2.75em;font-weight:bold;line-height:.6em;margin-left:-.6em;color:#7a2518;text-shadow:0 1px 2px rgba(0,0,0,.1)}
+.quoteblock blockquote>.paragraph:last-child p{margin-bottom:0}
+.quoteblock .attribution{margin-top:.5em;margin-right:.5ex;text-align:right}
+.quoteblock .quoteblock{margin-left:0;margin-right:0;padding:.5em 0;border-left:3px solid rgba(0,0,0,.6)}
+.quoteblock .quoteblock blockquote{padding:0 0 0 .75em}
+.quoteblock .quoteblock blockquote:before{display:none}
+.verseblock{margin:0 1em 1.25em 1em}
+.verseblock pre{font-family:"Open Sans","DejaVu Sans",sans;font-size:1.15rem;color:rgba(0,0,0,.85);font-weight:300;text-rendering:optimizeLegibility}
+.verseblock pre strong{font-weight:400}
+.verseblock .attribution{margin-top:1.25rem;margin-left:.5ex}
+.quoteblock .attribution,.verseblock .attribution{font-size:.9375em;line-height:1.45;font-style:italic}
+.quoteblock .attribution br,.verseblock .attribution br{display:none}
+.quoteblock .attribution cite,.verseblock .attribution cite{display:block;letter-spacing:-.025em;color:rgba(0,0,0,.6)}
+.quoteblock.abstract{margin:0 0 1.25em 0;display:block}
+.quoteblock.abstract blockquote,.quoteblock.abstract blockquote p{text-align:left;word-spacing:0}
+.quoteblock.abstract blockquote:before,.quoteblock.abstract blockquote p:first-of-type:before{display:none}
+table.tableblock{max-width:100%;border-collapse:separate}
+table.tableblock td>.paragraph:last-child p>p:last-child,table.tableblock th>p:last-child,table.tableblock td>p:last-child{margin-bottom:0}
+table.tableblock,th.tableblock,td.tableblock{border:0 solid #dedede}
+table.grid-all th.tableblock,table.grid-all td.tableblock{border-width:0 1px 1px 0}
+table.grid-all tfoot>tr>th.tableblock,table.grid-all tfoot>tr>td.tableblock{border-width:1px 1px 0 0}
+table.grid-cols th.tableblock,table.grid-cols td.tableblock{border-width:0 1px 0 0}
+table.grid-all *>tr>.tableblock:last-child,table.grid-cols *>tr>.tableblock:last-child{border-right-width:0}
+table.grid-rows th.tableblock,table.grid-rows td.tableblock{border-width:0 0 1px 0}
+table.grid-all tbody>tr:last-child>th.tableblock,table.grid-all tbody>tr:last-child>td.tableblock,table.grid-all thead:last-child>tr>th.tableblock,table.grid-rows tbody>tr:last-child>th.tableblock,table.grid-rows tbody>tr:last-child>td.tableblock,table.grid-rows thead:last-child>tr>th.tableblock{border-bottom-width:0}
+table.grid-rows tfoot>tr>th.tableblock,table.grid-rows tfoot>tr>td.tableblock{border-width:1px 0 0 0}
+table.frame-all{border-width:1px}
+table.frame-sides{border-width:0 1px}
+table.frame-topbot{border-width:1px 0}
+th.halign-left,td.halign-left{text-align:left}
+th.halign-right,td.halign-right{text-align:right}
+th.halign-center,td.halign-center{text-align:center}
+th.valign-top,td.valign-top{vertical-align:top}
+th.valign-bottom,td.valign-bottom{vertical-align:bottom}
+th.valign-middle,td.valign-middle{vertical-align:middle}
+table thead th,table tfoot th{font-weight:bold}
+tbody tr th{display:table-cell;line-height:1.6;background:#f7f8f7}
+tbody tr th,tbody tr th p,tfoot tr th,tfoot tr th p{color:rgba(0,0,0,.8);font-weight:bold}
+p.tableblock>code:only-child{background:none;padding:0}
+p.tableblock{font-size:1em}
+td>div.verse{white-space:pre}
+ol{margin-left:1.75em}
+ul li ol{margin-left:1.5em}
+dl dd{margin-left:1.125em}
+dl dd:last-child,dl dd:last-child>:last-child{margin-bottom:0}
+ol>li p,ul>li p,ul dd,ol dd,.olist .olist,.ulist .ulist,.ulist .olist,.olist .ulist{margin-bottom:.625em}
+ul.unstyled,ol.unnumbered,ul.checklist,ul.none{list-style-type:none}
+ul.unstyled,ol.unnumbered,ul.checklist{margin-left:.625em}
+ul.checklist li>p:first-child>.fa-square-o:first-child,ul.checklist li>p:first-child>.fa-check-square-o:first-child{width:1em;font-size:.85em}
+ul.checklist li>p:first-child>input[type="checkbox"]:first-child{width:1em;position:relative;top:1px}
+ul.inline{margin:0 auto .625em auto;margin-left:-1.375em;margin-right:0;padding:0;list-style:none;overflow:hidden}
+ul.inline>li{list-style:none;float:left;margin-left:1.375em;display:block}
+ul.inline>li>*{display:block}
+.unstyled dl dt{font-weight:400;font-style:normal}
+ol.arabic{list-style-type:decimal}
+ol.decimal{list-style-type:decimal-leading-zero}
+ol.loweralpha{list-style-type:lower-alpha}
+ol.upperalpha{list-style-type:upper-alpha}
+ol.lowerroman{list-style-type:lower-roman}
+ol.upperroman{list-style-type:upper-roman}
+ol.lowergreek{list-style-type:lower-greek}
+.hdlist>table,.colist>table{border:0;background:none}
+.hdlist>table>tbody>tr,.colist>table>tbody>tr{background:none}
+td.hdlist1,td.hdlist2{vertical-align:top;padding:0 .625em}
+td.hdlist1{font-weight:bold;padding-bottom:1.25em}
+.literalblock+.colist,.listingblock+.colist{margin-top:-.5em}
+.colist>table tr>td:first-of-type{padding:0 .75em;line-height:1}
+.colist>table tr>td:last-of-type{padding:.25em 0}
+.thumb,.th{line-height:0;display:inline-block;border:solid 4px #fff;-webkit-box-shadow:0 0 0 1px #ddd;box-shadow:0 0 0 1px #ddd}
+.imageblock.left,.imageblock[style*="float: left"]{margin:.25em .625em 1.25em 0}
+.imageblock.right,.imageblock[style*="float: right"]{margin:.25em 0 1.25em .625em}
+.imageblock>.title{margin-bottom:0}
+.imageblock.thumb,.imageblock.th{border-width:6px}
+.imageblock.thumb>.title,.imageblock.th>.title{padding:0 .125em}
+.image.left,.image.right{margin-top:.25em;margin-bottom:.25em;display:inline-block;line-height:0}
+.image.left{margin-right:.625em}
+.image.right{margin-left:.625em}
+a.image{text-decoration:none;display:inline-block}
+a.image object{pointer-events:none}
+sup.footnote,sup.footnoteref{font-size:.875em;position:static;vertical-align:super}
+sup.footnote a,sup.footnoteref a{text-decoration:none}
+sup.footnote a:active,sup.footnoteref a:active{text-decoration:underline}
+#footnotes{padding-top:.75em;padding-bottom:.75em;margin-bottom:.625em}
+#footnotes hr{width:20%;min-width:6.25em;margin:-.25em 0 .75em 0;border-width:1px 0 0 0}
+#footnotes .footnote{padding:0 .375em 0 .225em;line-height:1.3334;font-size:.875em;margin-left:1.2em;text-indent:-1.05em;margin-bottom:.2em}
+#footnotes .footnote a:first-of-type{font-weight:bold;text-decoration:none}
+#footnotes .footnote:last-of-type{margin-bottom:0}
+#content #footnotes{margin-top:-.625em;margin-bottom:0;padding:.75em 0}
+.gist .file-data>table{border:0;background:#fff;width:100%;margin-bottom:0}
+.gist .file-data>table td.line-data{width:99%}
+div.unbreakable{page-break-inside:avoid}
+.big{font-size:larger}
+.small{font-size:smaller}
+.underline{text-decoration:underline}
+.overline{text-decoration:overline}
+.line-through{text-decoration:line-through}
+.aqua{color:#00bfbf}
+.aqua-background{background-color:#00fafa}
+.black{color:#000}
+.black-background{background-color:#000}
+.blue{color:#0000bf}
+.blue-background{background-color:#0000fa}
+.fuchsia{color:#bf00bf}
+.fuchsia-background{background-color:#fa00fa}
+.gray{color:#606060}
+.gray-background{background-color:#7d7d7d}
+.green{color:#006000}
+.green-background{background-color:#007d00}
+.lime{color:#00bf00}
+.lime-background{background-color:#00fa00}
+.maroon{color:#600000}
+.maroon-background{background-color:#7d0000}
+.navy{color:#000060}
+.navy-background{background-color:#00007d}
+.olive{color:#606000}
+.olive-background{background-color:#7d7d00}
+.purple{color:#600060}
+.purple-background{background-color:#7d007d}
+.red{color:#bf0000}
+.red-background{background-color:#fa0000}
+.silver{color:#909090}
+.silver-background{background-color:#bcbcbc}
+.teal{color:#006060}
+.teal-background{background-color:#007d7d}
+.white{color:#bfbfbf}
+.white-background{background-color:#fafafa}
+.yellow{color:#bfbf00}
+.yellow-background{background-color:#fafa00}
+span.icon>.fa{cursor:default}
+.admonitionblock td.icon [class^="fa icon-"]{font-size:2.5em;text-shadow:1px 1px 2px rgba(0,0,0,.5);cursor:default}
+.admonitionblock td.icon .icon-note:before{content:"\f05a";color:#19407c}
+.admonitionblock td.icon .icon-tip:before{content:"\f0eb";text-shadow:1px 1px 2px rgba(155,155,0,.8);color:#111}
+.admonitionblock td.icon .icon-warning:before{content:"\f071";color:#bf6900}
+.admonitionblock td.icon .icon-caution:before{content:"\f06d";color:#bf3400}
+.admonitionblock td.icon .icon-important:before{content:"\f06a";color:#bf0000}
+.conum[data-value]{display:inline-block;color:#fff!important;background-color:rgba(0,0,0,.8);-webkit-border-radius:100px;border-radius:100px;text-align:center;font-size:.75em;width:1.67em;height:1.67em;line-height:1.67em;font-family:"Open Sans","DejaVu Sans",sans-serif;font-style:normal;font-weight:bold}
+.conum[data-value] *{color:#fff!important}
+.conum[data-value]+b{display:none}
+.conum[data-value]:after{content:attr(data-value)}
+pre .conum[data-value]{position:relative;top:-.125em}
+b.conum *{color:inherit!important}
+.conum:not([data-value]):empty{display:none}
+dt,th.tableblock,td.content,div.footnote{text-rendering:optimizeLegibility}
+h1,h2,p,td.content,span.alt{letter-spacing:-.01em}
+p strong,td.content strong,div.footnote strong{letter-spacing:-.005em}
+p,blockquote,dt,td.content,span.alt{font-size:1.0625rem}
+p{margin-bottom:1.25rem}
+.sidebarblock p,.sidebarblock dt,.sidebarblock td.content,p.tableblock{font-size:1em}
+.exampleblock>.content{background-color:#fffef7;border-color:#e0e0dc;-webkit-box-shadow:0 1px 4px #e0e0dc;box-shadow:0 1px 4px #e0e0dc}
+.print-only{display:none!important}
+@media print{@page{margin:1.25cm .75cm}
+*{-webkit-box-shadow:none!important;box-shadow:none!important;text-shadow:none!important}
+a{color:inherit!important;text-decoration:underline!important}
+a.bare,a[href^="#"],a[href^="mailto:"]{text-decoration:none!important}
+a[href^="http:"]:not(.bare):after,a[href^="https:"]:not(.bare):after{content:"(" attr(href) ")";display:inline-block;font-size:.875em;padding-left:.25em}
+abbr[title]:after{content:" (" attr(title) ")"}
+pre,blockquote,tr,img,object,svg{page-break-inside:avoid}
+thead{display:table-header-group}
+svg{max-width:100%}
+p,blockquote,dt,td.content{font-size:1em;orphans:3;widows:3}
+h2,h3,#toctitle,.sidebarblock>.content>.title{page-break-after:avoid}
+#toc,.sidebarblock,.exampleblock>.content{background:none!important}
+#toc{border-bottom:1px solid #ddddd8!important;padding-bottom:0!important}
+.sect1{padding-bottom:0!important}
+.sect1+.sect1{border:0!important}
+#header>h1:first-child{margin-top:1.25rem}
+body.book #header{text-align:center}
+body.book #header>h1:first-child{border:0!important;margin:2.5em 0 1em 0}
+body.book #header .details{border:0!important;display:block;padding:0!important}
+body.book #header .details span:first-child{margin-left:0!important}
+body.book #header .details br{display:block}
+body.book #header .details br+span:before{content:none!important}
+body.book #toc{border:0!important;text-align:left!important;padding:0!important;margin:0!important}
+body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-break-before:always}
+.listingblock code[data-lang]:before{display:block}
+#footer{background:none!important;padding:0 .9375em}
+#footer-text{color:rgba(0,0,0,.6)!important;font-size:.9em}
+.hide-on-print{display:none!important}
+.print-only{display:block!important}
+.hide-for-print{display:none!important}
+.show-for-print{display:inherit!important}}
+</style>
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Document fonctionnel détaillé</h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_f1_créer_un_profil_utilisateur">F1 - Créer un profil utilisateur</a>
+<ul class="sectlevel2">
+<li><a href="#_scénarios_enchaînement_des_écrans">Scénarios &amp; Enchaînement des écrans</a></li>
+</ul>
+</li>
+<li><a href="#_f2_gérer_des_comptes">F2 - Gérer des comptes</a>
+<ul class="sectlevel2">
+<li><a href="#_scénarios_enchaînement_des_écrans_2">Scénarios &amp; Enchaînement des écrans</a></li>
+</ul>
+</li>
+<li><a href="#_f3_gérer_des_ordres">F3 - Gérer des ordres</a>
+<ul class="sectlevel2">
+<li><a href="#_gérer_les_positions">Gérer les positions</a></li>
+<li><a href="#_gérer_les_ordres">Gérer les ordres</a></li>
+<li><a href="#_gérer_l_historique">Gérer l&#8217;historique</a></li>
+<li><a href="#_ouvrir_un_ordre">Ouvrir un ordre</a></li>
+</ul>
+</li>
+<li><a href="#_f4_gérer_des_graphiques">F4 - Gérer des graphiques</a>
+<ul class="sectlevel2">
+<li><a href="#_instruments_financiers_liste_des_instrument">Instruments financiers - Liste des instrument</a></li>
+<li><a href="#_interface_de_la_zone_de_graphique">Interface de la zone de graphique</a></li>
+<li><a href="#_barre_d_outil_pour_les_graphiques">Barre d&#8217;outil pour les graphiques</a></li>
+</ul>
+</li>
+<li><a href="#_f5_gérer_des_algorthmes">F5 - Gérer des algorthmes</a>
+<ul class="sectlevel2">
+<li><a href="#_développement_d_un_algorithme_de_trading">Développement d&#8217;un algorithme de trading</a></li>
+</ul>
+</li>
+<li><a href="#_f6_analyser_ses_performances">F6 - Analyser ses performances</a></li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_f1_créer_un_profil_utilisateur">F1 - Créer un profil utilisateur</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_scénarios_enchaînement_des_écrans">Scénarios &amp; Enchaînement des écrans</h3>
+<div class="sect3">
+<h4 id="_créer_un_profil">Créer un profil</h4>
+<div class="paragraph">
+<p>Un utilisateur doit pouvoir créer un profil utilisateur afin de protéger les données de ses comptes de trading.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-a663d57759ca1208dbb9f2dbac80b4b7.svg" alt="diag a663d57759ca1208dbb9f2dbac80b4b7" width="434" height="166">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authentification_d_un_profil">Authentification d&#8217;un profil</h4>
+<div class="paragraph">
+<p>Un utilisateur doit pouvoir s&#8217;authentifier avec les informations qu&#8217;il a saisi lors de la création de son profil.</p>
+</div>
+<div class="paragraph">
+<p>Par l&#8217;intermédiaire du formulaire d&#8217;authentification, l&#8217;utilisateur doit pouvoir accéder au formulaire de création de profil.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-22aa3391ccfc06d8db099994dbd0ca95.svg" alt="diag 22aa3391ccfc06d8db099994dbd0ca95" width="389" height="156">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authentification_d_un_profil_cas_d_erreur">Authentification d&#8217;un profil (cas d&#8217;erreur)</h4>
+<div class="paragraph">
+<p>Si l&#8217;utilisateur ne saisi pas les bonnes informations d&#8217;authentification, celui-ci reste sur le formulaire et voir apparaître un message l&#8217;informant que les informations d&#8217;authentification ne sont pas correctes.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-7056c25f3e6e247080741aca20467939.svg" alt="diag 7056c25f3e6e247080741aca20467939" width="403" height="180">
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<div class="title">Warning</div>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Le message de ne doit spécifier quels informations sont incorrectes pour éviter les procédures de brute force.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<div class="title">TODO list</div>
+<ul>
+<li>
+<p>Mettre en place l&#8217;option mot de passe oublié</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_f2_gérer_des_comptes">F2 - Gérer des comptes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_scénarios_enchaînement_des_écrans_2">Scénarios &amp; Enchaînement des écrans</h3>
+<div class="sect3">
+<h4 id="_créer_un_compte">Créer un compte</h4>
+<div class="paragraph">
+<p>Pour le création d&#8217;un compte de trading :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Si la liste des compte est vidé, un message est affiché à l&#8217;utilisateur l&#8217;informant qu&#8217;il n&#8217;y a pas de compte.</p>
+</li>
+<li>
+<p>L&#8217;utilisateur clique sur un bouton d&#8217;ajout de compte.</p>
+</li>
+<li>
+<p>L&#8217;utilisateur est dirigé vers un formulaire de connection.</p>
+</li>
+<li>
+<p>Un fois tous les champs saisi, l&#8217;utilisateur doit cliquer sur un bouton de connection.</p>
+</li>
+<li>
+<p>Pendant l&#8217;authentification le bouton de connection change d&#8217;état pour informer que l&#8217;authentification est en cours.</p>
+</li>
+<li>
+<p>Une fois connecté, l&#8217;utilisateur est dirigé vers la liste des comptes de trading.</p>
+</li>
+<li>
+<p>L&#8217;utilisateur voir le nom d&#8217;utilisateur saisi ainsi que le statut de connection du compte.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-a6f6d541cd200be516c97822f5da5158.svg" alt="diag a6f6d541cd200be516c97822f5da5158" width="697" height="208">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_modifier_un_compte">Modifier un compte</h4>
+<div class="paragraph">
+<p>Pour le création d&#8217;un compte de trading :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>La liste possede déjà au moins un compte de trading.</p>
+</li>
+<li>
+<p>L&#8217;utilisateur double clique sur le compte qu&#8217;il souhaite modifier.</p>
+</li>
+<li>
+<p>L&#8217;utilisateur est dirigé vers un formulaire de connection, et les informations sont déjà renseignées.</p>
+</li>
+<li>
+<p>Un fois tous les champs modifiés, l&#8217;utilisateur doit cliquer sur un bouton de connection.</p>
+</li>
+<li>
+<p>Pendant l&#8217;authentification le bouton de connection change d&#8217;état pour informer que l&#8217;authentification est en cours.</p>
+</li>
+<li>
+<p>Une fois connecté, l&#8217;utilisateur est dirigé vers la liste des comptes de trading.</p>
+</li>
+<li>
+<p>L&#8217;utilisateur voir les changements effectés sur le compte de trading.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-00abc0dc1b28ae71c6a47b90aad743a9.svg" alt="diag 00abc0dc1b28ae71c6a47b90aad743a9" width="699" height="208">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_supprimer_un_compte">Supprimer un compte</h4>
+<div class="paragraph">
+<p>Pour la suppression d&#8217;un compte de trading :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lorsque l&#8217;utilisateur utilise le menu contextuel, il doit pouvoir sélectionner une option de suppression.</p>
+</li>
+<li>
+<p>Lorsque l&#8217;utilisateur a cliqué sur sur l&#8217;option de suppression, le compte se supprime de la liste.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-ec3ded63f3e02c0ead681c270be3c0e8.svg" alt="diag ec3ded63f3e02c0ead681c270be3c0e8" width="352" height="110">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_connection_à_un_compte">Connection à un compte</h4>
+<div class="paragraph">
+<p>Pour la connection à un compte de trading :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lorsque l&#8217;utilisateur utilise menu contextuel, il doit pouvoir sélectionner une option de connection.</p>
+</li>
+<li>
+<p>Lorsque l&#8217;utilisateur a cliqué sur l&#8217;option de connection, le compte affiche un statut connecté.</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-400f143a97cbe623d221afda3d88425b.svg" alt="diag 400f143a97cbe623d221afda3d88425b" width="337" height="110">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_f3_gérer_des_ordres">F3 - Gérer des ordres</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>L&#8217;utilisateur doit pouvoir gérer les ordres qu&#8217;il passe par l&#8217;intermediaire de la plateforme de trading.</p>
+</div>
+<div class="sect2">
+<h3 id="_gérer_les_positions">Gérer les positions</h3>
+<div class="paragraph">
+<p>Un utilisateur doit retrouver un tableau des positions actuellement placé sur les marchés. Chaque ligne possède un bouton permettant la clôture d&#8217;une position.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-706347c8b75982aa5b43e6be5658a49b.svg" alt="diag 706347c8b75982aa5b43e6be5658a49b" width="478" height="64">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gérer_les_ordres">Gérer les ordres</h3>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit pouvoir gérer les ordres positionnés en attente.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit pouvoir supprimer un ordre mais celui-ci doit pouvoir être éditable.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-3e7ba05e80aa53895b24074705181521.svg" alt="diag 3e7ba05e80aa53895b24074705181521" width="535" height="70">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_gérer_l_historique">Gérer l&#8217;historique</h3>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit pouvoir accéder aux positions qui ont été fermés pour réaliser sont analyse.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-6a43efc1fc8d9ed73f24522f9c0a3ca5.svg" alt="diag 6a43efc1fc8d9ed73f24522f9c0a3ca5" width="643" height="61">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ouvrir_un_ordre">Ouvrir un ordre</h3>
+<div class="paragraph">
+<p>Un utilisateur doit pouvoir placer des ordres ou des positions de deux manières :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Soit par le biais du tableau des instruments financiers</p>
+</li>
+<li>
+<p>Soit par le biais des boutons associés au graphique</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Les actions précédentes permettent d&#8217;ouvrir une interface pour le placement des transactions :</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-92851197b7ccb904f98d27b84879596d.svg" alt="diag 92851197b7ccb904f98d27b84879596d" width="473" height="218">
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mode_simple">Mode simple</h4>
+<div class="paragraph">
+<p>L&#8217;interface de placement des transactions en mode simple doit proposer de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Placer un Take profit</p>
+</li>
+<li>
+<p>Placer un ordre sur l&#8217;Ask</p>
+</li>
+<li>
+<p>Afficher le spread</p>
+</li>
+<li>
+<p>Choisir un nombre de lot</p>
+</li>
+<li>
+<p>Placer un ordre sur le Bid</p>
+</li>
+<li>
+<p>Placer un Stop loss</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Le fait de cliquer sur le prix Ask ou Bid permet de directement placer la position sur les marchés.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mode_avancé">Mode avancé</h4>
+<div class="paragraph">
+<p>Pour permettre le placement d&#8217;ordre par anticipation, faut proposer une interface différente, accéssible via un bouton "Advanced mode".</p>
+</div>
+<div class="paragraph">
+<p>A la différence d&#8217;un mode simple, il doit être possible de saisir le prix d&#8217;achat ou de vente directement via un champs "Open price".</p>
+</div>
+<div class="paragraph">
+<p>Et pour placer l&#8217;ordre, un bouton "Place order" est proposé sur l&#8217;interface, ce qui n&#8217;est pas le cas dans le mode simple.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_f4_gérer_des_graphiques">F4 - Gérer des graphiques</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un utilisateur doit pouvoir gérer ses graphiques dans l&#8217;optique de réaliser des analyses techniques. Il doit donc être possible :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>D&#8217;ouvrir un graphique</p>
+</li>
+<li>
+<p>De fermer un graphique</p>
+</li>
+<li>
+<p>De détacher un graphique</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Un graphique ne peut être ouvert que sur une liste de d&#8217;instruments financiers.</p>
+</div>
+<div class="sect2">
+<h3 id="_instruments_financiers_liste_des_instrument">Instruments financiers - Liste des instrument</h3>
+<div class="paragraph">
+<p>La liste des instruments financiers peut être représenté dans l&#8217;interface par un tableau.</p>
+</div>
+<div class="paragraph">
+<p>3 données sont traditionnellement affichées en trading :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Le nom du produit financier</p>
+</li>
+<li>
+<p>L&#8217;Ask</p>
+</li>
+<li>
+<p>Le bid</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-0cb41f9451286f43f50150c9dbdac0d1.svg" alt="diag 0cb41f9451286f43f50150c9dbdac0d1" width="230" height="96">
+</div>
+</div>
+<div class="paragraph">
+<p>Par l&#8217;intermédiaire de ce tableau d&#8217;instruments financiers, l&#8217;utilisateur doit être en mesure de :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Action</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ouvrir un graphique</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">En clique sur un bouton l&#8217;utilisateur peut ouvrir un graphique permettant l&#8217;analyse technique</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ouvrir un panneau placement de transaction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ce panneau permet de placer des ordres ou des positions sur les marchés</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mettre en favoris</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de mettre en tête de liste les instruments les plus utilisé par l&#8217;utilisateur</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Ces différentes actions doivent être accéssibles par :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>un menu contextuel</p>
+</li>
+<li>
+<p>un bouton (pour l&#8217;ouverture d&#8217;un graphique)</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_instruments_financiers_recherche">Instruments financiers - Recherche</h4>
+<div class="paragraph">
+<p>Un utilisateur doit être en mesure de réaliser des recherches. Associé à la liste des instruments financiers un formulaire de recherche doit être mis en place.</p>
+</div>
+<div class="paragraph">
+<p>Le système de recherche doit être insensible à la casse.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-a539e61c1cdc19d840f40840b8b48d95.svg" alt="diag a539e61c1cdc19d840f40840b8b48d95" width="706" height="134">
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interface_de_la_zone_de_graphique">Interface de la zone de graphique</h3>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit être en mesure d&#8217;ouvrir un graphique d&#8217;ouvrir un graphique par l&#8217;intermedaire de la liste d&#8217;instrument.</p>
+</div>
+<div class="paragraph">
+<p>La zone de graphique doit permettre l&#8217;accès aux différents instruments financiers par l&#8217;intermedaire d&#8217;onglets.</p>
+</div>
+<div class="paragraph">
+<p>Un onglet correspond à un graphique qui contient l&#8217;évolution des marchés sur un instrument financier.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-ea3e8b302fc9d71490171b07dacda68c.svg" alt="diag ea3e8b302fc9d71490171b07dacda68c" width="329" height="73">
+</div>
+</div>
+<div class="paragraph">
+<p>Sur chacun des graphique, il doit être possible de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Zoomer et dészoomer</p>
+</li>
+<li>
+<p>Placer des transactions d&#8217;achat et de vente</p>
+</li>
+<li>
+<p>Changer le type de graphique (bâton/chandelier)</p>
+</li>
+<li>
+<p>Changer l&#8217;unité de temps (UT)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La zone de graphique doit intégrer des informations telsque :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Nom de l&#8217;instrument financier</p>
+</li>
+<li>
+<p>Ask</p>
+</li>
+<li>
+<p>Bid</p>
+</li>
+<li>
+<p>Spread</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Ces différentes informations devraient pouvoir être présente en haut à droite de la zone de graphique afin de ne pas géner l&#8217;analyse du trader.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_barre_d_outil_pour_les_graphiques">Barre d&#8217;outil pour les graphiques</h3>
+<div class="paragraph">
+<p>De façon générique à tous les graphiques, il doit être possible pour un utilisateur de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Placer des graphiques</p>
+</li>
+<li>
+<p>Placer des objets</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-270c5663b9ae22fa5d2a1df5c2f86c74.svg" alt="diag 270c5663b9ae22fa5d2a1df5c2f86c74" width="106" height="80">
+</div>
+</div>
+<div class="paragraph">
+<p>La zone de graphique devra donc intégrer cette barre d&#8217;outil.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_f5_gérer_des_algorthmes">F5 - Gérer des algorthmes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un utilisateur doit pouvoir gérer des algorithmes de trading. Il doit donc pouvoir effectuer les opérations générales d&#8217;un CRUD :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Lister des algorithmes</p>
+</li>
+<li>
+<p>Créer un algorithme (Comprend le développement)</p>
+</li>
+<li>
+<p>Modifier un algorithme</p>
+</li>
+<li>
+<p>Supprimer un algorithme</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En plus de ses différentes opérations, l&#8217;utilisateur doit pouvoir :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Réaliser des backtests en local</p>
+</li>
+<li>
+<p>Réaliser des backtests dans le cloud</p>
+</li>
+<li>
+<p>Executer ses algorithmes sur un compte de trading en local</p>
+</li>
+<li>
+<p>Executer ses algorithmes sur un compte de trading dans le cloud</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_développement_d_un_algorithme_de_trading">Développement d&#8217;un algorithme de trading</h3>
+<div class="sect3">
+<h4 id="_ide_environement_de_développement">IDE (Environement de développement)</h4>
+<div class="paragraph">
+<p>Pour developper un algorithme de trading, l&#8217;utilisateur devra utiliser un IDE. La plateforme devra donc proposer cette option.</p>
+</div>
+<div class="paragraph">
+<p>Il sera nécessaire de développer une application en parallèle avec ses propres outils.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_framework_documentation">Framework &amp; documentation</h4>
+<div class="paragraph">
+<p>Pour qu&#8217;un utilisateur puisse développer un algorithme de trading, il sera nécessaire de mettre en palce un Framework et sa documentation associé.</p>
+</div>
+<div class="paragraph">
+<p>L&#8217;interface devra donc prendre en compte :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>L&#8217;autocomplétion</p>
+</li>
+<li>
+<p>La documentation associé aux fonctions</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration_des_paramètres">Configuration des paramètres</h4>
+<div class="paragraph">
+<p>L&#8217;utilisateur aura besoin de tester son algorithme de trading. Il faut donc prévoir lors du lancement du backtest une phase de paramétrage.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-d8d35770b578bb9f3ce9eac1e5d7b05c.svg" alt="diag d8d35770b578bb9f3ce9eac1e5d7b05c" width="244" height="157">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_listing_des_backtests">Listing des backtests</h4>
+<div class="paragraph">
+<p>L&#8217;utilisateur doit être en mesure d&#8217;accéder au listing des backtests effectés. L&#8217;objectif étant de pouvoir réaliser un comparatif.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-07b07c9f8dea7b610c5d9520b7fa54c0.svg" alt="diag 07b07c9f8dea7b610c5d9520b7fa54c0" width="584" height="65">
+</div>
+</div>
+<div class="paragraph">
+<p>A partir de cette liste de backtest, l&#8217;utilisateur doit être en mesure de :</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Supprimer un backtest</p>
+</li>
+<li>
+<p>Voir les performances d&#8217;un backtest</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_analyse_des_performances">Analyse des performances</h4>
+<div class="paragraph">
+<p>Un certain nombre d&#8217;informations doivent être présent dans l&#8217;analyse des performances d&#8217;un algorithme de trading :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de la donnée</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance en capital</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence entre le dépot initial et le capital en cours.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance en pourcentage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence entre le dépot initial et le capital en cours mais rapporté en pourcentage.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Drawdown</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la prise de risque qu&#8217;un trader prend sur les marchés</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ratio gain/perte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de connaître le nombre de trades gagnants par rapport aux pertes.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ratio de gain/perte par heure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Il est utile pour l&#8217;optimisation d&#8217;un algorithme de connaîtres les heures de gain/perte par heure.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ratio de gain/perte par jour</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Il est utile pour l&#8217;optimisation d&#8217;un algorithme de connaîtres les heures de gain/perte par jour.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_historique_cotations">Historique &amp; cotations</h4>
+<div class="paragraph">
+<p>Pour la mise en place des backtests, il sera nécessaire que la plateforme de trading puisse télécharger un historique de cotations.</p>
+</div>
+<div class="paragraph">
+<p>Ces données seront utiliser pour jouer de façon "fictive" les algorithmes de trading.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_f6_analyser_ses_performances">F6 - Analyser ses performances</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Un utilisateur doit pouvoir analyses ses performances de trading. Les performances sont associées à un compte de trading.</p>
+</div>
+<div class="paragraph">
+<p>On peut donc mettre en place un onglet analytics dans la zone d&#8217;analyses des ordres.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="diag-9fe41e7a574b9868e5bc359ee5275d85.svg" alt="diag 9fe41e7a574b9868e5bc359ee5275d85" width="384" height="93">
+</div>
+</div>
+<div class="paragraph">
+<p>Différentes information doivent être disponibles pour l&#8217;utilisateur :</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nom de la donnée</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance en capital</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence entre le dépot initial et le capital en cours.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Performance en pourcentage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la différence entre le dépot initial et le capital en cours mais rapporté en pourcentage.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Drawdown</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Correspond à la prise de risque qu&#8217;un trader prend sur les marchés</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ratio gain/perte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permet de connaître le nombre de trades gagnants par rapport aux pertes.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="footer">
+<div id="footer-text">
+Last updated 2018-11-19 19:01:37 CET
+</div>
+</div>
+</body>
+</html>

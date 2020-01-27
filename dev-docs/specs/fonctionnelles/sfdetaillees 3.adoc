@@ -1,0 +1,816 @@
+= Document fonctionnel détaillé
+:toc: left
+
+== F1 - Créer un profil utilisateur
+
+=== Scénarios & Enchaînement des écrans
+
+==== Créer un profil
+
+Un utilisateur doit pouvoir créer un profil utilisateur afin de protéger les données de ses comptes de trading.
+
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{^<b>Create profile
+"username"
+==
+"password"
+==
+"confirm password"
+==
+[create profil]
+}
+}}
+" as profilform
+
+profilform -right-> "
+{{
+salt
+{
+Trading platform inteface
+}
+}}
+"
+....
+
+Maquette :
+
+image:https://imgur.com/y383DhR.jpg[noAccount,800]
+
+==== Authentification d'un profil
+
+Un utilisateur doit pouvoir s'authentifier avec les informations qu'il a saisi lors de la création de son profil.
+
+Par l'intermédiaire du formulaire d'authentification, l'utilisateur doit pouvoir accéder au formulaire de création de profil.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{^<b>Login
+"username"
+==
+"password"
+==
+[connection]
+create profil
+}
+}}
+" as profilform
+
+profilform -right-> "
+{{
+salt
+{
+Trading platform inteface
+}
+}}
+"
+....
+
+Maquette :
+
+image:https://imgur.com/Mg7zhZr.jpg[noAccount,800]
+
+==== Authentification d'un profil (cas d'erreur)
+
+Si l'utilisateur ne saisi pas les bonnes informations d'authentification, celui-ci reste sur le formulaire et voir apparaître un message l'informant que les informations d'authentification ne sont pas correctes.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{^<b>Login
+"username"
+==
+"password"
+==
+[connection]
+create profil
+}
+}}
+" as profilform
+
+profilform -right-> "
+{{
+salt
+{^<b>Login
+<b>bad credential message
+..
+"username"
+==
+"password"
+==
+[connection]
+create profil
+}
+}}
+"
+....
+
+[WARNING]
+====
+Le message de ne doit spécifier quels informations sont incorrectes pour éviter les procédures de brute force.
+====
+
+.TODO list
+- Mettre en place l'option mot de passe oublié
+
+== F2 - Gérer des comptes
+
+=== Scénarios & Enchaînement des écrans
+
+==== Créer un compte
+
+Pour le création d'un compte de trading :
+
+* Si la liste des compte est vidé, un message est affiché à l'utilisateur l'informant qu'il n'y a pas de compte.
+* L'utilisateur clique sur un bouton d'ajout de compte.
+* L'utilisateur est dirigé vers un formulaire de connection.
+* Un fois tous les champs saisi, l'utilisateur doit cliquer sur un bouton de connection.
+* Pendant l'authentification le bouton de connection change d'état pour informer que l'authentification est en cours.
+* Une fois connecté, l'utilisateur est dirigé vers la liste des comptes de trading.
+* L'utilisateur voir le nom d'utilisateur saisi ainsi que le statut de connection du compte.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+<b>Account list
+..
+No account found
+[add account]
+}
+}}
+" as accountlist
+
+accountlist -right-> "
+{{
+salt
+{^<b>Account form
+..
+{ ^broker name ^ }
+==
+{ ^account type^ }
+==
+"username"
+==
+"password"
+==
+[connection]
+}
+}}
+" as accountform
+
+accountform -right-> "
+{{
+salt
+{^<b>Account form
+..
+{ ^broker name ^ }
+==
+{ ^account type^ }
+==
+"username"
+==
+"password"
+==
+[connecting...]
+}
+}}
+" as accountformwaiting
+
+accountformwaiting -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username <&lock-locked>
+[add account]
+}
+}}
+"
+....
+
+Maquette :
+
+image:https://imgur.com/Oq20DNY.jpg[AucunCompte,800]
+
+image:https://imgur.com/D4Oob39.jpg[AjoutBroker,800]
+
+image:https://imgur.com/QdcM5YU.jpg[GestionCompte,800]
+
+==== Modifier un compte
+
+Pour le création d'un compte de trading :
+
+* La liste possede déjà au moins un compte de trading.
+* L'utilisateur double clique sur le compte qu'il souhaite modifier.
+* L'utilisateur est dirigé vers un formulaire de connection, et les informations sont déjà renseignées.
+* Un fois tous les champs modifiés, l'utilisateur doit cliquer sur un bouton de connection.
+* Pendant l'authentification le bouton de connection change d'état pour informer que l'authentification est en cours.
+* Une fois connecté, l'utilisateur est dirigé vers la liste des comptes de trading.
+* L'utilisateur voir les changements effectés sur le compte de trading.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username
+[add account]
+}
+}}
+" as accountlist
+
+accountlist -right-> "
+{{
+salt
+{^<b>Account form
+..
+{ ^broker name ^ }
+==
+{ ^account type^ }
+==
+"other username"
+==
+"password"
+==
+[connection]
+}
+}}
+" as accountform
+
+accountform -right-> "
+{{
+salt
+{^<b>Account form"
+..
+{ ^broker name ^ }
+==
+{ ^account type^ }
+==
+"username"
+==
+"password"
+==
+[connecting...]
+}
+}}
+" as accountformwaiting
+
+accountformwaiting -right-> "
+{{
+salt
+{
+<b>Account list
+..
+other username <&lock-locked>
+[add account]
+}
+}}
+"
+....
+
+Maquette :
+
+image:https://imgur.com/kT2UXMf.jpg[ModificationCompte,800]
+
+==== Supprimer un compte
+
+Pour la suppression d'un compte de trading :
+
+* Lorsque l'utilisateur utilise le menu contextuel, il doit pouvoir sélectionner une option de suppression.
+* Lorsque l'utilisateur a cliqué sur sur l'option de suppression, le compte se supprime de la liste.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username
+[add account]
+}
+}}
+" as accountlist
+
+accountlist -right-> "
+{{
+salt
+{
+<b>Account list
+..
+No account found
+[add account]
+}
+}}
+"
+....
+
+Maquette :
+
+image:https://imgur.com/s69bmTd.jpg[SuppresionCompte,800]
+
+==== Connection à un compte
+
+Pour la connection à un compte de trading :
+
+* Lorsque l'utilisateur utilise menu contextuel, il doit pouvoir sélectionner une option de connection.
+* Lorsque l'utilisateur a cliqué sur l'option de connection, le compte affiche un statut connecté.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username
+[add account]
+}
+}}
+" as accountlist
+
+accountlist -right-> "
+{{
+salt
+{
+<b>Account list
+..
+username <&lock-locked>
+[add account]
+}
+}}
+"
+....
+
+Maquette :
+
+image:https://imgur.com/kVLBIFI.jpg[ConnexionCompte,800]
+
+
+== F3 - Gérer des ordres
+
+L'utilisateur doit pouvoir gérer les ordres qu'il passe par l'intermediaire de la plateforme de trading.
+
+=== Gérer les positions
+
+Un utilisateur doit retrouver un tableau des positions actuellement placé sur les marchés. Chaque ligne possède un bouton permettant la clôture d'une position.
+
+[plantuml, format="svg"]
+....
+salt
+{+
+{/ <b>Position | Orders | Historical | Analytics }
+{#
+# | instrument | open date | lots | price | sl | tp | profit ($) | actions
+1 | EURUSD | 07.07.1990 12:23 | 1.2 | 1.123452 | 1.23358 | 0.0 | 23.74 | [<&delete>]
+}
+}
+....
+
+image:https://imgur.com/yZEl2Hu.jpg[GestionPosition,800]
+
+=== Gérer les ordres
+
+L'utilisateur doit pouvoir gérer les ordres positionnés en attente.
+
+L'utilisateur doit pouvoir supprimer un ordre mais celui-ci doit pouvoir être éditable.
+
+[plantuml, format="svg"]
+....
+salt
+{+
+{/ Position | <b>Orders | Historical | Analytics }
+{#
+# | instrument | open date | lots | price | sl | tp | profit ($) | pip | actions
+1 | EURUSD | 07.07.1990 12:23 | 1.2 | 1.123452 | 1.23358 | 0.0 | 3.4 | 23.74 | [<&delete> - <&pencil>]
+}
+}
+....
+
+image:https://imgur.com/MsesnMe.jpg[GestionOrdres,800]
+
+=== Gérer l'historique
+
+L'utilisateur doit pouvoir accéder aux positions qui ont été fermés pour réaliser sont analyse.
+
+[plantuml, format="svg"]
+....
+salt
+{+
+{/ Position | Orders | <b>Historical | Analytics }
+{#
+# | instrument | open date | close date | lots | open price | close price | sl | tp | pip | profit ($)
+1 | EURUSD | 07.07.1990 12:23 | 08.07.1990 14:26 | 1.2 | 1.123452 | 1.123652 | 1.23358 | 0.0 | 3.4 | 23.74
+}
+}
+....
+
+image:https://imgur.com/Jng1tCI.jpg[OrdreHistorique,800]
+
+=== Ouvrir un ordre
+
+Un utilisateur doit pouvoir placer des ordres ou des positions de deux manières :
+
+* Soit par le biais du tableau des instruments financiers
+* Soit par le biais des boutons associés au graphique
+
+Les actions précédentes permettent d'ouvrir une interface pour le placement des transactions :
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{+
+EURUSD
+==
+"Take profit"
+[Ask price]
+Spread value
+"Lots"
+[Bid price]
+"Stop loss"
+[Advanced mode]
+}
+}}
+" as simplemode
+
+simplemode -right-> "
+{{
+salt
+{+
+EURUSD
+==
+Ask price - Spread value - Bid price
+"Take profit"
+"Open price"
+"Lots"
+"Stop loss"
+[Place order]
+[Simple mode]
+}
+}}
+"
+....
+
+==== Mode simple
+
+L'interface de placement des transactions en mode simple doit proposer de :
+
+* Placer un Take profit
+* Placer un ordre sur l'Ask
+* Afficher le spread
+* Choisir un nombre de lot
+* Placer un ordre sur le Bid
+* Placer un Stop loss
+
+Le fait de cliquer sur le prix Ask ou Bid permet de directement placer la position sur les marchés.
+
+==== Mode avancé
+
+Pour permettre le placement d'ordre par anticipation, faut proposer une interface différente, accéssible via un bouton "Advanced mode".
+
+A la différence d'un mode simple, il doit être possible de saisir le prix d'achat ou de vente directement via un champs "Open price".
+
+Et pour placer l'ordre, un bouton "Place order" est proposé sur l'interface, ce qui n'est pas le cas dans le mode simple.
+
+== F4 - Gérer des graphiques
+
+Un utilisateur doit pouvoir gérer ses graphiques dans l'optique de réaliser des analyses techniques. Il doit donc être possible :
+
+* D'ouvrir un graphique
+* De fermer un graphique
+* De détacher un graphique
+
+Un graphique ne peut être ouvert que sur une liste de d'instruments financiers.
+
+=== Instruments financiers - Liste des instrument
+
+La liste des instruments financiers peut être représenté dans l'interface par un tableau.
+
+3 données sont traditionnellement affichées en trading :
+
+* Le nom du produit financier
+* L'Ask
+* Le bid
+
+[plantuml, format="svg"]
+....
+salt
+{
+{
+"Search                " | <&delete>
+}
+{#
+Name | Ask | Bid | <&graph> | <&star>
+EURUSD | 1.12345 | 1.12345 | <&plus> | <&star>
+GBPUSD | 1.12345 | 1.12345 | <&plus> | <&star>
+JPYUSD | 123.12345 | 123.12345 | <&plus> | <&star>
+}
+}
+....
+
+Par l'intermédiaire de ce tableau d'instruments financiers, l'utilisateur doit être en mesure de :
+
+[%header,cols=2*]
+|===
+|Action | Description
+
+|Ouvrir un graphique
+|En clique sur un bouton l'utilisateur peut ouvrir un graphique permettant l'analyse technique
+
+|Ouvrir un panneau placement de transaction
+|Ce panneau permet de placer des ordres ou des positions sur les marchés
+
+|Mettre en favoris
+|Permet de mettre en tête de liste les instruments les plus utilisé par l'utilisateur
+|===
+
+Ces différentes actions doivent être accéssibles par :
+
+* un menu contextuel
+* un bouton (pour l'ouverture d'un graphique)
+
+==== Instruments financiers - Recherche
+
+Un utilisateur doit être en mesure de réaliser des recherches. Associé à la liste des instruments financiers un formulaire de recherche doit être mis en place.
+
+Le système de recherche doit être insensible à la casse.
+
+[plantuml, format="svg"]
+....
+(*) -right-> "
+{{
+salt
+{
+{
+"Search                " | <&delete>
+}
+{#
+Name | Ask | Bid | <&graph>
+EURUSD | 1.12345 | 1.12345 | <&plus>
+GBPUSD | 1.12345 | 1.12345 | <&plus>
+JPYUSD | 123.12345 | 123.12345 | <&plus>
+}
+}
+}}
+" as emptysearch
+
+emptysearch -right-> "
+{{
+salt
+{
+{
+"EUR                " | <&delete>
+}
+{#
+Name | Ask | Bid | <&graph>
+EURUSD | 1.12345 | 1.12345 | <&plus>
+}
+}
+}}
+" as eursearch
+
+eursearch -right-> "
+{{
+salt
+{
+{
+"ERROR        " | <&delete>
+}
+{#
+Name | Ask | Bid | <&graph>
+Instrument not found | * | * | *
+}
+}
+}}
+"
+....
+
+=== Interface de la zone de graphique
+
+L'utilisateur doit être en mesure d'ouvrir un graphique d'ouvrir un graphique par l'intermedaire de la liste d'instrument.
+
+La zone de graphique doit permettre l'accès aux différents instruments financiers par l'intermedaire d'onglets.
+
+Un onglet correspond à un graphique qui contient l'évolution des marchés sur un instrument financier.
+
+[plantuml, format="svg"]
+....
+salt
+{
+{/ <b>EURUSD | GBPUSD }
+{+
+{ [chart] | [zoom] | [1.12345] | [1.12344] | [unzoom] | [UT] }
+{ Graphical zone }
+}
+}
+....
+
+Sur chacun des graphique, il doit être possible de :
+
+* Zoomer et dészoomer
+* Placer des transactions d'achat et de vente
+* Changer le type de graphique (bâton/chandelier)
+* Changer l'unité de temps (UT)
+
+La zone de graphique doit intégrer des informations telsque :
+
+* Nom de l'instrument financier
+* Ask
+* Bid
+* Spread
+
+Ces différentes informations devraient pouvoir être présente en haut à droite de la zone de graphique afin de ne pas géner l'analyse du trader.
+
+=== Barre d'outil pour les graphiques
+
+De façon générique à tous les graphiques, il doit être possible pour un utilisateur de :
+
+* Placer des graphiques
+* Placer des objets
+
+[plantuml, format="svg"]
+....
+salt
+{
+{+
+{
+Tools
+[indicators]
+[objects]
+}
+}
+}
+....
+
+La zone de graphique devra donc intégrer cette barre d'outil.
+
+== F5 - Gérer des algorthmes
+
+Un utilisateur doit pouvoir gérer des algorithmes de trading. Il doit donc pouvoir effectuer les opérations générales d'un CRUD :
+
+* Lister des algorithmes
+* Créer un algorithme (Comprend le développement)
+* Modifier un algorithme
+* Supprimer un algorithme
+
+En plus de ses différentes opérations, l'utilisateur doit pouvoir :
+
+* Réaliser des backtests en local
+* Réaliser des backtests dans le cloud
+* Executer ses algorithmes sur un compte de trading en local
+* Executer ses algorithmes sur un compte de trading dans le cloud
+
+=== Développement d'un algorithme de trading
+
+==== IDE (Environement de développement)
+
+Pour developper un algorithme de trading, l'utilisateur devra utiliser un IDE. La plateforme devra donc proposer cette option.
+
+Il sera nécessaire de développer une application en parallèle avec ses propres outils.
+
+==== Framework & documentation
+
+Pour qu'un utilisateur puisse développer un algorithme de trading, il sera nécessaire de mettre en palce un Framework et sa documentation associé.
+
+L'interface devra donc prendre en compte :
+
+* L'autocomplétion
+* La documentation associé aux fonctions
+
+==== Configuration des paramètres
+
+L'utilisateur aura besoin de tester son algorithme de trading. Il faut donc prévoir lors du lancement du backtest une phase de paramétrage.
+
+[plantuml, format="svg"]
+....
+salt
+{
+{+
+{
+Backtest parameters
+==
+Capital | "10000     "
+Symbol | ^EURUSD   ^
+Unit time | ^M1       ^
+Start | "10.10.2001"
+End | "10.10.2019"
+[Start]
+}
+}
+}
+....
+
+==== Listing des backtests
+
+L'utilisateur doit être en mesure d'accéder au listing des backtests effectés. L'objectif étant de pouvoir réaliser un comparatif.
+
+[plantuml, format="svg"]
+....
+salt
+{#
+# | Date | Capital | Performances ($) | Performances (%) | Pips | Lots | Drawdown | <&delete> | <&delete>
+1 | 01.01.2019 10:23 | 10000 | 400 | 0.4% | 245 | 9 | 10.3% | [<&delete>] | [<&eye>]
+2 | 01.01.2019 11:23 | 10000 | 500 | 0.5% | 234 | 11 | 9.3% | [<&delete>] | [<&eye>]
+}
+....
+
+A partir de cette liste de backtest, l'utilisateur doit être en mesure de :
+
+* Supprimer un backtest
+* Voir les performances d'un backtest
+
+==== Analyse des performances
+
+Un certain nombre d'informations doivent être présent dans l'analyse des performances d'un algorithme de trading :
+
+[cols=2*]
+|===
+|Nom de la donnée
+|Description
+
+|Performance en capital
+|Correspond à la différence entre le dépot initial et le capital en cours.
+
+|Performance en pourcentage
+|Correspond à la différence entre le dépot initial et le capital en cours mais rapporté en pourcentage.
+
+|Drawdown
+|Correspond à la prise de risque qu'un trader prend sur les marchés
+
+|Ratio gain/perte
+|Permet de connaître le nombre de trades gagnants par rapport aux pertes.
+
+|Ratio de gain/perte par heure
+|Il est utile pour l'optimisation d'un algorithme de connaîtres les heures de gain/perte par heure.
+
+
+|Ratio de gain/perte par jour
+|Il est utile pour l'optimisation d'un algorithme de connaîtres les heures de gain/perte par jour.
+|===
+
+==== Historique & cotations
+
+Pour la mise en place des backtests, il sera nécessaire que la plateforme de trading puisse télécharger un historique de cotations.
+
+Ces données seront utiliser pour jouer de façon "fictive" les algorithmes de trading.
+
+== F6 - Analyser ses performances
+
+Un utilisateur doit pouvoir analyses ses performances de trading. Les performances sont associées à un compte de trading.
+
+On peut donc mettre en place un onglet analytics dans la zone d'analyses des ordres.
+
+[plantuml, format="svg"]
+....
+salt
+{+
+{/ Position | Orders | Historical | <b>Analytics }
+
+{#
+Performance ($) | $10.000
+Performance (%) | 98.00%
+Drawdown | 10.34%
+Ratio win/lose | 20%/80%
+} | { Graphical zone }
+}
+....
+
+Différentes information doivent être disponibles pour l'utilisateur :
+
+[cols=2*]
+|===
+|Nom de la donnée
+|Description
+
+|Performance en capital
+|Correspond à la différence entre le dépot initial et le capital en cours.
+
+|Performance en pourcentage
+|Correspond à la différence entre le dépot initial et le capital en cours mais rapporté en pourcentage.
+
+|Drawdown
+|Correspond à la prise de risque qu'un trader prend sur les marchés
+
+|Ratio gain/perte
+|Permet de connaître le nombre de trades gagnants par rapport aux pertes.
+|===

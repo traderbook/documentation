@@ -1,0 +1,273 @@
+= Spécifications techniques de la plateforme de trading
+
+== Architecture de la plateforme
+
+Présentation de l'architecture globale de la plataforme de trading sur le poste utilisateur.
+
+[plantuml, format="svg"]
+....
+actor User
+node Client
+node Server
+database Database
+file Configuration
+
+User -right-> Client
+Client -right-> Server
+Client -up-> Database
+Client -down-> Configuration
+....
+
+=== User
+
+L'utilisateur (User) est en relation avec la partir Client.
+
+=== Client
+
+Permet d'utiliser els différentes fonctionnalitées de la plateforme de trading (Client)
+
+Le Client devra être en mesure de :
+
+* Communiquer les informations au Server et d'en recevoir.
+* Persister les informations en local dans la Database.
+* Persister les informations de configuration de la plateforme en local dans un fichier de Configuration.
+
+Le Client doit être en mesure synchroniser les informations sur le Server
+
+=== Server
+
+Accéder à la link:serveur.html[spécification du serveur]
+
+=== Database
+
+La base de données permetttra la persistance des informations liées au comptes de trading, données associés aux ordres...
+
+=== Configuration
+
+Le fichier de Configuration permettra la persistance des informations liées à la configuration de la plateforme de trading.
+
+== Modèles de données
+
+[plantuml, diagram-classes, format="svg"]
+....
+Profile "1" *-- "many" Account
+Profile "1" *-- "many" Algorithm
+Transaction "many" --* "1" Account
+Transaction "many" --* "1" Algorithm
+
+class Profile {
+ - accounts: Account[]
+ - username: String
+ - password: String
+}
+
+class Account {
+ - accountType: AccountTypeEnum
+ - transactions: Transaction[]
+ - broker: String
+ - username: String
+ - password: String
+ - status: Boolean
+}
+
+class Transaction {
+ - transactionId: String
+ - instrument: String
+ - openDate: Date
+ - closeDate: Date
+ - lots: Double
+ - pip: Double
+ - openPrice: Double
+ - closePrice: Double
+ - stoploss: Double
+ - takeprofit: Double
+ - profit: Double
+}
+
+class Algorithm {
+ - transactions: Transaction[]
+ - name: String
+ - directoryName: String
+}
+
+enum AccountTypeEnum {
+  DEMO
+  REAL
+}
+
+enum InstrumentsEnum {
+  EURUSD
+  GBPUSD
+  ...
+}
+....
+
+== Dictionnaire de données
+
+=== F1 - Créer un profil utilisateur
+
+Nom de la table : *users*
+
+[%header,cols=4*]
+|===
+|Nom de la colonne |Type |Nom |Description
+
+|username
+|VARCHAR
+|Nom d'utilisateur ou login
+|Permettra d'authentifier un utilisateur
+
+|password
+|VARCHAR
+|Mot de passe
+|Permettra d'authentifier un utilisateur
+|===
+
+=== F2 - Compte de trading
+
+Nom de la table : *accounts*
+
+[%header,cols=4*]
+|===
+|Nom de la colonne |Type |Nom |Description
+
+|account_type
+|VARCHAR
+|Type de compte
+|Un compte peut avoir deux types : DEMO et REAL
+
+|broker
+|VARCHAR
+|Identifiant du broker
+|Correspond a l'identifiant du broker fourni par l'API (Connecteur de l'application)
+
+|username
+|VARCHAR
+|Nom d'utilisateur ou login
+|Correspont à l'identifiant fourni par le borker
+
+|password
+|VARCHAR
+|Mot de passe
+|Correspont à mot de passe fourni par le borker
+
+|status
+|BOOLEAN
+|Statut d'authentification
+|Permet de savoir quel compte est connecté à broker
+
+|user_id
+|INTERGER
+|Id de le table utilisateur
+|Permet l'association de cette table à la table utilisateur
+|===
+
+== F3 - Gérer des ordres
+
+Nom de la table : *transactions*
+
+[%header,cols=4*]
+|===
+|Nom de la colonne |Type |Nom |Description
+
+|transaction_id
+|STRING
+|ID de la transaction
+|Cet information est fourni pas le broker dans une position est transmise ou un ordre est passé.
+
+|instrument
+|STRING
+|Nom de l'instrument
+|Correspond au nom de l'instrument sur lequel est passé la transaction
+
+|open_date
+|TIMESTAMP
+|Date d'ouverture du trade
+|Correspond à la date d'ouverture de la transaction.
+
+|close_date
+|TIMESTAMP
+|Date de fermeture du trade
+|Correspond à la date de fermeture de la transaction.. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.
+
+|lot
+|DOUBLE
+|Nombre lots
+|Correspond au volume passé lors de la transaction.
+
+|open_price
+|DOUBLE
+|Prix d'ouverture
+|Correspond au prix où la transaction a été passée.
+
+|close_price
+|DOUBLE
+|Prix de fermeture
+|Correspond au prix où la transaction a été fermée. Cette colonne peut être vide. Si elle est complétée on considère que la position est cloturée.
+
+|stoploss
+|DOUBLE
+|Stop loss (SL)
+|Correspond au prix permettant la protection de la transaction
+
+|takeprofit
+|DOUBLE
+|Take profit (TP)
+|Correspond au prix qui fix un objectif à la transaction
+
+|pip
+|DOUBLE
+|Pip
+|Correspond à la différence de points entre le prix d'ouverture et de clôture de la transaction
+
+|profit
+|DOUBLE
+|Profit
+|Correspond aux profits réalisés
+
+|account_id
+|INTEGER
+|ID du compte de trading
+|Permet de mettre en relation le compte de trading les transaction
+|===
+
+== F5 - Gérer des algorthmes
+
+Nom de la table : *algorithms*
+
+[%header,cols=4*]
+|===
+|Nom de la colonne |Type |Nom |Description
+
+|name
+|STRING
+|Nom de l'algorithme
+|Correspond au nom donnée à l'algrithme
+
+|directory_name
+|STRING
+|Nom du dossier de projet
+|Correspond au nom du dossier où se trouve l'algrithme
+|===
+
+Nom de la table : *backtests*
+
+[%header,cols=4*]
+|===
+|Nom de la colonne |Type |Nom |Description
+
+|started_date
+|TIMESTAMP
+|Date de début du backtest
+|Permet de connaître la date de début du backtest
+
+|ended_date
+|TIMESTAMP
+|Date de fin du backtest
+|Permet de connaître la date de fin du backtest
+
+|algorithm_id
+|INTEGER
+|ID d'un algorithme
+|Permet l'association d'un backtest à un algorithme
+|===

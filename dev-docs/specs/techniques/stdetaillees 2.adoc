@@ -1,0 +1,138 @@
+= Spécifications techniques détaillées
+:toc: left
+
+L'architecture globale de communication entre les différents éléments est le suivant :
+
+[%header,cols=2*]
+|===
+| Rôle | Description
+
+|User
+|Le User est l'utilisateur finale. Il interagie directement avec la partie Client (plateforme de trading, gestionnaire d'algorithmes, backtests...).
+
+|Client
+|Le Client correspond au différents outils proposés à l'User (plateforme de trading, gestionnaire d'algorithmes, backtests...). Il interagie, par l'intermédiaire d'un reverse proxy, directement soit avec un Dispacher, doit un Service.
+
+|Reverse Proxy
+|Permet de distribuer les requêtes en fonction des requêtes du Client. Ce reverse proxy permettra la gestion d'alias de domaine que les Clients pourront utiliser.
+
+|Dispatcher
+|Le Dispatcher permet la création et la supervision des différents Services et permet la persistance des données en Database.
+
+|Service
+|Permet d'interagir avec soit la Database, soit un Connector. C'est cette partie qui doit receptionner et transmettre les informations aux Clients.
+
+|Database
+|Permet la persistence des données en provenance des différents Services et du Dispatcher.
+
+|Connector
+|Permet la communication entre le broker et le Service.
+
+|Broker
+|Permet la gestion des comptes de trading coté broker.
+|===
+
+[plantuml, format="svg"]
+....
+actor User
+
+node Client
+node "Reverse proxy" as reverseproxy
+node Dispatcher
+node Service
+node Connector
+database Database
+cloud Broker
+
+User <-right-> Client
+Client <-right-> reverseproxy
+reverseproxy <-right-> Dispatcher
+Dispatcher <-right-> Service
+Dispatcher <-right-> Database
+reverseproxy <-right-> Service
+Service <-down-> Database
+Service <-down-> Connector
+Connector <-down-> Broker
+....
+
+
+
+.TODO
+
+* Créer 2 graphiques de communication
+** Un grahique qui créer un service
+** Un grahique qui consomme le service
+* Mettre des légendes aux graphiques
+
+
+== Détails des spécifications
+
+[%header,cols=2*]
+|===
+| Document | Description
+
+|link:stdreverseproxy.html[Reverse proxy]
+|Permet de détailler les solutions utilisé pour le reverse proxy
+
+|link:stddispatcher.html[Service factory]
+|Permet de détailler le fonctionnement d'un connecteur.
+
+|link:stdservice.html[Service]
+|Permet de décrire le fonctionnement du service.
+
+|link:stdconnector.html[Connecteur]
+|Permet de détailler le fonctionnement d'un connecteur.
+|===
+
+[%header,cols=2*]
+|===
+| Document | Description
+
+|link:stddatadictionary.html[Gestion des données]
+|Permet de définir la structure des données.
+
+
+|link:stdalgorithm.html[Algortihme]
+|Permet d'expliquer les éléments techniques d'un algorithme de trading.
+
+|link:stddeployment.html[Déploiement]
+|Permet de présenter le procéssus de déploiement de l'application.
+
+|link:trading-plateforme.html[Plateforme de trading]
+|Permet de décrire les éléments techniques de la plateforme de trading.
+|===
+
+== Architecture structurelle (modules)
+
+Certaines informations entre la partie Client et Server vont être communes. Afin de faciliter la communication entre les différents module, un module API sera créé et importé dans chacun des autres module.
+
+[plantuml, format="svg"]
+....
+node API
+node Client
+node Server
+
+API -- Client
+API -- Server
+....
+
+Il sera donc nécessaire de créer des sous modules Git afin d'importé facilement les projets. C'est-à-dire que le module API est un sous module Git du repository qui hebergera le module Client ou encore Server.
+
+== Structure d'un projet
+
+Un projet doit être strucuté de la façon suivante :
+
+[plantuml, format="svg"]
+....
+salt
+{
+{T
+ + Project name
+ ++ api
+ ++ app
+ ++ gradle files
+}
+}
+....
+
+Chaque dossier positionné à la racine est un module. Est automatiquement importé, le module API.

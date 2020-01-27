@@ -1,0 +1,25 @@
+= Cahier des charges
+:toc: left
+
+== Introduction et objectif
+
+Ce document est destiné à une équipe de concepteur et développeur dans l'objectif de concevoir une application dans le domaine du trading algorithmique.
+
+== Cartouche qualité
+
+[%header,cols=5*]
+|===
+| Version | Date | Rédacteur | Validateur | Description
+
+|1.0.0
+|18-11-2018
+|MORICET Nicolas
+|...
+|Rédaction initiale
+|===
+
+== Context
+
+Nico & FX production est une société éditice de logiciel dans le domaine du trading algorithmique. Cette société à un partenaria historique avec un broker nommé LMAX Exchange.
+
+== Expression du besoin

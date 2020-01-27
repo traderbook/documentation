@@ -1,0 +1,15 @@
+= Spécification du reverse proxy
+:toc: left
+
+Le système utilisé pour le reverse proxy doit être en mesure de distribuer des URL à la volée.
+
+== Traefik
+
+image:https://d33wubrfki0l68.cloudfront.net/7c5fd7d38c371e23cdff059e6cebb10292cd441c/7d420/assets/img/traefik-architecture.svg[]
+
+link:https://traefik.io/[Traefik] permet gestion des urls générées à chaud.
+
+Ce système est :
+
+* utilisable avec Docker.
+* intègre l'API de Let's Encrypt pour créer des urls sécurisées.

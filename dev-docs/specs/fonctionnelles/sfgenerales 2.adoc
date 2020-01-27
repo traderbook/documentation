@@ -1,0 +1,347 @@
+= Document fonctionnel général
+:toc: left
+
+Ce document décrit les fonctionnalités générales de l'application de tading TraderBook. Il est destiné à identifier les besoins en fonctionnalités et ainsi que les besoins métiers.
+
+== Lexique
+
+[%header,cols=2*]
+|===
+|Nom  |Description
+
+|Trader
+|Personne qui à pour activité de gérer des fond sur les marchés.
+
+|Cotations
+|Ce sont les valeurs boursières retournées par l'intermédiaire financié.
+
+|Broker
+|Considéré comme un intermédiaire financier. C'est le broker qui permet de fournir les cotations et de transmettre les ordres.
+
+|Ordres
+|Les ordres sont transmis auprès du broker mais ne sont pas ouverts sur le marché. Un ordre peut être placé au dessus ou en dessous du prix du marché.
+
+|Positions
+|Les positions sont des ordres qui ont été ouvert. C'est sur les positions que le trader dégage des bénéfices ou des pertes.
+
+|Instrument financié
+|Produit proposé par les brokers qui permettent de fournir des cotations.
+
+|Ask & Bid
+|Respectivement l'Ask et le Bid correspondent à l'offre et la demande.
+
+|Spread
+|Correspond à la différence entre l'Ask et le Bid. C'est aussi les frais du broker.
+
+|Stoploss (SL)
+|Permet de protéger une position. Le SL est généralement placé dans le sens inverse de la position. Ex: Si c'est un ordre d'achat est emit à 1€, il sera placé en dessous des 1€. Lorsqu'il est touché la position se ferme.
+
+|Takeprofit (TP)
+|Permet de fixer un objectif à une position. Le TP est généralement placé dans le même sens que la position. Ex: Si c'est un ordre d'achat est emit à 1€, il sera placé en dessus des 1€. Lorsqu'il est touché la position se ferme.
+|===
+
+== Fonctionnalités générales
+
+Un utilisateur de la plateforme de trading doit être en mesure de :
+
+[%header,cols=3*]
+|===
+|Ref  |Fonctionnalité |Description
+
+|F1
+|Créer un profil utilisateur
+|Permet à l'utilisateur de protéger sa plateforme de trading et de synchroniser ses données.
+
+|F2
+|Gérer des comptes de trading
+|Permet à l'utilisateur de gérer les comptes de trading ouvert chez les brokers.
+
+|F3
+|Gérer des ordres sur les marchés
+|Permet à l'utilisateur de gérer les ordres pris sur le marché ainsi que les historiques.
+
+|F4
+|Gérer des graphiques
+|Permet à l'utilisateur de gérer les graphique afin de faire de l'analyse technique (indicateurs techniques, objets...).
+
+|F5
+|Gérer des algorithmes de trading
+|Permet à l'utilisateur de gérer les algorithmes de trading qu'il à développé et réaliser des backtests.
+
+|F6
+|Analyser ses performances
+|Permet à l'utilisateur d'avoir des statistiques sur les performances de son compte de trading.
+|===
+
+[plantuml, diagram-usecase, png]
+....
+(F2 - Gérer des comptes) << S'authentifier >>
+(F3 - Gérer des ordres) << S'authentifier >>
+(F4 - Gérer des graphiques) << S'authentifier >>
+(F5 - Gérer des algorthmes) << S'authentifier >>
+(F6 - Analyser ses performances) << S'authentifier >>
+
+User -up-> (F1 - S'authentifier)
+User --> (F2 - Gérer des comptes)
+User --> (F3 - Gérer des ordres)
+User --> (F4 - Gérer des graphiques)
+User --> (F5 - Gérer des algorthmes)
+User --> (F6 - Analyser ses performances)
+....
+
+=== Non fonctionnel
+
+==== Internationnalisation
+
+L'application doit gérer les différentes langues. En priorité le français et langlais.
+
+==== Gestion des formulaire
+
+Les formulaire sont gérés et validés du coté front. C'est-à-dire que les erreurs de type champs requis ou formattage de champs sont géré par des validateurs associés au formulaire.
+
+Un contre au niveau des contrôleur sera néanmoins nécessaire.
+
+==== Gestion des log utilisateur
+
+L'application doit être en mesure de créer un fichier de log avec les informations applicatives. Seul les mots de passes ne doivent pas être logger dans les informations.
+
+=== F1 - Créer un profil utilisateur
+
+Lorsqu'un utilisateur utilise pour le première fois la plateforme de trading, il doit s'identifier s'il possède un compte ou créer un profil.
+
+Cette identification permettra à l'utilisateur de :
+
+* Vérouiller la plateforme pour protéger les informations
+* Synchroniser ses données avec un service cloud
+
+=== F2 - Gérer des comptes de trading
+
+Un utilisateur à généralement un compte de trading ouvert chez un broker. Il existe deux types de comptes de trading :
+
+[%header,cols=2*]
+|===
+|Type  |Description
+
+|Demonstration
+|C'est un compte de simulation se rapprochant des conditions réel du marché.
+
+|Réel
+|Permet de prendre de vraie positions sur les marchés.
+|===
+
+La plateforme doit pouvoir gérer les comptes de trading de l'utilisateur en lui permettant de les lister et d'en :
+
+* Ajouter
+* Modifier
+* Supprimer
+
+Un utilisateur doit pouvoir se connecter au compte de trading afin de :
+
+* Récupérer les cotations du marché
+* Récupérer les données de son compte de trading
+* Gérer des ordres sur les marchés
+
+=== F3 - Gérer des ordres
+
+Une fois connecté un utilisateur doit pouvoir gérer ses ordres et positions. Il peut y avoir 3 états dans cette gestion d'ordres :
+
+[%header,cols=2*]
+|===
+|Nom  |Description
+
+|Les ordres
+|Les ordres qui sont en attente de transmission.
+
+|Les positions
+|Les ordres qui sont ouverts sur un instrument financié.
+
+|L'historique
+|Les positions qui ont été fermés.
+|===
+
+Certains éléments des états décrit précédement ne doivent pas entrer dans un CRUD. Le tableau ci-dessous permet de définir quels éléments peuvent ou non entrer dans un CRUD.
+
+[%header,cols=5*]
+|===
+|Nom  |Lister |Ajouter |Supprimer |Modifier
+
+|Les ordres
+|X
+|X
+|X
+|X
+
+|Les positions
+|X
+|X
+|O
+|O
+
+|L'historique
+|X
+|X
+|O
+|O
+|===
+
+Les positions ont deux état de plus que les autres états. Une position peut :
+
+* Ouverte
+* Fermé
+
+=== F4 - Gérer des graphiques
+
+Les graphiques sont éléments de l'interface de la plateforme associé à un instrument financié.
+
+La gestion des graphiques impliquent un certain nombre de d'états :
+
+[%header,cols=2*]
+|===
+|Etat  |Description
+
+|Ouvrir
+|Un graphique peut être ouvert par l'utilisateur. L'utilisateur peut voir l'évolution des cours.
+
+|Fermer
+|Un graphique peut être fermé par l'utilisateur.
+
+|Détacher
+|L'utilisateur peut détacher un graphique de la plateforme de trading afin de la placer sur un autre écran par exemple.
+|===
+
+Un graphique contient un certain nombres d'informations :
+
+[%header,cols=2*]
+|===
+|Etat  |Description
+
+|Le graphique
+|Le graphique permet la représentation de l'évolution des cours du marché. Ce graphique permet l'analyse des prix dans le temps.
+
+|Les prix marchés
+|Les prix fourni sont ceux de l'Ask et le Bid issue des cotations fourni par le broker.
+|===
+
+Un graphique peut avoir différents types :
+
+[%header,cols=2*]
+|===
+|Etat  |Description
+
+|Type bâton
+|image:https://www.abcbourse.com/apprendre/i/image9_b.gif[Graphique à bâton]
+
+|Type chandelier
+|image:https://www.abcbourse.com/apprendre/i/image10_b.gif[Graphique à bâton]
+|===
+
+Les graphiques doivent avoir des outils pour :
+
+* Placer des ordres ou des positions
+* Placer des indicateurs
+* Placer des objets
+* Changer le type de graphique (bâton, chandelier)
+* Zoomer et dézoomer
+
+Ces outils sont directement associés au graphique et indirectement à un instrument financié.
+
+=== F5 - Gérer des algorithmes
+
+Les algorithmes de trading sont des programmes informatiques qui fonctionnent par l'intermédiaire de la plateforme de trading.
+
+Un utilisateur doit pouvoir développer un algorithme de trading par l'intermediaire d'un environnement de développement (IDE) spécialisé.
+
+Un utilisateur doit pouvoir :
+
+* Lister ses algorithmes
+* Créer un algoritme
+* Modifier un algorithme
+* Supprimer un algorithme
+
+Un algorithme de trading doit pouvoir être testé (faire du backtesting) ou être utiliser sur un compte de trading (de démonstration ou réel).
+
+==== Backtesting
+
+Le backsting propose de simuler des conditions de marchés sur la base d'historiques de cotations issues des marchés.
+
+L'utilisateur peut effectuer le backtesting de 2 manières :
+
+* En local en testant une configuration à la fois et en utilisant les performances de la machine utilisée
+* Dans le cloud en testant une série de configuration simultanément et en utilisant les performances que proposer un cloud.
+
+==== Déploiement de l'agorithme
+
+===== Déploiement en local
+
+Lorsqu'un utilisateur utilise un algorithme sur un compte de trading, il doit pouvoir le paramétrer en fonction des options que cet algorithme propose.
+
+Ce mode de déploiement devra utiliser les conditions techniques proposé par l'environnement lié :
+
+* A la machine utilisateur
+* A l'infrastructure de l'utilisateur (réseau)
+
+===== Déploiement dans le cloud
+
+Un utilisateur doit avoir la possibilité de faire fonctionner sont algorithme dans le cloud afin de profiter des performances liés :
+
+* Au serveurs
+* A l'infrastructure
+
+=== F6 - Analyse ses performances
+
+Un utilisateur doit pouvoir accéder une fonctionnalité permettant l'analyse des performances de son compte de trading dans état neutre par rapport aux prises de positions en cours.
+
+==== Analyse numérique
+
+L'utilisateur doit pouvoir connaître les informations suivant sous forme de données numériques :
+
+[%header,cols=2*]
+|===
+|Valeur  |Description
+
+|Capital
+|Le montant du compte de trading sans prendre en compte les positions en cours.
+
+|Performance net en capital
+|La différence entre le capital déposé et le capital courant en valeur monétaire.
+
+|Performance net en pourcentage
+|La différence entre le capital déposé et le capital courant en pourcentage.
+
+|Drawdown
+|Correspond au risque pris sur le compte de trading.
+
+|Facteur de profit (profit factor)
+|C'est un indicateur de performance. Il évalue le rapport entre les profits réalisés sur un portefeuille et les risques pris par le Trader.
+
+|Ratio gain/perte
+|C'est un indicateur qui donne la proportion de gain par rapport aux pertes de l'utilisateur.
+
+|Volume
+|Le nombre total de volumes pris.
+|===
+
+==== Analyse graphique
+
+Pour simplifier l'analyse de l'utilisateur certaines données seront représentée sous forme de graphique en courbe et bâton :
+
+[%header,cols=3*]
+|===
+|Nom |Type  |Description
+
+|Performance en capital
+|Graphique linéaire
+|Permet d'évaluer les performance du compte de trading dans le temps en capital.
+
+|Performance en pourcentage
+|Graphique linéaire
+|Permet d'évaluer les performance du compte de trading dans le temps en pourcentage.
+
+|Volume
+|Graphique bâton
+|Permet d'évaluer les volumes passés sur les marché dans le temps.
+|===
+
+== Sources utilisées pour le documents
+
+* link:https://www.abcbourse.com[ABC Bourse] : Pour les éléments technique et les images.

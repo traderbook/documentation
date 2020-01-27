@@ -1,0 +1,64 @@
+= Dossier de spécifications
+:toc: left
+
+== Introduction
+
+TraderBook est une application permettant de réaliser des opérations de trading sur différents marchés.
+
+Cette plateforme se veut être légère et adaptée à l'utilisation de chacun. TraderBook est une plateforme de trading open source. Vous trouverez toutes les informations (plans, conception, code, guide utilisateur...) et les avancées liées au projet via cette documentation.
+
+== Cartouche qualité
+
+[%header,cols=5*]
+|===
+| Version | Date | Rédacteur | Validateur | Description
+
+|1.0.0
+|18-11-2018
+|MORICET Nicolas
+|...
+|Rédaction initiale
+|===
+
+== Présentation du projet
+
+TraderBook un projet open source de gestion d'ordre de trading et de développement d'algorithme de trading automatique.
+
+TraderBook un projet open source sur lequel vous pouvez contribuer de plusieurs manières :
+
+* En apprortant votre contribution en tant que développeur
+* En testant la plateforme et en faisant un retour issue de votre expérience
+* En proposant des améliorations
+* En contribuant à la documentation
+
+== Contribution à la documentation
+
+Cette documentation utilise 2 outils :
+
+* link:https://asciidoctor.org[Asciidoctor] : pour la rédaction et mise en forme des informations.
+* link:http://plantuml.com/[Plantuml] : pour les schémas et diagrammes.
+
+Pour la suite Intellig, il est préférable d'installer les plugins suivants :
+
+* link:https://plugins.jetbrains.com/plugin/7017-plantuml-integration[PlantUML integration]
+* link:https://plugins.jetbrains.com/plugin/7391-asciidoc[AsciiDoc]
+
+Pour installer un plugin sur Intellij, suivre cette : link:https://www.jetbrains.com/help/idea/managing-plugins.html[procédures]
+
+== Contribution au projet
+
+Afin de collaborer en bon éduforme, il convient de respecter quelques bonnes pratiques. link:stdprocess.html[Une procédure a été rédigée] afin d'établir quelques règle de développement.
+
+== Spécifications fonctionnelles
+
+L'accès aux :
+
+* link:sfgenerales.html[Spécifications fonctionnelles générales]
+* link:sfdetaillees.html[Spécifications fonctionnelles détaillées]
+
+== Spécifications techniques
+
+L'accès aux :
+
+* link:stgenerales.html[Spécifications techniques générales]
+* link:stdetaillees.html[Spécifications techniques détaillées]

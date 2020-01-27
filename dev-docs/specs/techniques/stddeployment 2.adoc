@@ -1,0 +1,51 @@
+= Spécification liée au déploiement
+
+== Architecture du Serveur Applicatif
+
+[plantuml, format="svg", role="right"]
+....
+node Serveur {
+    component "Reverse Proxy" as reverseproxy
+    component "Dispatcher" as dispatcher
+    component "Service X" as servicex
+    component "Database" as database
+
+    reverseproxy -up-> HTTPS
+    reverseproxy <--> dispatcher
+    dispatcher <-right-> servicex
+    reverseproxy <--> servicex
+
+    database <-up-> dispatcher
+    database <-up-> servicex
+}
+....
+
+Les différents composants applicatifs seront gérés par des containers via Docker.
+
+Règles d'expositions des ports et de gestion des communications :
+
+* Le Reverse Proxy doit être en mesure d'exposer un port HTTPS qui est le port 443.
+* Les containers de services et dispatcher seront liés par un système de label au Reverse Proxy en fonction de l'API de Traefic.
+* Un port SSH sera exposé à la discretion de l'administrateur du système
+
+[%header,cols=2*]
+|===
+|Container  |Description et ressource
+
+|Reverse Proxy
+|Une image docker a été créé pour link:https://hub.docker.com/_/traefik/[Traefik].
+
+|Dispatcher
+|A définir
+
+|Services
+|A définir
+
+|Database
+|Une imahe docker a été créé pour link:https://hub.docker.com/_/mongo/[Mongo].
+|===
+
+== Gestion du versioning
+== Intégration continue
+== Procédure de déploiement
+== Procédure de backup
